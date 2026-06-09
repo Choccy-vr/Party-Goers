@@ -29,14 +29,14 @@ public class NetworkPlayer : NetworkBehaviour
         root.position = VRRigReferences.Singleton.root.position;
         root.rotation = VRRigReferences.Singleton.root.rotation;
 
-        head.position = VRRigReferences.Singleton.root.position;
-        head.rotation = VRRigReferences.Singleton.root.rotation;
+        head.position = VRRigReferences.Singleton.head.position;
+        head.rotation = VRRigReferences.Singleton.head.rotation;
 
-        leftHand.position = VRRigReferences.Singleton.root.position;
-        leftHand.rotation = VRRigReferences.Singleton.root.rotation;
+        leftHand.position = VRRigReferences.Singleton.leftHand.position;
+        leftHand.rotation = VRRigReferences.Singleton.leftHand.rotation;
 
-        rightHand.position = VRRigReferences.Singleton.root.position;
-        rightHand.rotation = VRRigReferences.Singleton.root.rotation;
+        rightHand.position = VRRigReferences.Singleton.rightHand.position;
+        rightHand.rotation = VRRigReferences.Singleton.rightHand.rotation;
         }
     }
 }
