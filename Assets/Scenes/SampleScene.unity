@@ -3775,6 +3775,7 @@ GameObject:
   - component: {fileID: 8823589863329067581}
   - component: {fileID: 3618939037235926123}
   - component: {fileID: 6834331361426317077}
+  - component: {fileID: 8823589863329067582}
   m_Layer: 0
   m_Name: Right Hand
   m_TagString: Untagged
@@ -4880,6 +4881,7 @@ GameObject:
   m_Component:
   - component: {fileID: 8365553820558719581}
   - component: {fileID: 7853130791607667066}
+  - component: {fileID: 8365553820558719582}
   m_Layer: 0
   m_Name: Left Hand
   m_TagString: Untagged
@@ -5243,31 +5245,6 @@ Transform:
   - {fileID: 1575386804889122650}
   m_Father: {fileID: 5601654612831661848}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2632750744163617760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8436012088460287411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 74695cfefd0f50d4c94d9855f6e83330, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::LocomotionSprint
-  sprintSpeed: 10
-  sprintAction:
-    m_UseReference: 1
-    m_Action:
-      m_Name: Sprint
-      m_Type: 0
-      m_ExpectedControlType: 
-      m_Id: 02e27daa-a8fe-44fe-a3ae-d75ed45ddf4d
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_Reference: {fileID: -30823639513589636, guid: c348712bda248c246b8c49b3db54643f, type: 3}
 --- !u!4 &2639423266696485320
 Transform:
   m_ObjectHideFlags: 0
@@ -5878,54 +5855,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 3076133278308062008}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3210312069028035510
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8436012088460287411}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 626a4d6723d6ad24b9aebb811ad5a3dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Movement.ContinuousMoveProvider
-  m_Mediator: {fileID: 4593467581742548780}
-  m_TransformationPriority: 0
-  m_MoveSpeed: 4.5
-  m_InAirControlModifier: 0.5
-  m_EnableStrafe: 1
-  m_EnableFly: 0
-  m_ForwardSource: {fileID: 8691625578149234357}
-  m_LeftHandMoveInput:
-    m_InputSourceMode: 2
-    m_InputAction:
-      m_Name: Left Hand Move
-      m_Type: 0
-      m_ExpectedControlType: Vector2
-      m_Id: 8d48d460-0e04-4efd-a5ba-6710c952a020
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualValue: {x: 0, y: 0}
-  m_RightHandMoveInput:
-    m_InputSourceMode: 0
-    m_InputAction:
-      m_Name: Right Hand Move
-      m_Type: 0
-      m_ExpectedControlType: Vector2
-      m_Id: 9f2ad5e4-ab0e-4010-a71a-fd07a4eb7dd7
-      m_Processors: 
-      m_Interactions: 
-      m_SingletonActionBindings: []
-      m_Flags: 0
-    m_InputActionReference: {fileID: 0}
-    m_ObjectReferenceObject: {fileID: 0}
-    m_ManualValue: {x: 0, y: 0}
-  m_UseGravity: 1
 --- !u!1 &3247965570435581385
 GameObject:
   m_ObjectHideFlags: 0
@@ -9810,6 +9739,32 @@ Transform:
   - {fileID: 7387838113888192056}
   m_Father: {fileID: 4561963507366349322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8365553820558719582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2230639590139602200}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: a83cc34f-17a0-4dbe-ba85-299f3726220b
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8785819595477538065, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!114 &8384460837195219831
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9881,8 +9836,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8334504933028876778}
-  - component: {fileID: 3210312069028035510}
-  - component: {fileID: 2632750744163617760}
+  - component: {fileID: 8436012088460287412}
   m_Layer: 0
   m_Name: Move
   m_TagString: Untagged
@@ -9890,6 +9844,83 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &8436012088460287412
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8436012088460287411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b26eb6a4a0a5d2c4f98f39ea293ee4f4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::LocomotionContinuousMove
+  m_Mediator: {fileID: 4593467581742548780}
+  m_TransformationPriority: 0
+  m_MoveSpeed: 1
+  m_InAirControlModifier: 0.5
+  m_EnableStrafe: 1
+  m_EnableFly: 0
+  m_ForwardSource: {fileID: 8691625578149234357}
+  m_LeftHandMoveInput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Left Hand Move
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: ebdd0ad4-36b3-498f-bf29-9ba8ae93c10f
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: 6972639530819350904, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: {x: 0, y: 0}
+  m_RightHandMoveInput:
+    m_InputSourceMode: 0
+    m_InputAction:
+      m_Name: Right Hand Move
+      m_Type: 0
+      m_ExpectedControlType: Vector2
+      m_Id: 86721ba8-e639-405d-9ad2-3323834f9530
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: 0}
+    m_ObjectReferenceObject: {fileID: 0}
+    m_ManualValue: {x: 0, y: 0}
+  m_UseGravity: 1
+  haptics: 1
+  leftControllerHaptics: {fileID: 8365553820558719582}
+  rightControllerHaptics: {fileID: 8823589863329067582}
+  amplitude: 0.1125
+  frequency: 230
+  duration: 0.05
+  sprintEnabled: 1
+  sprintAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Sprint
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: f82b9af3-f404-4378-885c-b80adf2c50d0
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -30823639513589636, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  sprintMoveSpeed: 8
+  physicalSprint: 1
+  sprintAcceleration: 0
+  sprintAccelLength: 0.3
+  sprintDecelLength: 0.2
+  leftHand: {fileID: 7853130791607667066}
+  rightHand: {fileID: 3618939037235926123}
+  swingThreshold: 2
+  swingCommitmentDuration: 0.3
+  swingGraceDuration: 0.4
 --- !u!1 &8477408071809060487
 GameObject:
   m_ObjectHideFlags: 0
@@ -10337,6 +10368,32 @@ Transform:
   - {fileID: 3336955131717224426}
   m_Father: {fileID: 4561963507366349322}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &8823589863329067582
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 800144656597193745}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer
+  m_HapticOutput:
+    m_InputSourceMode: 2
+    m_InputAction:
+      m_Name: Haptic
+      m_Type: 2
+      m_ExpectedControlType: 
+      m_Id: 627d5a17-5951-4a6a-b4a6-c7d82ff0cd15
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_InputActionReference: {fileID: -8222252007134549311, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    m_ObjectReferenceObject: {fileID: 0}
+  m_AmplitudeMultiplier: 1
 --- !u!4 &8845675102200940918
 Transform:
   m_ObjectHideFlags: 0
@@ -10427,7 +10484,7 @@ MonoBehaviour:
   m_TransformationPriority: 0
   m_ProvidersToDisable:
   - {fileID: 4578828989914540428}
-  - {fileID: 3210312069028035510}
+  - {fileID: 0}
   m_EnableGravityOnClimbEnd: 1
   m_ClimbSettings:
     m_UseConstant: 1
