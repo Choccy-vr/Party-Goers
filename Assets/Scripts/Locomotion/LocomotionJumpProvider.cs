@@ -11,10 +11,10 @@ public class LocomotionJumpProvider : MonoBehaviour
     [SerializeField] InputActionProperty jumpAction;
 
     [Header("Jump Settings")]
-    [SerializeField] float jumpHeight = 2.5f;
-    [SerializeField] float upwardGravity = -15f;
-    [SerializeField] float downwardGravity = -35;
-    [SerializeField] private float coyoteTimeDuration = 0.15f;
+    public float jumpHeight = 2.5f;
+    public float upwardGravity = -15f;
+    public float downwardGravity = -35;
+    public float coyoteTimeDuration = 0.15f;
     private float coyoteTimer;
 
     [Header("Events")]

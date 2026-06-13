@@ -11,7 +11,7 @@ public class LocomotionContinuousMove : ContinuousMoveProvider
 {
 
     [Header("Haptics")]
-    [SerializeField] bool haptics = true;
+    public bool haptics = true;
     [SerializeField] HapticImpulsePlayer leftControllerHaptics;
     [SerializeField] HapticImpulsePlayer rightControllerHaptics;
     [Range(0f, 1f)]
