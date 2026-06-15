@@ -32,7 +32,7 @@ MonoBehaviour:
   sprintAccelerationEnabled: 0
   sprintAcceleration: 0.1
   sprintDeceleration: 0.2
-  delayTimeTeleportation: 0.5
+  delayTimeTeleportation: 0
   turnSpeed: 80
   turnAmount: 45
   delayTimeSnapTurn: 0

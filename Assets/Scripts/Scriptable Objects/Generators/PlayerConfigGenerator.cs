@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.XR.Interaction.Toolkit.Locomotion.Climbing;
 
 [CreateAssetMenu(fileName = "Player Config", menuName = "Scriptable Objects/Player Config")]
 public class PlayerConfigItem : ScriptableObject
