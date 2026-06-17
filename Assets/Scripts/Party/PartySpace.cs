@@ -16,7 +16,7 @@ public class PartySpace : MonoBehaviour
 
 
     [HideInInspector] public bool isOccupied;
-    [HideInInspector] public PartyPlayer playerOnSpace;
+    [HideInInspector] public VRPartyPlayer playerOnSpace;
 
 
     TeleportationAnchor teleportationAnchor;
@@ -26,6 +26,40 @@ public class PartySpace : MonoBehaviour
     {
         //Get required components
         teleportationAnchor = GetComponent<TeleportationAnchor>();
+    }
+
+    void Start()
+    {
+        teleportationAnchor.teleporting.AddListener(OnTeleportLanded);
+    }
+
+    void OnTeleportLanded(TeleportingEventArgs args)
+    {
+        VRPartyPlayer arrivingPlayer = getLocalNetworkPlayer();
+        if (arrivingPlayer == null) return;
+
+        OnTeleportLeave(arrivingPlayer, arrivingPlayer.currentSpaceId);
+
+        isOccupied = true;
+        playerOnSpace = arrivingPlayer;
+        arrivingPlayer.currentSpaceId = this.spaceID;
+
+    }
+
+    void OnTeleportLeave(VRPartyPlayer player, int spaceBeingLeft)
+    {
+        Debug.Log("Leaveing!");
+    }
+
+
+
+    VRPartyPlayer getLocalNetworkPlayer()
+    {
+        foreach (var p in FindObjectsByType<VRPartyPlayer>())
+        {
+            if (p.IsOwner) return p;
+        }
+        return null;
     }
 
 

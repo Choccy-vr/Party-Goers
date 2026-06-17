@@ -43,6 +43,7 @@ GameObject:
   - component: {fileID: -1922507868914224333}
   - component: {fileID: 398826076391974435}
   - component: {fileID: 7052346279882500265}
+  - component: {fileID: 5555398026216306457}
   m_Layer: 0
   m_Name: Network Player
   m_TagString: Untagged
@@ -80,7 +81,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3794332502
+  GlobalObjectIdHash: 4285488018
   InScenePlacedSourceGlobalObjectIdHash: 2414911420
   DeferredDespawnTick: 0
   Ownership: 1
@@ -160,6 +161,20 @@ MonoBehaviour:
   SwitchTransformSpaceWhenParented: 0
   Interpolate: 1
   SlerpPosition: 0
+--- !u!114 &5555398026216306457
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320252362426329865}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b337bc9748f4f18438710a545630dade, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::VRPartyPlayer
+  ShowTopMostFoldoutHeaderGroup: 1
+  currentSpaceId: 0
 --- !u!1 &630413245767946172
 GameObject:
   m_ObjectHideFlags: 0
