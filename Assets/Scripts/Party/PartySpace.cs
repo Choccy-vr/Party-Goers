@@ -13,13 +13,15 @@ public class PartySpace : MonoBehaviour
     [SerializeField] InteractionLayerMask unlockInteractionLayer;
     [SerializeField] InteractionLayerMask disabledInteractionLayer;
 
+    [SerializeField] bool isFirstSpace;
+
 
 
     [HideInInspector] public bool isOccupied;
     [HideInInspector] public VRPartyPlayer playerOnSpace;
 
 
-    TeleportationAnchor teleportationAnchor;
+    [HideInInspector] public TeleportationAnchor teleportationAnchor;
 
 
     void Awake()
@@ -31,6 +33,15 @@ public class PartySpace : MonoBehaviour
     void Start()
     {
         teleportationAnchor.teleporting.AddListener(OnTeleportLanded);
+
+        if (isFirstSpace)
+        {
+            teleportationAnchor.interactionLayers = unlockInteractionLayer;
+        }
+        else
+        {
+            teleportationAnchor.interactionLayers = disabledInteractionLayer;
+        }
     }
 
     void OnTeleportLanded(TeleportingEventArgs args)
@@ -42,13 +53,32 @@ public class PartySpace : MonoBehaviour
 
         isOccupied = true;
         playerOnSpace = arrivingPlayer;
-        arrivingPlayer.currentSpaceId = this.spaceID;
+        arrivingPlayer.currentSpaceId = spaceID;
+        teleportationAnchor.interactionLayers = disabledInteractionLayer;
+
+        arrivingPlayer.spacesToMove--;
+        if (arrivingPlayer.spacesToMove > 0)
+        {
+            foreach (PartySpace space in nextSpace)
+            {
+                //unlock possible spaces
+                space.teleportationAnchor.interactionLayers = unlockInteractionLayer;
+            }
+        }
 
     }
 
-    void OnTeleportLeave(VRPartyPlayer player, int spaceBeingLeft)
+    void OnTeleportLeave(VRPartyPlayer player, int spaceBeingLeftID)
     {
-        Debug.Log("Leaveing!");
+        PartySpace spaceBeingLeft = GetPartySpace(spaceBeingLeftID);
+        spaceBeingLeft.teleportationAnchor.interactionLayers = disabledInteractionLayer;
+        if (spaceBeingLeft.nextSpace.Length > 1)
+        {
+            foreach (PartySpace partySpace in spaceBeingLeft.nextSpace)
+            {
+                partySpace.teleportationAnchor.interactionLayers = disabledInteractionLayer;
+            }
+        }
     }
 
 
@@ -62,13 +92,9 @@ public class PartySpace : MonoBehaviour
         return null;
     }
 
+    PartySpace GetPartySpace(int spaceID)
+    {
+        return MapManager.Instance.partySpaces.Find(s => s.spaceID == spaceID);
+    }
 
-    public void unlockSpace()
-    {
-        teleportationAnchor.interactionLayers = unlockInteractionLayer;
-    }
-    public void lockSpace()
-    {
-        teleportationAnchor.interactionLayers = disabledInteractionLayer;
-    }
 }

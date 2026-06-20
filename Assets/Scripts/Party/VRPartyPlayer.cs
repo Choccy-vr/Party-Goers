@@ -3,6 +3,7 @@ using UnityEngine;
 public class VRPartyPlayer : NetworkBehaviour
 {
     public int currentSpaceId;
+    public int spacesToMove = 0;
     public PlayerSessionData playerData { get; private set; }
 
     public override void OnNetworkSpawn()
