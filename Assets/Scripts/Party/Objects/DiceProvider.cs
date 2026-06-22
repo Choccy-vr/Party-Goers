@@ -1,6 +1,7 @@
 using System.Collections;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 
@@ -10,6 +11,8 @@ public class DiceProvider : MonoBehaviour
     [SerializeField] float stableDuration = 0.2f;
     [SerializeField] TextMeshProUGUI text;
     public int upNumber, downNumber, leftNumber, rightNumber, forwardNumber, backNumber;
+
+    public UnityEvent onDiceFinish;
 
     XRGrabInteractable grabInteractable;
     Rigidbody rb;
@@ -21,9 +24,13 @@ public class DiceProvider : MonoBehaviour
         rb = GetComponent<Rigidbody>();
     }
 
-    void Start()
+    void OnEnable()
     {
         grabInteractable.selectExited.AddListener(StartDiceRoll);
+    }
+    void OnDisable()
+    {
+        grabInteractable.selectExited.RemoveListener(StartDiceRoll);
     }
 
     IEnumerator CheckDiceRoll()
@@ -51,8 +58,11 @@ public class DiceProvider : MonoBehaviour
         isCheckingDiceRoll = false;
         int diceResult = GetDiceResult();
         Debug.Log("Dice Rolled a " + diceResult);
+        SetPlayerSpaces(diceResult);
         text.text = diceResult.ToString();
+        onDiceFinish?.Invoke();
     }
+
 
     void StartDiceRoll(SelectExitEventArgs args)
     {
@@ -61,6 +71,12 @@ public class DiceProvider : MonoBehaviour
         {
             StartCoroutine(CheckDiceRoll());
         }
+        Debug.Log(args.interactorObject.transform.name + " started a Dice Roll");
+    }
+
+    void SetPlayerSpaces(int diceResult)
+    {
+        NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>().addSpacesToMove(diceResult);
     }
 
     public int GetDiceResult()

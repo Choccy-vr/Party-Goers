@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
@@ -14,6 +15,9 @@ public class PartySpace : MonoBehaviour
     [SerializeField] InteractionLayerMask disabledInteractionLayer;
 
     [SerializeField] bool isFirstSpace;
+
+    public UnityEvent onSpaceArrive;
+    public UnityEvent onSpaceLeave;
 
 
 
@@ -65,6 +69,7 @@ public class PartySpace : MonoBehaviour
                 space.teleportationAnchor.interactionLayers = unlockInteractionLayer;
             }
         }
+        onSpaceArrive?.Invoke();
 
     }
 
@@ -79,6 +84,7 @@ public class PartySpace : MonoBehaviour
                 partySpace.teleportationAnchor.interactionLayers = disabledInteractionLayer;
             }
         }
+        onSpaceLeave?.Invoke();
     }
 
 

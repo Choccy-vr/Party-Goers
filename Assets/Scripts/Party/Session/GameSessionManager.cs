@@ -1,16 +1,13 @@
-using System;
 using System.Collections.Generic;
 using Unity.Netcode;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameSessionManager : NetworkBehaviour
 {
 
     public static GameSessionManager Instance { get; private set; }
 
-    public List<PlayerSessionData> activePlayers = new List<PlayerSessionData>();
+    public NetworkList<PlayerSessionData> activePlayers = new NetworkList<PlayerSessionData>();
 
     void Awake()
     {
@@ -31,8 +28,34 @@ public class GameSessionManager : NetworkBehaviour
         Debug.Log("New Player Registered! " + username);
     }
 
-    public PlayerSessionData getPlayerData(ulong clientId)
+    public PlayerSessionData? getPlayerData(ulong clientId)
     {
-        return activePlayers.Find(p => p.networkClientId == clientId);
+        foreach (var player in activePlayers)
+        {
+            if (player.networkClientId == clientId)
+            {
+                return player;
+            }
+        }
+        return null;
+    }
+
+    public void AddCoinsToPlayer(ulong clientId, int amount)
+    {
+
+        if (!IsServer) return;
+
+        for (int i = 0; i < activePlayers.Count; i++)
+        {
+            if (activePlayers[i].networkClientId == clientId)
+            {
+                PlayerSessionData data = activePlayers[i];
+
+                data.coins += amount;
+
+                activePlayers[i] = data;
+                break;
+            }
+        }
     }
 }

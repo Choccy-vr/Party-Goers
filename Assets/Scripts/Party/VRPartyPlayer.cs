@@ -9,19 +9,62 @@ public class VRPartyPlayer : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+        if (IsOwner)
+        {
+            NetworkIdenity.Instance.networkPlayerIdenity = gameObject;
+        }
+        RefreshLocalData();
         if (GameSessionManager.Instance != null)
         {
-            playerData = GameSessionManager.Instance.getPlayerData(OwnerClientId);
+            GameSessionManager.Instance.activePlayers.OnListChanged += OnNetworkPlayersChanged;
         }
-        if (playerData != null)
+        PlayerManager.Instance.activePlayerObj.Add(this);
+
+    }
+    public override void OnNetworkDespawn()
+    {
+        if (GameSessionManager.Instance != null)
         {
-            Debug.Log("State Restored!!!!!!");
+            GameSessionManager.Instance.activePlayers.OnListChanged -= OnNetworkPlayersChanged;
+        }
+        base.OnNetworkDespawn();
+    }
+    void OnNetworkPlayersChanged(NetworkListEvent<PlayerSessionData> changeEvent)
+    {
+        RefreshLocalData();
+    }
+
+    void RefreshLocalData()
+    {
+        if (GameSessionManager.Instance != null)
+        {
+            PlayerSessionData? playerDataNull = GameSessionManager.Instance.getPlayerData(OwnerClientId);
+            if (playerDataNull is PlayerSessionData data)
+            {
+                playerData = data;
+            }
         }
     }
 
     public void addCoins(int coins)
     {
-        playerData.coins += coins;
-        Debug.Log(playerData.coins);
+        if (IsServer)
+        {
+            GameSessionManager.Instance.AddCoinsToPlayer(OwnerClientId, coins);
+        }
+        else
+        {
+            AddCoinsServerRPC(coins);
+        }
+    }
+    [ServerRpc]
+    void AddCoinsServerRPC(int coins)
+    {
+        GameSessionManager.Instance.AddCoinsToPlayer(OwnerClientId, coins);
+    }
+
+    public void addSpacesToMove(int spaces)
+    {
+        spacesToMove += spaces;
     }
 }

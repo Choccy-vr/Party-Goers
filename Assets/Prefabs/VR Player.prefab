@@ -2135,6 +2135,7 @@ GameObject:
   - component: {fileID: 2741467166113761757}
   - component: {fileID: 6235236974550433517}
   - component: {fileID: 7290164214624511395}
+  - component: {fileID: 1615998546922979516}
   m_Layer: 2
   m_Name: VR Player
   m_TagString: Untagged
@@ -2259,6 +2260,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   cameraPos: {fileID: 8709036737266385186}
+--- !u!114 &1615998546922979516
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3186957085446773813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 56aabeb14d0eaa04f9f14b79dd85bc2d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::NetworkIdenity
 --- !u!1 &3270434776535545733
 GameObject:
   m_ObjectHideFlags: 0
@@ -5084,7 +5097,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation.TeleportationProvider
   m_Mediator: {fileID: 9077400756568078690}
   m_TransformationPriority: 0
-  m_DelayTime: 0.5
+  m_DelayTime: 0
 --- !u!1 &5863946278844055735
 GameObject:
   m_ObjectHideFlags: 0
