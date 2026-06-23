@@ -6,6 +6,8 @@ public class PartyManager : MonoBehaviour
 
     [SerializeField] GameObject dicePrefab;
 
+    GameObject currentDiceObject;
+
     void Awake()
     {
         if (Instance != null && Instance != this)
@@ -31,12 +33,16 @@ public class PartyManager : MonoBehaviour
             Debug.LogError("PartyManager: 'dicePrefab' is not assigned in the Inspector!");
             return;
         }
-        Vector3 spawnPosition = player.transform.position + player.transform.forward * 2;
+        Vector3 spawnPosition = player.transform.position + (player.transform.forward * 2) + Vector3.up;
 
-        Instantiate(dicePrefab, spawnPosition, dicePrefab.transform.rotation);
+        currentDiceObject = Instantiate(dicePrefab, spawnPosition, dicePrefab.transform.rotation);
 
         Debug.Log("Starting " + player.playerData.username + "'s turn");
 
+    }
+    public void endPlayerTurn(VRPartyPlayer player)
+    {
+        Destroy(currentDiceObject);
     }
 
 

@@ -70,6 +70,12 @@ public class PartySpace : MonoBehaviour
             }
         }
         onSpaceArrive?.Invoke();
+        if (arrivingPlayer.spacesToMove <= 0)
+        {
+            TurnManager.Instance.endPlayerTurn();
+            TurnManager.Instance.nextPlayerTurn();
+        }
+
 
     }
 

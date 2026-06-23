@@ -6,39 +6,15 @@ using UnityEngine.Events;
 public class TurnManager : NetworkBehaviour
 {
     public static TurnManager Instance;
-    private VRPartyPlayer _currentTurnPlayerObj;
-    private List<VRPartyPlayer> _turnOrderObj = new List<VRPartyPlayer>();
 
-    public VRPartyPlayer currentTurnPlayerObj
-    {
-        get => _currentTurnPlayerObj;
-        set
-        {
-            if (value != _currentTurnPlayerObj)
-            {
-                _currentTurnPlayerObj = value;
-                onLocalPlayerObjChanged(value);
-            }
-        }
-    }
+    public VRPartyPlayer currentTurnPlayerObj;
 
-    public List<VRPartyPlayer> turnOrderObj
-    {
-        get => _turnOrderObj;
-        set
-        {
-            if (value != _turnOrderObj)
-            {
-                _turnOrderObj = value;
-                onLocalOrderObjChanged(value);
-            }
-        }
-    }
+    public List<VRPartyPlayer> turnOrderObj;
 
     private NetworkVariable<ulong> currentTurnPlayerID = new NetworkVariable<ulong>();
     private NetworkList<ulong> turnOrderID = new NetworkList<ulong>();
 
-    public int amountRounds = 10;
+    public NetworkVariable<int> amountRounds = new NetworkVariable<int>(10);
 
     public UnityEvent<VRPartyPlayer> onTurnStart;
     public UnityEvent<VRPartyPlayer> onTurnEnd;
@@ -74,10 +50,12 @@ public class TurnManager : NetworkBehaviour
     private void OnTurnPlayerIDChanged(ulong previousValue, ulong newValue)
     {
         updateLocalCurrentObj(newValue);
+        Debug.Log("Current Turn Changed");
     }
     private void OnTurnOrderIDChanged(NetworkListEvent<ulong> changeEvent)
     {
         updateLocalOrderObj(turnOrderID);
+        Debug.Log("Turn Order Changed");
     }
 
     VRPartyPlayer GetVRPlayerFromID(ulong id)
@@ -88,6 +66,11 @@ public class TurnManager : NetworkBehaviour
     void updateLocalCurrentObj(ulong newID)
     {
         currentTurnPlayerObj = GetVRPlayerFromID(newID);
+        currentPlayerIndex = turnOrderObj.IndexOf(currentTurnPlayerObj);
+        if (newID == NetworkManager.Singleton.LocalClientId)
+        {
+            nextPlayerTurn();
+        }
     }
     void updateLocalOrderObj(NetworkList<ulong> newID)
     {
@@ -96,44 +79,74 @@ public class TurnManager : NetworkBehaviour
             turnOrderObj.Insert(i, GetVRPlayerFromID(newID[i]));
         }
     }
-
-    void onLocalPlayerObjChanged(VRPartyPlayer player)
+    void updateNetworkCurrent(VRPartyPlayer player)
     {
-        if (!IsServer) return;
-        currentTurnPlayerID.Value = player.playerData.networkClientId;
+        updateNetworkCurrentServerRpc(player.playerData.networkClientId);
     }
-    void onLocalOrderObjChanged(List<VRPartyPlayer> order)
+
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    void updateNetworkCurrentServerRpc(ulong ID)
     {
-        if (!IsServer) return;
-        for (int i = 0; i < order.Count; i++)
+        currentTurnPlayerID.Value = ID;
+    }
+    void updateNetworkOrder(List<VRPartyPlayer> playerOrder)
+    {
+        List<ulong> idList = new List<ulong>();
+        foreach (VRPartyPlayer player in playerOrder)
         {
-            turnOrderID.Insert(i, order[i].playerData.networkClientId);
+            idList.Add(player.playerData.networkClientId);
         }
+        updateNetworkOrderServerRpc(idList.ToArray());
+    }
+
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    void updateNetworkOrderServerRpc(ulong[] ID)
+    {
+        turnOrderID.Clear();
+        foreach (var id in ID)
+        {
+            turnOrderID.Add(id);
+        }
+    }
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    void updateRoundAmountServerRpc(int amount)
+    {
+        amountRounds.Value = amount;
     }
     public void addPlayerToTurnOrder(VRPartyPlayer player, int order)
     {
         turnOrderObj.Insert(order, player);
+        updateNetworkOrder(turnOrderObj);
     }
-
 
     public void nextPlayerTurn()
     {
+        //Debug.Log("currentPlayerIndex = " + currentPlayerIndex);
+        //Debug.Log("activePlayerObj = " + PlayerManager.Instance.activePlayerObj.Count);
         currentTurnPlayerObj = PlayerManager.Instance.activePlayerObj[currentPlayerIndex];
+        updateNetworkCurrent(currentTurnPlayerObj);
         onTurnStart?.Invoke(currentTurnPlayerObj);
     }
     public void endPlayerTurn()
     {
+        if (!IsSpawned)
+        {
+            Debug.LogWarning("TurnManager: Cannot end turn because this object is not spawned on the network yet!");
+            return;
+        }
+        Debug.Log("Ending Turn");
         currentPlayerIndex++;
-        if (currentPlayerIndex >= 4)
+        if (currentPlayerIndex >= PlayerManager.Instance.activePlayerObj.Count)
         {
             currentPlayerIndex = 0;
-            amountRounds--;
-            if (amountRounds <= 0)
+            updateRoundAmountServerRpc(amountRounds.Value - 1);
+            if (amountRounds.Value <= 0)
             {
                 //END GAME
             }
             onRoundEnd?.Invoke();
         }
+
         onTurnEnd?.Invoke(currentTurnPlayerObj);
     }
 }

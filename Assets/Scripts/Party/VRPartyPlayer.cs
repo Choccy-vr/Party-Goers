@@ -1,4 +1,5 @@
 using Unity.Netcode;
+using Unity.VisualScripting;
 using UnityEngine;
 public class VRPartyPlayer : NetworkBehaviour
 {
@@ -19,6 +20,7 @@ public class VRPartyPlayer : NetworkBehaviour
             GameSessionManager.Instance.activePlayers.OnListChanged += OnNetworkPlayersChanged;
         }
         PlayerManager.Instance.activePlayerObj.Add(this);
+        TurnManager.Instance.turnOrderObj.Add(this);
 
     }
     public override void OnNetworkDespawn()
