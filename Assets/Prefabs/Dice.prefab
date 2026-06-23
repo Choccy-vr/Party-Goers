@@ -254,7 +254,7 @@ GameObject:
   - component: {fileID: 1203860392070439607}
   - component: {fileID: 5506494924868664109}
   - component: {fileID: 1553475866044942029}
-  - component: {fileID: 8721310709235944879}
+  - component: {fileID: -2702709328855343776}
   m_Layer: 0
   m_Name: Dice
   m_TagString: Untagged
@@ -407,20 +407,8 @@ MonoBehaviour:
   backNumber: 6
   onDiceFinish:
     m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
-        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: endPlayerTurn
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
---- !u!114 &8721310709235944879
+      m_Calls: []
+--- !u!114 &-2702709328855343776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -538,7 +526,7 @@ MonoBehaviour:
     m_PostInfinity: 2
     m_RotationOrder: 4
   m_ThrowVelocityScale: 1.5
-  m_ThrowAngularVelocityScale: 1.5
+  m_ThrowAngularVelocityScale: 1
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_StartingSingleGrabTransformers: []

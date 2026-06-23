@@ -1,3 +1,5 @@
+using System;
+using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -8,6 +10,10 @@ public class PartySpace : MonoBehaviour
     //Variables
     public int spaceID;
 
+    public PartySpaceType type;
+
+    [SerializeField] int coinAmount = 3;
+
     [Tooltip("If it is more than one Party Space it indicates a fork in which case all Party Spaces in the array will be unlocked")]
     public PartySpace[] nextSpace;
 
@@ -17,6 +23,7 @@ public class PartySpace : MonoBehaviour
     [SerializeField] bool isFirstSpace;
 
     public UnityEvent onSpaceArrive;
+    public UnityEvent onSpaceLand;
     public UnityEvent onSpaceLeave;
 
 
@@ -72,11 +79,67 @@ public class PartySpace : MonoBehaviour
         onSpaceArrive?.Invoke();
         if (arrivingPlayer.spacesToMove <= 0)
         {
-            TurnManager.Instance.endPlayerTurn();
-            TurnManager.Instance.nextPlayerTurn();
+            spaceLandedEvent();
         }
 
 
+    }
+
+    void spaceLandedEvent()
+    {
+        onSpaceLand?.Invoke();
+        Debug.Log("LANDED ON SPACE");
+        switch (type)
+        {
+            case PartySpaceType.normal:
+                playerOnSpace.addCoins(coinAmount);
+                break;
+            case PartySpaceType.bad:
+                if (playerOnSpace.playerData.coins >= 3)
+                {
+                    playerOnSpace.addCoins(-coinAmount);
+                }
+                else
+                {
+                    playerOnSpace.addCoins(-playerOnSpace.playerData.coins);
+                }
+
+                break;
+            case PartySpaceType.star:
+                landedOnStarExchange();
+                break;
+            case PartySpaceType.duel:
+                landedOnDuelSpace();
+                break;
+            case PartySpaceType.lucky:
+                landedOnLuckySpace();
+                break;
+            case PartySpaceType.item:
+                landedOnItemSpace();
+                break;
+
+        }
+
+        //TurnManager.Instance.endPlayerTurn();
+        //TurnManager.Instance.nextPlayerTurn();
+
+
+    }
+    void landedOnStarExchange()
+    {
+        Debug.Log("Landed on Star");
+    }
+    void landedOnDuelSpace()
+    {
+        Debug.Log("Landed on Duel");
+    }
+    void landedOnLuckySpace()
+    {
+        Debug.Log("Landed on Lucky");
+    }
+    void landedOnItemSpace()
+    {
+        Debug.Log("Landed on Item");
     }
 
     void OnTeleportLeave(VRPartyPlayer player, int spaceBeingLeftID)
@@ -109,4 +172,14 @@ public class PartySpace : MonoBehaviour
         return MapManager.Instance.partySpaces.Find(s => s.spaceID == spaceID);
     }
 
+}
+
+public enum PartySpaceType
+{
+    normal,
+    bad,
+    star,
+    duel,
+    lucky,
+    item
 }

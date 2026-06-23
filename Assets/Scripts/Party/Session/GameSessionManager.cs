@@ -49,11 +49,15 @@ public class GameSessionManager : NetworkBehaviour
         {
             if (activePlayers[i].networkClientId == clientId)
             {
+                Debug.Log("Found player to add coins");
                 PlayerSessionData data = activePlayers[i];
 
                 data.coins += amount;
+                Debug.Log("Estimated coins amount: " + data.coins);
 
-                activePlayers[i] = data;
+                activePlayers.RemoveAt(i);
+                activePlayers.Insert(i, data);
+                Debug.Log("Final coin count = " + activePlayers[i].coins);
                 break;
             }
         }

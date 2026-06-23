@@ -348,13 +348,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PartySpace
   spaceID: 0
+  type: 0
+  coinAmount: 3
   nextSpace:
   - {fileID: 0}
   unlockInteractionLayer:
     m_Bits: 2147483648
   disabledInteractionLayer:
     m_Bits: 0
-  isFirstSpace: 1
+  isFirstSpace: 0
+  onSpaceArrive:
+    m_PersistentCalls:
+      m_Calls: []
+  onSpaceLand:
+    m_PersistentCalls:
+      m_Calls: []
+  onSpaceLeave:
+    m_PersistentCalls:
+      m_Calls: []
   isOccupied: 0
   playerOnSpace: {fileID: 0}
   teleportationAnchor: {fileID: 0}

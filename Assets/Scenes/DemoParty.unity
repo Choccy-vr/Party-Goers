@@ -727,6 +727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PartySpace
   spaceID: 3
+  type: 0
+  coinAmount: 3
   nextSpace:
   - {fileID: 927924922}
   unlockInteractionLayer:
@@ -735,6 +737,9 @@ MonoBehaviour:
     m_Bits: 0
   isFirstSpace: 0
   onSpaceArrive:
+    m_PersistentCalls:
+      m_Calls: []
+  onSpaceLand:
     m_PersistentCalls:
       m_Calls: []
   onSpaceLeave:
@@ -1053,6 +1058,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PartySpace
   spaceID: 1
+  type: 0
+  coinAmount: 3
   nextSpace:
   - {fileID: 1859950282}
   - {fileID: 99903613}
@@ -1062,6 +1069,9 @@ MonoBehaviour:
     m_Bits: 0
   isFirstSpace: 0
   onSpaceArrive:
+    m_PersistentCalls:
+      m_Calls: []
+  onSpaceLand:
     m_PersistentCalls:
       m_Calls: []
   onSpaceLeave:
@@ -2566,6 +2576,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PartySpace
   spaceID: 2
+  type: 0
+  coinAmount: 3
   nextSpace:
   - {fileID: 927924922}
   unlockInteractionLayer:
@@ -2574,6 +2586,9 @@ MonoBehaviour:
     m_Bits: 0
   isFirstSpace: 0
   onSpaceArrive:
+    m_PersistentCalls:
+      m_Calls: []
+  onSpaceLand:
     m_PersistentCalls:
       m_Calls: []
   onSpaceLeave:
@@ -2989,6 +3004,10 @@ PrefabInstance:
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: isFirstSpace
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: 'nextSpace.Array.data[0]'

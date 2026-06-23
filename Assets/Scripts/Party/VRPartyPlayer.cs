@@ -48,8 +48,14 @@ public class VRPartyPlayer : NetworkBehaviour
         }
     }
 
+    void Update()
+    {
+        Debug.Log(playerData.username + " coin balance: " + playerData.coins);
+    }
+
     public void addCoins(int coins)
     {
+        Debug.Log("ATTEMPTING TO ADD COINS");
         if (IsServer)
         {
             GameSessionManager.Instance.AddCoinsToPlayer(OwnerClientId, coins);
