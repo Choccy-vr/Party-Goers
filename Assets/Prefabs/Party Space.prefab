@@ -356,7 +356,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   disabledInteractionLayer:
     m_Bits: 0
-  isFirstSpace: 0
+  isFirstSpace: 1
   onSpaceArrive:
     m_PersistentCalls:
       m_Calls: []

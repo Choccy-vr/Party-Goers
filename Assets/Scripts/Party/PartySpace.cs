@@ -70,11 +70,7 @@ public class PartySpace : MonoBehaviour
         arrivingPlayer.spacesToMove--;
         if (arrivingPlayer.spacesToMove > 0)
         {
-            foreach (PartySpace space in nextSpace)
-            {
-                //unlock possible spaces
-                space.teleportationAnchor.interactionLayers = unlockInteractionLayer;
-            }
+            unlockNextSpaces();
         }
         onSpaceArrive?.Invoke();
         if (arrivingPlayer.spacesToMove <= 0)
@@ -85,10 +81,18 @@ public class PartySpace : MonoBehaviour
 
     }
 
+    public void unlockNextSpaces()
+    {
+        foreach (PartySpace space in nextSpace)
+        {
+            //unlock possible spaces
+            space.teleportationAnchor.interactionLayers = unlockInteractionLayer;
+        }
+    }
+
     void spaceLandedEvent()
     {
         onSpaceLand?.Invoke();
-        Debug.Log("LANDED ON SPACE");
         switch (type)
         {
             case PartySpaceType.normal:
@@ -103,7 +107,6 @@ public class PartySpace : MonoBehaviour
                 {
                     playerOnSpace.addCoins(-playerOnSpace.playerData.coins);
                 }
-
                 break;
             case PartySpaceType.star:
                 landedOnStarExchange();

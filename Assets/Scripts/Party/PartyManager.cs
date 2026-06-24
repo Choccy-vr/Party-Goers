@@ -41,9 +41,18 @@ public class PartyManager : MonoBehaviour
         Debug.Log("Starting " + player.playerData.username + "'s turn");
 
     }
+    public void diceRolled(VRPartyPlayer player)
+    {
+        getSpaceObj(player.currentSpaceId).unlockNextSpaces();
+    }
     public void endPlayerTurn(VRPartyPlayer player)
     {
         Destroy(currentDiceObject);
+    }
+
+    PartySpace getSpaceObj(int spaceID)
+    {
+        return MapManager.Instance.partySpaces.Find(s => s.spaceID == spaceID);
     }
 
 

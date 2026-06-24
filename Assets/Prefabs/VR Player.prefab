@@ -1962,6 +1962,7 @@ GameObject:
   - component: {fileID: 4777693353484529}
   - component: {fileID: 9097360376014771920}
   - component: {fileID: 7011649329584532634}
+  - component: {fileID: 6317405920485472982}
   m_Layer: 0
   m_Name: Poke Interactor
   m_TagString: Untagged
@@ -2039,7 +2040,19 @@ MonoBehaviour:
   m_DebugVisualizationsEnabled: 0
   m_UIHoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 6317405920485472982}
+        m_TargetAssemblyTypeName: UIHapticFeedback, Assembly-CSharp
+        m_MethodName: onUIHover
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_UIHoverExited:
     m_PersistentCalls:
       m_Calls: []
@@ -2089,6 +2102,21 @@ MonoBehaviour:
     m_Duration: 0.1
     m_Frequency: 0
   m_AllowHoverHapticsWhileSelecting: 0
+--- !u!114 &6317405920485472982
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3046658330708091796}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd9fc46b3ff17a439c72dc43638e91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIHapticFeedback
+  controllerHaptics: {fileID: 844676655845330465}
+  amplitude: 0.5
+  duration: 0.1
 --- !u!1 &3150649606733186484
 GameObject:
   m_ObjectHideFlags: 0
@@ -7209,6 +7237,7 @@ GameObject:
   - component: {fileID: 820069197416846380}
   - component: {fileID: 2517077479979213465}
   - component: {fileID: 5363398510843742162}
+  - component: {fileID: 7499638554924481771}
   m_Layer: 0
   m_Name: Poke Interactor
   m_TagString: Untagged
@@ -7286,7 +7315,19 @@ MonoBehaviour:
   m_DebugVisualizationsEnabled: 0
   m_UIHoverEntered:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7499638554924481771}
+        m_TargetAssemblyTypeName: UIHapticFeedback, Assembly-CSharp
+        m_MethodName: onUIHover
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
   m_UIHoverExited:
     m_PersistentCalls:
       m_Calls: []
@@ -7336,6 +7377,21 @@ MonoBehaviour:
     m_Duration: 0.1
     m_Frequency: 0
   m_AllowHoverHapticsWhileSelecting: 0
+--- !u!114 &7499638554924481771
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8293467075912929210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5fd9fc46b3ff17a439c72dc43638e91e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  controllerHaptics: {fileID: 2978708520801438632}
+  amplitude: 0.5
+  duration: 0.1
 --- !u!1 &8308443934136448460
 GameObject:
   m_ObjectHideFlags: 0

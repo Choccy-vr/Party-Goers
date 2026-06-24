@@ -407,7 +407,19 @@ MonoBehaviour:
   backNumber: 6
   onDiceFinish:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+        m_TargetAssemblyTypeName: PartyManager, Assembly-CSharp
+        m_MethodName: diceRolled
+        m_Mode: 0
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &-2702709328855343776
 MonoBehaviour:
   m_ObjectHideFlags: 0

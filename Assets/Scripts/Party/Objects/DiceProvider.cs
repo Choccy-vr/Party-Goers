@@ -12,7 +12,7 @@ public class DiceProvider : MonoBehaviour
     [SerializeField] TextMeshProUGUI text;
     public int upNumber, downNumber, leftNumber, rightNumber, forwardNumber, backNumber;
 
-    public UnityEvent onDiceFinish;
+    public UnityEvent<VRPartyPlayer> onDiceFinish;
 
     XRGrabInteractable grabInteractable;
     Rigidbody rb;
@@ -60,7 +60,7 @@ public class DiceProvider : MonoBehaviour
         Debug.Log("Dice Rolled a " + diceResult);
         SetPlayerSpaces(diceResult);
         text.text = diceResult.ToString();
-        onDiceFinish?.Invoke();
+        onDiceFinish?.Invoke(NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>());
     }
 
 
