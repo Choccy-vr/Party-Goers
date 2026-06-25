@@ -1,9 +1,12 @@
+using System.Collections.Generic;
+using Unity.Netcode;
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
-public class MinigameManager : MonoBehaviour
+public class MinigameManager : NetworkBehaviour
 {
     public static MinigameManager Instance;
+
+    public List<MinigameConfig> minigames;
 
     void Awake()
     {
@@ -15,12 +18,24 @@ public class MinigameManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
-    public void switchToTestMinigameScene()
+
+    public void teleportToMinigame(MinigameConfig targetMinigame)
     {
-        NetworkSceneManager.Instance.LoadSceneNetwork("DemoMinigameScene");
+        if (!IsServer) return;
+        NetworkSceneManager.Instance.LoadSceneNetwork(targetMinigame.sceneName);
+        //Apply player configs
     }
-    public void switchToDemoPartyScene()
+    public void teleportToMap(MapConfig targetMap)
     {
-        NetworkSceneManager.Instance.LoadSceneNetwork("DemoParty");
+        if (!IsServer) return;
+        NetworkSceneManager.Instance.LoadSceneNetwork(targetMap.sceneName);
+        //Apply player config
+    }
+
+    public MinigameConfig selectRandomMinigame(MinigameType type)
+    {
+        List<MinigameConfig> filteredMinigames = minigames.FindAll(m => m.minigameType == type);
+        int randomIndex = Random.Range(0, filteredMinigames.Count);
+        return filteredMinigames[randomIndex];
     }
 }

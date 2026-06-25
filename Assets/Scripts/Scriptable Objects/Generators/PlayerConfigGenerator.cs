@@ -1,7 +1,7 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Player Config", menuName = "Scriptable Objects/Player Config")]
-public class PlayerConfigItem : ScriptableObject
+public class PlayerConfig : ScriptableObject
 {
     [Header("Locomotion")]
     public bool movementEnabled;

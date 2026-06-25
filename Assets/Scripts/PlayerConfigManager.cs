@@ -3,10 +3,10 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Climbing;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Gravity;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
-public class PlayerConfig : MonoBehaviour
+public class PlayerConfigManager : MonoBehaviour
 {
 
-    [SerializeField] PlayerConfigItem playerConfig;
+    [SerializeField] PlayerConfig playerConfig;
 
 
     LocomotionContinuousMove continuousMoveProvider;

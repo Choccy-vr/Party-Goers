@@ -7,6 +7,8 @@ public class GameSessionManager : NetworkBehaviour
 
     public static GameSessionManager Instance { get; private set; }
 
+    public MapConfig activeMap;
+
     public NetworkList<PlayerSessionData> activePlayers = new NetworkList<PlayerSessionData>();
 
     void Awake()
