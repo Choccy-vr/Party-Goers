@@ -19,6 +19,11 @@ public class PartyManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Instance = null;
+    }
 
     public void startPlayerTurn(VRPartyPlayer player)
     {

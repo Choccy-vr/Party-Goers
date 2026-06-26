@@ -16,4 +16,9 @@ public class PlayerManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Instance = null;
+    }
 }

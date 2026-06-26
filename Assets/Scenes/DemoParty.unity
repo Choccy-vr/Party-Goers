@@ -1813,7 +1813,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 5595298870991253278}
         m_TargetAssemblyTypeName: MinigameManager, Assembly-CSharp
-        m_MethodName: switchToTestMinigameScene
+        m_MethodName: startRandom4PlayerMinigame
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3982,12 +3982,20 @@ PrefabInstance:
       propertyPath: NetworkPlayerPrefab
       value: 
       objectReference: {fileID: 320252362426329865, guid: e773f8593dfec9e489ea967784c04283, type: 3}
+    - target: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
+      propertyPath: minigames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
+      propertyPath: 'minigames.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 087064c61e4b6614492dfac74f1ed287, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
     m_AddedComponents:
     - targetCorrespondingSourceObject: {fileID: 3938351957808724336, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
-      insertIndex: -1
+      insertIndex: 1
       addedObject: {fileID: 5595298870991253280}
   m_SourcePrefab: {fileID: 100100000, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
 --- !u!114 &5595298870991253278 stripped

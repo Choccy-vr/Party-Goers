@@ -11,4 +11,9 @@ public class NetworkIdenity : MonoBehaviour
         if (Instance == null) Instance = this;
         else Destroy(gameObject);
     }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Instance = null;
+    }
 }

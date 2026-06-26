@@ -32,6 +32,11 @@ public class TurnManager : NetworkBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Instance = null;
+    }
 
     public override void OnNetworkSpawn()
     {

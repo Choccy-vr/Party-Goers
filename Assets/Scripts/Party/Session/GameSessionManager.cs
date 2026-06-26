@@ -21,6 +21,11 @@ public class GameSessionManager : NetworkBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Instance = null;
+    }
 
     public void RegisterPlayer(ulong clientId, string username)
     {
@@ -46,6 +51,7 @@ public class GameSessionManager : NetworkBehaviour
     {
 
         if (!IsServer) return;
+        if (amount == 0) return;
 
         for (int i = 0; i < activePlayers.Count; i++)
         {

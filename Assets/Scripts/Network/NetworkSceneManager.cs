@@ -16,6 +16,11 @@ public class NetworkSceneManager : NetworkBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Instance = null;
+    }
 
     public void LoadSceneNetwork(string sceneName)
     {

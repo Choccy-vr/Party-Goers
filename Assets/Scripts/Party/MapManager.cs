@@ -18,4 +18,14 @@ public class MapManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Instance = null;
+    }
+
+    public PartySpace findPartySpaceWithID(int ID)
+    {
+        return partySpaces.Find(s => s.spaceID == ID);
+    }
 }

@@ -13,4 +13,9 @@ public class VRRigReferences : MonoBehaviour
     {
         Singleton = this;
     }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Singleton = null;
+    }
 }
