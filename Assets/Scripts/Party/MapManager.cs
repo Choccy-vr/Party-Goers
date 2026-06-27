@@ -6,6 +6,7 @@ public class MapManager : MonoBehaviour
 
     public static MapManager Instance { get; private set; }
 
+    public List<MapConfig> maps = new List<MapConfig>();
     public List<PartySpace> partySpaces;
 
     void Awake()
@@ -23,9 +24,12 @@ public class MapManager : MonoBehaviour
     {
         Instance = null;
     }
-
     public PartySpace findPartySpaceWithID(int ID)
     {
         return partySpaces.Find(s => s.spaceID == ID);
+    }
+    public MapConfig findPartyMapWithID(string ID)
+    {
+        return maps.Find(m => m.mapID == ID);
     }
 }

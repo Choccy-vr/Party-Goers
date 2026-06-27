@@ -21,4 +21,8 @@ public class PlayerManager : MonoBehaviour
     {
         Instance = null;
     }
+    public VRPartyPlayer FindPlayerFromID(ulong networkClientID)
+    {
+        return activePlayerObj.Find(p => p.playerData.networkClientId == networkClientID);
+    }
 }

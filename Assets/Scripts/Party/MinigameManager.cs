@@ -33,6 +33,11 @@ public class MinigameManager : NetworkBehaviour
     {
         Instance = null;
     }
+    public override void OnNetworkSpawn()
+    {
+        base.OnNetworkSpawn();
+        Debug.Log($"MinigameManager successfully spawned on Network! Am I Server? {IsServer}");
+    }
 
     public void startRandom4PlayerMinigame()
     {
@@ -55,10 +60,26 @@ public class MinigameManager : NetworkBehaviour
         //Apply player configs
         //teleportPlayerToMinigameSpawnClientRpc(targetMinigame.minigameID);
     }
-    public void teleportToMap(MapConfig targetMap)
+    [ServerRpc]
+    void teleportToMapServerRpc(string targetMap)
     {
-        if (!IsServer) return;
-        NetworkSceneManager.Instance.LoadSceneNetwork(targetMap.sceneName);
+        teleportToMap(targetMap);
+    }
+    public void teleportToMap(string targetMap)
+    {
+        if (!IsSpawned)
+        {
+            Debug.LogWarning("MinigameManager is not fully spawned on the network yet! Ignoring teleport request.");
+            return;
+        }
+        Debug.Log("Teleporting to map");
+        if (!IsServer)
+        {
+            Debug.Log("Not server. starting rpc");
+            teleportToMapServerRpc(targetMap);
+            return;
+        }
+        NetworkSceneManager.Instance.LoadSceneNetwork(MapManager.Instance.findPartyMapWithID(targetMap).sceneName);
         //Apply player config
         teleportPlayerToPartySpaceClientRpc();
     }
@@ -82,7 +103,7 @@ public class MinigameManager : NetworkBehaviour
         GameObject playerXROrigin = FindAnyObjectByType<XROrigin>().gameObject;
         if (playerXROrigin != null)
         {
-            VRPartyPlayer player = playerXROrigin.GetComponent<NetworkIdenity>().networkPlayerIdenity.GetComponent<VRPartyPlayer>();
+            VRPartyPlayer player = PlayerManager.Instance.FindPlayerFromID(NetworkManager.Singleton.LocalClientId);
             if (player != null)
             {
                 playerXROrigin.transform.position = MapManager.Instance.findPartySpaceWithID(player.currentSpaceId).GetComponent<TeleportationAnchor>().teleportAnchorTransform.position;

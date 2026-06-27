@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0edae7d182aa2a4dac832debbe95254, type: 3}
   m_Name: Demo Party
   m_EditorClassIdentifier: Assembly-CSharp::MapConfig
+  mapID: demo
   mapName: demo
   sceneName: DemoParty
   playerConfig: {fileID: 11400000, guid: 33e8098d8f027f147bb01919882b3f68, type: 2}

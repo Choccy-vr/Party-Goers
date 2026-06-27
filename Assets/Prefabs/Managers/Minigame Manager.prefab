@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4290369684729995028}
+  - component: {fileID: 7012938717377183922}
   - component: {fileID: 7950914158489012875}
   m_Layer: 0
   m_Name: Minigame Manager
@@ -32,6 +33,31 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &7012938717377183922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3938351957808724336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 1054849527
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!114 &7950914158489012875
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -44,3 +70,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ee8578525654de4459d433237f89a9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  ShowTopMostFoldoutHeaderGroup: 1
+  minigames:
+  - {fileID: 11400000, guid: 087064c61e4b6614492dfac74f1ed287, type: 2}
+  minigameRewards: 0a000000050000000300000000000000
+  minigameStart:
+    m_PersistentCalls:
+      m_Calls: []
+  minigameEnd:
+    m_PersistentCalls:
+      m_Calls: []

@@ -2030,11 +2030,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0a4a6cf2227a7d2439f119bf1cc742b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PartySpace
---- !u!1 &1028156119 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3938351957808724336, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
-  m_PrefabInstance: {fileID: 5595298870991253277}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1041506633
 GameObject:
   m_ObjectHideFlags: 0
@@ -3978,62 +3973,30 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
-      propertyPath: NetworkPlayerPrefab
-      value: 
-      objectReference: {fileID: 320252362426329865, guid: e773f8593dfec9e489ea967784c04283, type: 3}
-    - target: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
-      propertyPath: minigames.Array.size
-      value: 1
+    - target: {fileID: 7012938717377183922, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 841585795
       objectReference: {fileID: 0}
-    - target: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
-      propertyPath: 'minigames.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: 087064c61e4b6614492dfac74f1ed287, type: 2}
+    - target: {fileID: 7012938717377183922, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 3106213121
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents:
-    - targetCorrespondingSourceObject: {fileID: 3938351957808724336, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
-      insertIndex: 1
-      addedObject: {fileID: 5595298870991253280}
+    m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
 --- !u!114 &5595298870991253278 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
   m_PrefabInstance: {fileID: 5595298870991253277}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028156119}
+  m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee8578525654de4459d433237f89a9f8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
---- !u!114 &5595298870991253280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1028156119}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1054849527
-  InScenePlacedSourceGlobalObjectIdHash: 0
-  DeferredDespawnTick: 0
-  Ownership: 1
-  AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
-  ActiveSceneSynchronization: 0
-  SceneMigrationSynchronization: 0
-  SpawnWithObservers: 1
-  DontDestroyWithOwner: 0
-  AutoObjectParentSync: 1
-  SyncOwnerTransformWhenParented: 1
-  AllowOwnerToParent: 0
 --- !u!1001 &5690725628049332445
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -4104,6 +4067,22 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4086292527044102707, guid: 4a801943a95437a4386d75535ad31177, type: 3}
+      propertyPath: currentMap
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c9e586b4733283448ea12ca55d1c79c, type: 2}
+    - target: {fileID: 4086292527044102707, guid: 4a801943a95437a4386d75535ad31177, type: 3}
+      propertyPath: maps.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086292527044102707, guid: 4a801943a95437a4386d75535ad31177, type: 3}
+      propertyPath: 'maps.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: 0c9e586b4733283448ea12ca55d1c79c, type: 2}
+    - target: {fileID: 4086292527044102707, guid: 4a801943a95437a4386d75535ad31177, type: 3}
+      propertyPath: partySpaces.Array.size
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4086292527044102707, guid: 4a801943a95437a4386d75535ad31177, type: 3}
       propertyPath: 'partySpaces.Array.data[0]'
       value: 
       objectReference: {fileID: 927924922}
@@ -4119,6 +4098,10 @@ PrefabInstance:
       propertyPath: 'partySpaces.Array.data[3]'
       value: 
       objectReference: {fileID: 99903613}
+    - target: {fileID: 4086292527044102707, guid: 4a801943a95437a4386d75535ad31177, type: 3}
+      propertyPath: 'partySpaces.Array.data[4]'
+      value: 
+      objectReference: {fileID: 1855839496}
     - target: {fileID: 6912556987421410249, guid: 4a801943a95437a4386d75535ad31177, type: 3}
       propertyPath: m_Name
       value: Map Manager
