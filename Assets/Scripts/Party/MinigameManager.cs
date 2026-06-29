@@ -7,9 +7,12 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 
 public class MinigameManager : NetworkBehaviour
 {
+    enum TransitionType { none, partyMap, minigame }
+    TransitionType currentTransition = TransitionType.none;
     public static MinigameManager Instance;
 
     public List<MinigameConfig> minigames;
+    public List<MinigameSpawnPoint> minigameSpawnPoints;
 
     [SerializeField] int[] minigameRewards = { 10, 5, 3, 0 };
 
@@ -33,10 +36,23 @@ public class MinigameManager : NetworkBehaviour
     {
         Instance = null;
     }
+
+    public override void OnNetworkDespawn()
+    {
+        if (IsServer && NetworkManager.Singleton != null && NetworkManager.Singleton.SceneManager != null)
+        {
+            NetworkManager.SceneManager.OnSceneEvent -= OnSceneEvent;
+        }
+    }
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
         Debug.Log($"MinigameManager successfully spawned on Network! Am I Server? {IsServer}");
+
+        if (IsServer)
+        {
+            NetworkManager.SceneManager.OnSceneEvent += OnSceneEvent;
+        }
     }
 
     public void startRandom4PlayerMinigame()
@@ -44,7 +60,7 @@ public class MinigameManager : NetworkBehaviour
         MinigameConfig targetMinigame = selectRandomMinigame(MinigameType.fourPlayer);
         currentMinigame = targetMinigame;
         isMinigame = true;
-        teleportToMinigame(targetMinigame);
+        teleportToMinigame(targetMinigame.minigameID);
         minigameStart?.Invoke(targetMinigame);
     }
     /*public void endMinigame()
@@ -53,12 +69,30 @@ public class MinigameManager : NetworkBehaviour
         teleportToMap()
     }*/
 
-    public void teleportToMinigame(MinigameConfig targetMinigame)
+    public void teleportToMinigame(string targetMinigame)
     {
-        if (!IsServer) return;
-        NetworkSceneManager.Instance.LoadSceneNetwork(targetMinigame.sceneName);
+        MinigameConfig minigameConfig = FindMinigameFromID(targetMinigame);
+        if (!IsSpawned)
+        {
+            Debug.LogWarning("MinigameManager is not fully spawned on the network yet! Ignoring teleport request.");
+            return;
+        }
+        Debug.Log("Teleporting to map");
+        if (!IsServer)
+        {
+            Debug.Log("Not server. starting rpc");
+            teleportToMinigameServerRpc(targetMinigame);
+            return;
+        }
+        currentTransition = TransitionType.minigame;
+        NetworkSceneManager.Instance.LoadSceneNetwork(minigameConfig.sceneName);
         //Apply player configs
-        //teleportPlayerToMinigameSpawnClientRpc(targetMinigame.minigameID);
+
+    }
+    [ServerRpc]
+    void teleportToMinigameServerRpc(string targetMinigame)
+    {
+        teleportToMinigame(targetMinigame);
     }
     [ServerRpc]
     void teleportToMapServerRpc(string targetMap)
@@ -79,12 +113,12 @@ public class MinigameManager : NetworkBehaviour
             teleportToMapServerRpc(targetMap);
             return;
         }
+
         NetworkSceneManager.Instance.LoadSceneNetwork(MapManager.Instance.findPartyMapWithID(targetMap).sceneName);
         //Apply player config
-        teleportPlayerToPartySpaceClientRpc();
     }
-    /*[ClientRpc]
-    void teleportPlayerToMinigameSpawnClientRpc(string targetMinigameID)
+    [ClientRpc]
+    void teleportPlayerToMinigameSpawnClientRpc()
     {
         GameObject playerXROrigin = FindAnyObjectByType<XROrigin>().gameObject;
         if (playerXROrigin != null)
@@ -92,11 +126,11 @@ public class MinigameManager : NetworkBehaviour
             VRPartyPlayer player = playerXROrigin.GetComponent<NetworkIdenity>().networkPlayerIdenity.GetComponent<VRPartyPlayer>();
             if (player != null)
             {
-                playerXROrigin.transform.position = FindMinigameFromID(targetMinigameID).playerSpawnPoints[(int)player.playerData.networkClientId].position;
+                playerXROrigin.transform.position = minigameSpawnPoints[(int)player.playerData.networkClientId].spawnTransform.position;
             }
 
         }
-    }*/
+    }
     [ClientRpc]
     void teleportPlayerToPartySpaceClientRpc()
     {
@@ -108,6 +142,25 @@ public class MinigameManager : NetworkBehaviour
             {
                 playerXROrigin.transform.position = MapManager.Instance.findPartySpaceWithID(player.currentSpaceId).GetComponent<TeleportationAnchor>().teleportAnchorTransform.position;
             }
+
+        }
+    }
+
+    void OnSceneEvent(SceneEvent sceneEvent)
+    {
+        if (sceneEvent.SceneEventType == SceneEventType.LoadEventCompleted)
+        {
+            if (currentTransition == TransitionType.minigame)
+            {
+                teleportPlayerToMinigameSpawnClientRpc();
+                currentTransition = TransitionType.none;
+            }
+            else if (currentTransition == TransitionType.partyMap)
+            {
+                teleportPlayerToPartySpaceClientRpc();
+                currentTransition = TransitionType.none;
+            }
+
 
         }
     }
