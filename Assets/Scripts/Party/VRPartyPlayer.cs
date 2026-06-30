@@ -1,11 +1,34 @@
 using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 public class VRPartyPlayer : NetworkBehaviour
 {
     public int currentSpaceId;
     public int spacesToMove = 0;
     public PlayerSessionData playerData { get; private set; }
+
+    void OnEnable()
+    {
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+    void OnDisable()
+    {
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
+    {
+        LinkNetworkPlayer();
+    }
+
+    void LinkNetworkPlayer()
+    {
+        if (IsOwner)
+        {
+            NetworkIdenity.Instance.networkPlayerIdenity = gameObject;
+        }
+    }
 
     public override void OnNetworkSpawn()
     {

@@ -3,7 +3,7 @@ using UnityEngine;
 public class MinigameSpawnPoint : MonoBehaviour
 {
     [HideInInspector] public Transform spawnTransform;
-    [SerializeField] int spawnPointID = 0;
+    public int spawnPointID = 0;
 
     void Awake()
     {
@@ -11,7 +11,11 @@ public class MinigameSpawnPoint : MonoBehaviour
         {
             spawnTransform = GetComponent<Transform>();
         }
-        MinigameManager.Instance.minigameSpawnPoints.Insert(spawnPointID, this);
+        if (MinigameManager.Instance != null)
+        {
+            MinigameManager.Instance.minigameSpawnPoints.Add(this);
+        }
+
 
     }
 }

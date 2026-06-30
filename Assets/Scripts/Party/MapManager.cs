@@ -10,6 +10,7 @@ public class MapManager : MonoBehaviour
     public static MapManager Instance { get; private set; }
 
     public List<MapConfig> maps = new List<MapConfig>();
+    public MapConfig currentMap;
     [HideInInspector] public List<PartySpace> partySpaces;
 
     void Awake()

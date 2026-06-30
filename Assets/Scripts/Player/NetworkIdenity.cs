@@ -4,7 +4,7 @@ public class NetworkIdenity : MonoBehaviour
 {
     public static NetworkIdenity Instance { get; private set; }
 
-    public GameObject networkPlayerIdenity { get; set; }
+    public GameObject networkPlayerIdenity;
 
     void Awake()
     {
