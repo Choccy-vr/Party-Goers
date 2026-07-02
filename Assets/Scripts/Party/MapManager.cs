@@ -6,12 +6,11 @@ using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
-
     public static MapManager Instance { get; private set; }
 
     public List<MapConfig> maps = new List<MapConfig>();
     public MapConfig currentMap;
-    [HideInInspector] public List<PartySpace> partySpaces;
+    public List<PartySpace> partySpaces = new List<PartySpace>();
 
     void Awake()
     {
@@ -23,11 +22,13 @@ public class MapManager : MonoBehaviour
         Instance = this;
         DontDestroyOnLoad(gameObject);
     }
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetStatics()
     {
         Instance = null;
     }
+
     private void OnEnable()
     {
         SceneManager.sceneLoaded += OnSceneLoaded;
@@ -37,10 +38,12 @@ public class MapManager : MonoBehaviour
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
     }
+
     public PartySpace findPartySpaceWithID(int ID)
     {
         return partySpaces.Find(s => s.spaceID == ID);
     }
+
     public MapConfig findPartyMapWithID(string ID)
     {
         return maps.Find(m => m.mapID == ID);
@@ -49,10 +52,8 @@ public class MapManager : MonoBehaviour
     void OnSceneLoaded(Scene scene, LoadSceneMode loadSceneMode)
     {
         partySpaces.Clear();
-
-        PartySpace[] foundSpaces = FindObjectsByType<PartySpace>();
-
-        partySpaces.AddRange(foundSpaces);
-        Debug.Log($"Restored {foundSpaces.Length} PartySpaces");
+        List<PartySpace> foundSpaces = FindObjectsByType<PartySpace>().ToList();
+        partySpaces = foundSpaces.OrderBy(s => s.spaceID).ToList();
+        Debug.Log($"Restored and sorted {partySpaces.Count} PartySpaces.");
     }
 }

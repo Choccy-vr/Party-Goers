@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -15,7 +16,7 @@ public class PartySpace : MonoBehaviour
     [SerializeField] int coinAmount = 3;
 
     [Tooltip("If it is more than one Party Space it indicates a fork in which case all Party Spaces in the array will be unlocked")]
-    public PartySpace[] nextSpace;
+    public List<PartySpace> nextSpace;
 
     [SerializeField] InteractionLayerMask unlockInteractionLayer;
     [SerializeField] InteractionLayerMask disabledInteractionLayer;
@@ -149,7 +150,7 @@ public class PartySpace : MonoBehaviour
     {
         PartySpace spaceBeingLeft = GetPartySpace(spaceBeingLeftID);
         spaceBeingLeft.teleportationAnchor.interactionLayers = disabledInteractionLayer;
-        if (spaceBeingLeft.nextSpace.Length > 1)
+        if (spaceBeingLeft.nextSpace.Count > 1)
         {
             foreach (PartySpace partySpace in spaceBeingLeft.nextSpace)
             {
@@ -173,6 +174,24 @@ public class PartySpace : MonoBehaviour
     PartySpace GetPartySpace(int spaceID)
     {
         return MapManager.Instance.partySpaces.Find(s => s.spaceID == spaceID);
+    }
+
+    private void OnDrawGizmos()
+    {
+        if (nextSpace != null)
+        {
+            foreach (PartySpace space in nextSpace)
+            {
+                Gizmos.color = Color.green;
+                // Draws a line from this space to the next one
+                Gizmos.DrawLine(transform.position, space.transform.position);
+
+                // Draw a small directional arrow/sphere pointing to the next space
+                Vector3 direction = (space.transform.position - transform.position).normalized;
+                Gizmos.DrawSphere(transform.position + direction * 1.0f, 0.15f);
+            }
+
+        }
     }
 
 }
