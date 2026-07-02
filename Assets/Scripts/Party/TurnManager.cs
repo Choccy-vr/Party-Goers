@@ -21,6 +21,7 @@ public class TurnManager : NetworkBehaviour
     public UnityEvent onRoundEnd;
 
     int currentPlayerIndex = 0;
+    int amountRoundsLeft = 10;
 
     void Awake()
     {

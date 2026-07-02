@@ -2300,6 +2300,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 56aabeb14d0eaa04f9f14b79dd85bc2d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::NetworkIdenity
+  networkPlayerIdenity: {fileID: 0}
 --- !u!1 &3270434776535545733
 GameObject:
   m_ObjectHideFlags: 0
