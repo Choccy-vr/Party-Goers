@@ -124,8 +124,8 @@ public class PartySpace : MonoBehaviour
 
         }
 
-        //TurnManager.Instance.endPlayerTurn();
-        //TurnManager.Instance.nextPlayerTurn();
+        TurnManager.Instance.endPlayerTurn();
+        TurnManager.Instance.nextPlayerTurn();
 
 
     }
