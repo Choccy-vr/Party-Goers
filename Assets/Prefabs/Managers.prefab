@@ -170,7 +170,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7012938717377183922, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 841585795
+      value: 184842880
       objectReference: {fileID: 0}
     - target: {fileID: 7012938717377183922, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
       propertyPath: InScenePlacedSourceGlobalObjectIdHash
@@ -186,6 +186,17 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4290369684729995028, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
   m_PrefabInstance: {fileID: 2711104074893553516}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &5460777859712312807 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
+  m_PrefabInstance: {fileID: 2711104074893553516}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee8578525654de4459d433237f89a9f8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1001 &3839240827030000264
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -196,7 +207,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2035471340234764109, guid: 2467780f29f7a434c8ec64dea93efada, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3550505555
+      value: 2269294294
       objectReference: {fileID: 0}
     - target: {fileID: 2406033673222875894, guid: 2467780f29f7a434c8ec64dea93efada, type: 3}
       propertyPath: m_Name
@@ -262,7 +273,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -3630891463590374407, guid: d745129203d1e9d4aa0b3fd4da695d22, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 3485482236
+      value: 1394896109
       objectReference: {fileID: 0}
     - target: {fileID: -3630891463590374407, guid: d745129203d1e9d4aa0b3fd4da695d22, type: 3}
       propertyPath: SceneMigrationSynchronization
@@ -409,16 +420,32 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 121899057196788722, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
       propertyPath: GlobalObjectIdHash
-      value: 1511127534
+      value: 1739840414
       objectReference: {fileID: 0}
     - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
       propertyPath: onTurnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2405010564680797023}
     - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
+      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 5460777859712312807}
+    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
       propertyPath: onTurnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 2405010564680797023}
+    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
+      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: startRandom4PlayerMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
+      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MinigameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
+      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8131348454321207968, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
       propertyPath: m_LocalPosition.x
       value: -2.90605
