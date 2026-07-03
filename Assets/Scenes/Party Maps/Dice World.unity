@@ -2112,17 +2112,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
-      propertyPath: nextSpace.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: 'nextSpace.Array.data[0]'
       value: 
       objectReference: {fileID: 1454415351}
-    - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
-      propertyPath: 'nextSpace.Array.data[1]'
-      value: 
-      objectReference: {fileID: 255929992}
     - target: {fileID: 6250605478708680453, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_Name
       value: Space_00

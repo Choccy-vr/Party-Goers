@@ -236,6 +236,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PartySpace
   spaceID: 0
   type: 0
+  innerSpace: {fileID: 1619210890478254007}
+  starMaterial: {fileID: 2100000, guid: c27fd30f0c221124f853113c7c25d902, type: 2}
   coinAmount: 3
   nextSpace:
   - {fileID: 0}
@@ -323,6 +325,11 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: cb2777afcf208dc49a0b1ab1107fcb38, type: 3}
+--- !u!23 &1619210890478254007 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7071182760956848314, guid: cb2777afcf208dc49a0b1ab1107fcb38, type: 3}
+  m_PrefabInstance: {fileID: 8383860791838023437}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &8346240505719945446 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: cb2777afcf208dc49a0b1ab1107fcb38, type: 3}

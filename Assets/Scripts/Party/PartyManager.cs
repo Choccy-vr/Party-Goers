@@ -6,7 +6,6 @@ public class PartyManager : NetworkBehaviour
     public static PartyManager Instance;
 
     [SerializeField] GameObject dicePrefab;
-    [SerializeField] GameObject testStarPrefab;
 
     public NetworkVariable<int> currentStarSpaceID = new NetworkVariable<int>();
 
@@ -41,9 +40,8 @@ public class PartyManager : NetworkBehaviour
     {
         if (currentStarSpace == null || currentStarSpace.spaceID != newValue)
         {
-            currentStarSpace = getSpaceObj(newValue);
-            Instantiate(testStarPrefab, currentStarSpace.transform);
-            Debug.Log("Changed Star Space to " + currentStarSpace.spaceID);
+            SetSpaceStar(newValue);
+            Debug.Log("Changed Star Space to " + newValue);
         }
     }
 
@@ -52,9 +50,18 @@ public class PartyManager : NetworkBehaviour
         if (!IsServer) return;
         PartySpace newStarSpace = getRandomSpaceObj();
         currentStarSpaceID.Value = newStarSpace.spaceID;
-        currentStarSpace = newStarSpace;
-        Instantiate(testStarPrefab, currentStarSpace.transform);
+        SetSpaceStar(newStarSpace.spaceID);
         Debug.Log("Changed Star Space to " + currentStarSpace.spaceID);
+    }
+
+    void SetSpaceStar(int newID)
+    {
+        if (currentStarSpace != null)
+        {
+            currentStarSpace.type = PartySpaceType.normal;
+        }
+        currentStarSpace = getSpaceObj(newID);
+        currentStarSpace.setSpaceToStar();
     }
 
     public void startPlayerTurn(VRPartyPlayer player)

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -12,6 +13,12 @@ public class PartySpace : MonoBehaviour
     public int spaceID;
 
     public PartySpaceType type;
+    PartySpaceType lastType;
+
+    [SerializeField] Renderer innerSpace;
+
+    [SerializeField] Material starMaterial;
+    Material lastMaterial;
 
     [SerializeField] int coinAmount = 3;
 
@@ -80,6 +87,19 @@ public class PartySpace : MonoBehaviour
         }
 
 
+    }
+
+    public void setSpaceToStar()
+    {
+        lastType = type;
+        type = PartySpaceType.star;
+        lastMaterial = innerSpace.material;
+        innerSpace.material = starMaterial;
+    }
+    public void revertStarSpace()
+    {
+        type = lastType;
+        innerSpace.material = lastMaterial;
     }
 
     public void unlockNextSpaces()
