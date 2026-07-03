@@ -1225,7 +1225,9 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: "End\n Turn"
+  m_text: 'New Star
+
+'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -4026,6 +4028,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1551627101}
     m_Modifications:
+    - target: {fileID: 1619210890478254007, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 90dae7e95ad1f454cb81d380bb2bc972, type: 2}
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.667
@@ -4065,6 +4071,10 @@ PrefabInstance:
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: spaceID
@@ -4107,17 +4117,11 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
   m_PrefabInstance: {fileID: 944175081}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &966184129 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
+--- !u!1 &966184127 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8572186645436905608, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
   m_PrefabInstance: {fileID: 8063002055346946277}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01162d555ecd1d44f97c25dcabfd0f6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnManager
 --- !u!1001 &977015258
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5316,7 +5320,7 @@ MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
   m_PrefabInstance: {fileID: 4631793378022340794}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
+  m_GameObject: {fileID: 2020692862}
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: f1aea44b95cd9ae448043b45cf2fd691, type: 3}
@@ -5715,6 +5719,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1551627101}
     m_Modifications:
+    - target: {fileID: 1619210890478254007, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 90dae7e95ad1f454cb81d380bb2bc972, type: 2}
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 5.8939986
@@ -5754,6 +5762,10 @@ PrefabInstance:
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: spaceID
@@ -7415,6 +7427,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1551627101}
     m_Modifications:
+    - target: {fileID: 1619210890478254007, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 90dae7e95ad1f454cb81d380bb2bc972, type: 2}
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 17.894
@@ -7454,6 +7470,10 @@ PrefabInstance:
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: spaceID
@@ -7641,6 +7661,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1551627101}
     m_Modifications:
+    - target: {fileID: 1619210890478254007, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 90dae7e95ad1f454cb81d380bb2bc972, type: 2}
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 14.884001
@@ -7680,6 +7704,10 @@ PrefabInstance:
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: spaceID
@@ -8204,9 +8232,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 966184129}
+      - m_Target: {fileID: 966184127}
         m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: nextPlayerTurn
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -9496,6 +9524,36 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2019950086}
   m_CullTransparentMesh: 1
+--- !u!1 &2020692862 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4668752638380595240, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+  m_PrefabInstance: {fileID: 4631793378022340794}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &2020692864
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2020692862}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 3666370290
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1001 &2038879304
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -9593,6 +9651,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1551627101}
     m_Modifications:
+    - target: {fileID: 1619210890478254007, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 90dae7e95ad1f454cb81d380bb2bc972, type: 2}
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -9632,6 +9694,10 @@ PrefabInstance:
     - target: {fileID: 2031406762429254095, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
+      propertyPath: type
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3679281895197747900, guid: 777dbdc3a132e4d44be64dd6b855163f, type: 3}
       propertyPath: spaceID
@@ -9762,7 +9828,7 @@ GameObject:
   - component: {fileID: 2097250076}
   - component: {fileID: 2097250075}
   m_Layer: 5
-  m_Name: End Turn (1)
+  m_Name: New Star
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -9853,9 +9919,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 5323199723489491811}
-        m_TargetAssemblyTypeName: TurnManager, Assembly-CSharp
-        m_MethodName: endPlayerTurn
+      - m_Target: {fileID: 1316750059}
+        m_TargetAssemblyTypeName: PartyManager, Assembly-CSharp
+        m_MethodName: ChangeStarSpace
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -10680,22 +10746,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: Party Manager
       objectReference: {fileID: 0}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: testStarPrefab
+      value: 
+      objectReference: {fileID: 919132149155446097, guid: efa87efcc6508fd4ea0b3409b9cf4bb2, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4668752638380595240, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      insertIndex: 1
+      addedObject: {fileID: 2020692864}
   m_SourcePrefab: {fileID: 100100000, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
---- !u!114 &5323199723489491811 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
-  m_PrefabInstance: {fileID: 8063002054096525827}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 01162d555ecd1d44f97c25dcabfd0f6a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::TurnManager
 --- !u!114 &5460777858067505572 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}

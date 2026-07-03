@@ -1,13 +1,17 @@
 using Unity.Netcode;
 using UnityEngine;
 
-public class PartyManager : MonoBehaviour
+public class PartyManager : NetworkBehaviour
 {
     public static PartyManager Instance;
 
     [SerializeField] GameObject dicePrefab;
+    [SerializeField] GameObject testStarPrefab;
+
+    public NetworkVariable<int> currentStarSpaceID = new NetworkVariable<int>();
 
     GameObject currentDiceObject;
+    PartySpace currentStarSpace;
 
     void Awake()
     {
@@ -23,6 +27,34 @@ public class PartyManager : MonoBehaviour
     static void ResetStatics()
     {
         Instance = null;
+    }
+    public override void OnNetworkSpawn()
+    {
+        currentStarSpaceID.OnValueChanged += OnNetworkStarSpaceChange;
+    }
+    public override void OnNetworkDespawn()
+    {
+        currentStarSpaceID.OnValueChanged -= OnNetworkStarSpaceChange;
+    }
+
+    void OnNetworkStarSpaceChange(int previousValue, int newValue)
+    {
+        if (currentStarSpace == null || currentStarSpace.spaceID != newValue)
+        {
+            currentStarSpace = getSpaceObj(newValue);
+            Instantiate(testStarPrefab, currentStarSpace.transform);
+            Debug.Log("Changed Star Space to " + currentStarSpace.spaceID);
+        }
+    }
+
+    public void ChangeStarSpace()
+    {
+        if (!IsServer) return;
+        PartySpace newStarSpace = getRandomSpaceObj();
+        currentStarSpaceID.Value = newStarSpace.spaceID;
+        currentStarSpace = newStarSpace;
+        Instantiate(testStarPrefab, currentStarSpace.transform);
+        Debug.Log("Changed Star Space to " + currentStarSpace.spaceID);
     }
 
     public void startPlayerTurn(VRPartyPlayer player)
@@ -58,6 +90,10 @@ public class PartyManager : MonoBehaviour
     PartySpace getSpaceObj(int spaceID)
     {
         return MapManager.Instance.partySpaces.Find(s => s.spaceID == spaceID);
+    }
+    PartySpace getRandomSpaceObj()
+    {
+        return MapManager.Instance.partySpaces[Random.Range(0, MapManager.Instance.partySpaces.Count)];
     }
 
 
