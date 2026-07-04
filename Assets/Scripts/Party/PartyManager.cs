@@ -10,6 +10,13 @@ public class PartyManager : NetworkBehaviour
 
     public NetworkVariable<int> currentStarSpaceID = new NetworkVariable<int>();
 
+    [Header("Player Start Turn Haptics")]
+
+    [Range(0f, 1f)]
+    [SerializeField] float amplitude = 0.5f;
+    [SerializeField] float frequency = 140;
+    [SerializeField] float duration = 0.25f;
+
     GameObject currentDiceObject;
     PartySpace currentStarSpace;
 
@@ -95,6 +102,11 @@ public class PartyManager : NetworkBehaviour
         }
         spawnDiceForTurn(player.transform);
         Debug.Log("Starting " + player.playerData.username + "'s turn");
+        if (player == NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>() && NetworkIdenity.Instance.gameObject.GetComponent<PlayerHapticManager>() != null)
+
+        {
+            NetworkIdenity.Instance.gameObject.GetComponent<PlayerHapticManager>().sendHaptic(amplitude, frequency, duration);
+        }
     }
     void spawnDiceForTurn(Transform playerTransform)
     {
