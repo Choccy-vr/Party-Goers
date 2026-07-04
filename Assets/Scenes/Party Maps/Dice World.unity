@@ -2622,7 +2622,10 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1480737426499230819, guid: 9e974a6263a19af459615d4ee6d46284, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1056216420}
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3186957085446773813, guid: 9e974a6263a19af459615d4ee6d46284, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1134152491}
   m_SourcePrefab: {fileID: 100100000, guid: 9e974a6263a19af459615d4ee6d46284, type: 3}
 --- !u!20 &677945766 stripped
 Camera:
@@ -4782,6 +4785,25 @@ Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: efa87efcc6508fd4ea0b3409b9cf4bb2, type: 3}
   m_PrefabInstance: {fileID: 1112644685}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1134152482 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3186957085446773813, guid: 9e974a6263a19af459615d4ee6d46284, type: 3}
+  m_PrefabInstance: {fileID: 677945765}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1134152491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1134152482}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2c5e444604b4fee4a9aab9430373c8a4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  leftControllerHaptics: {fileID: 1765921369}
+  rightControllerHaptics: {fileID: 1249814618}
 --- !u!1001 &1135796142
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5254,6 +5276,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.000001, y: 2.0000007, z: 2.000001}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1249814618 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 2978708520801438632, guid: 9e974a6263a19af459615d4ee6d46284, type: 3}
+  m_PrefabInstance: {fileID: 677945765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer
 --- !u!1 &1255710575 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: efa87efcc6508fd4ea0b3409b9cf4bb2, type: 3}
@@ -8342,6 +8375,17 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 2.0000002, y: 1.9999999, z: 2.0000002}
   m_Center: {x: -0.00000011920929, y: 0, z: 0}
+--- !u!114 &1765921369 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 844676655845330465, guid: 9e974a6263a19af459615d4ee6d46284, type: 3}
+  m_PrefabInstance: {fileID: 677945765}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b734f2bd29eeddd4d85afb0c266228c3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.XR.Interaction.Toolkit::UnityEngine.XR.Interaction.Toolkit.Inputs.Haptics.HapticImpulsePlayer
 --- !u!1001 &1768085914
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10856,6 +10900,18 @@ PrefabInstance:
     - target: {fileID: 4668752638380595240, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
       propertyPath: m_Name
       value: Party Manager
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: duration
+      value: 0.25
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: amplitude
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: frequency
+      value: 140
       objectReference: {fileID: 0}
     - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
       propertyPath: testStarPrefab
