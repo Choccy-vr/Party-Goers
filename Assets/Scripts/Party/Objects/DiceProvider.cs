@@ -64,10 +64,7 @@ public class DiceProvider : MonoBehaviour
         {
             SetPlayerSpaces(diceResult);
         }
-        else
-        {
-
-        }
+        //else{}
         text.text = diceResult.ToString();
         onDiceFinish?.Invoke(NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>());
     }

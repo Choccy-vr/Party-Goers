@@ -98,7 +98,7 @@ public class PartyManager : NetworkBehaviour
     }
     void spawnDiceForTurn(Transform playerTransform)
     {
-        Vector3 spawnPosition = playerTransform.position + (playerTransform.forward * diceSpawnDistance) + Vector3.up;
+        Vector3 spawnPosition = playerTransform.position + (NetworkIdenity.Instance.gameObject.transform.forward * diceSpawnDistance) + Vector3.up;
 
         currentDiceObject = Instantiate(dicePrefab, spawnPosition, dicePrefab.transform.rotation);
 
