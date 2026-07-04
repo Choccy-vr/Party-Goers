@@ -245,7 +245,7 @@ MonoBehaviour:
     m_Bits: 2147483648
   disabledInteractionLayer:
     m_Bits: 0
-  isFirstSpace: 1
+  isFirstSpace: 0
   onSpaceArrive:
     m_PersistentCalls:
       m_Calls: []
@@ -313,7 +313,7 @@ PrefabInstance:
     - target: {fileID: 7071182760956848314, guid: cb2777afcf208dc49a0b1ab1107fcb38, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
-      objectReference: {fileID: 2100000, guid: bfa16b3fc92e73245a54cb56f1b1fe7a, type: 2}
+      objectReference: {fileID: 2100000, guid: cec8fe47edfa8584793da404d70924d2, type: 2}
     - target: {fileID: 7202271454713460447, guid: cb2777afcf208dc49a0b1ab1107fcb38, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
