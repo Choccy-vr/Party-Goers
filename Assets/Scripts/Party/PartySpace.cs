@@ -168,11 +168,6 @@ public class PartySpace : MonoBehaviour
         Debug.Log("Landed on Item");
     }
 
-    [ServerRpc]
-    void changeStarSpaceServerRpc()
-    {
-        PartyManager.Instance.ChangeStarSpace();
-    }
     void OnTeleportLeave(VRPartyPlayer player, int spaceBeingLeftID)
     {
         PartySpace spaceBeingLeft = GetPartySpace(spaceBeingLeftID);

@@ -54,13 +54,13 @@ public class PartyManager : NetworkBehaviour
             ChangeStarSpaceServerRpc();
             return;
         }
+
         if (currentStarSpace != null)
         {
             currentStarSpace.revertStarSpace();
         }
         PartySpace newStarSpace = getRandomSpaceObj();
         currentStarSpaceID.Value = newStarSpace.spaceID;
-        SetSpaceStar(newStarSpace.spaceID);
         Debug.Log("Changed Star Space to " + currentStarSpace.spaceID);
     }
     [ServerRpc]
