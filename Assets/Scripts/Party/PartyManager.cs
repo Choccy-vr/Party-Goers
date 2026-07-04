@@ -6,6 +6,7 @@ public class PartyManager : NetworkBehaviour
     public static PartyManager Instance;
 
     [SerializeField] GameObject dicePrefab;
+    [SerializeField] float diceSpawnDistance = 1;
 
     public NetworkVariable<int> currentStarSpaceID = new NetworkVariable<int>();
 
@@ -47,11 +48,25 @@ public class PartyManager : NetworkBehaviour
 
     public void ChangeStarSpace()
     {
-        if (!IsServer) return;
+        if (!IsServer)
+        {
+            Debug.Log("Not Server. Transfering to rpc");
+            ChangeStarSpaceServerRpc();
+            return;
+        }
+        if (currentStarSpace != null)
+        {
+            currentStarSpace.revertStarSpace();
+        }
         PartySpace newStarSpace = getRandomSpaceObj();
         currentStarSpaceID.Value = newStarSpace.spaceID;
         SetSpaceStar(newStarSpace.spaceID);
         Debug.Log("Changed Star Space to " + currentStarSpace.spaceID);
+    }
+    [ServerRpc]
+    void ChangeStarSpaceServerRpc()
+    {
+        ChangeStarSpace();
     }
 
     void SetSpaceStar(int newID)
@@ -78,11 +93,17 @@ public class PartyManager : NetworkBehaviour
             Debug.LogError("PartyManager: 'dicePrefab' is not assigned in the Inspector!");
             return;
         }
-        Vector3 spawnPosition = player.transform.position + (player.transform.forward * 2) + Vector3.up;
+        spawnDiceForTurn(player.transform);
+        Debug.Log("Starting " + player.playerData.username + "'s turn");
+    }
+    void spawnDiceForTurn(Transform playerTransform)
+    {
+        Vector3 spawnPosition = playerTransform.position + (playerTransform.forward * diceSpawnDistance) + Vector3.up;
 
         currentDiceObject = Instantiate(dicePrefab, spawnPosition, dicePrefab.transform.rotation);
 
-        Debug.Log("Starting " + player.playerData.username + "'s turn");
+        currentDiceObject.GetComponent<Rigidbody>().useGravity = false;
+
 
     }
     public void diceRolled(VRPartyPlayer player)
@@ -92,6 +113,14 @@ public class PartyManager : NetworkBehaviour
     public void endPlayerTurn(VRPartyPlayer player)
     {
         Destroy(currentDiceObject);
+    }
+
+    public void startGame()
+    {
+        Debug.Log("STARTING NEW GAME");
+        TurnManager.Instance.nextPlayerTurn();
+        ChangeStarSpace();
+        PlayerConfigManager.Instance.setNewPlayerConfig(MapManager.Instance.currentMap.playerConfig);
     }
 
     PartySpace getSpaceObj(int spaceID)

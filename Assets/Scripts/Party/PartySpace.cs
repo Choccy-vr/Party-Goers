@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Unity.Netcode;
 using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Events;
@@ -152,6 +153,7 @@ public class PartySpace : MonoBehaviour
     void landedOnStarExchange()
     {
         Debug.Log("Landed on Star");
+        PartyManager.Instance.ChangeStarSpace();
     }
     void landedOnDuelSpace()
     {
@@ -166,6 +168,11 @@ public class PartySpace : MonoBehaviour
         Debug.Log("Landed on Item");
     }
 
+    [ServerRpc]
+    void changeStarSpaceServerRpc()
+    {
+        PartyManager.Instance.ChangeStarSpace();
+    }
     void OnTeleportLeave(VRPartyPlayer player, int spaceBeingLeftID)
     {
         PartySpace spaceBeingLeft = GetPartySpace(spaceBeingLeftID);

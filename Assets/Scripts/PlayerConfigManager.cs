@@ -5,8 +5,24 @@ using UnityEngine.XR.Interaction.Toolkit.Locomotion.Teleportation;
 using UnityEngine.XR.Interaction.Toolkit.Locomotion.Turning;
 public class PlayerConfigManager : MonoBehaviour
 {
+    public static PlayerConfigManager Instance;
 
-    [SerializeField] PlayerConfig playerConfig;
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+    }
+    [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
+    static void ResetStatics()
+    {
+        Instance = null;
+    }
+
+    public PlayerConfig playerConfig;
 
 
     LocomotionContinuousMove continuousMoveProvider;
@@ -126,7 +142,16 @@ public class PlayerConfigManager : MonoBehaviour
 
     }
 
-    void Awake()
+    void Start()
+    {
+        setPlayerConfig();
+    }
+    public void setNewPlayerConfig(PlayerConfig newConfig)
+    {
+        playerConfig = newConfig;
+        setPlayerConfig();
+    }
+    void setPlayerConfig()
     {
         GetObjects();
         applyPlayerConfig();

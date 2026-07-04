@@ -14,6 +14,8 @@ public class DiceProvider : MonoBehaviour
 
     public UnityEvent<VRPartyPlayer> onDiceFinish;
 
+    public bool placementDice;
+
     XRGrabInteractable grabInteractable;
     Rigidbody rb;
     bool isCheckingDiceRoll = false;
@@ -58,7 +60,14 @@ public class DiceProvider : MonoBehaviour
         isCheckingDiceRoll = false;
         int diceResult = GetDiceResult();
         Debug.Log("Dice Rolled a " + diceResult);
-        SetPlayerSpaces(diceResult);
+        if (!placementDice)
+        {
+            SetPlayerSpaces(diceResult);
+        }
+        else
+        {
+
+        }
         text.text = diceResult.ToString();
         onDiceFinish?.Invoke(NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>());
     }
@@ -67,6 +76,7 @@ public class DiceProvider : MonoBehaviour
     void StartDiceRoll(SelectExitEventArgs args)
     {
         //TODO: Add a force to throw
+        if (!rb.useGravity) { rb.useGravity = true; }
         if (!isCheckingDiceRoll)
         {
             StartCoroutine(CheckDiceRoll());

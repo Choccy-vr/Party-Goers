@@ -14,15 +14,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerConfigItem
   movementEnabled: 1
   turnEnabled: 1
-  jumpEnabled: 1
+  jumpEnabled: 0
   gravityEnabled: 1
-  climbingEnabled: 1
+  climbingEnabled: 0
   dashingEnabled: 0
   continuousMoveEnabled: 0
   teleportationEnabled: 1
   continuousTurnEnabled: 0
   snapTurnEnabled: 1
-  moveSpeed: 4
+  moveSpeed: 0
   inAirControlModifier: 0.5
   useGravity: 1
   useHapticsContinuousMovement: 1
@@ -50,4 +50,4 @@ MonoBehaviour:
   manualFriction: 0
   fricitonValue: 0
   useHapticsDash: 1
-  adaptiveHeight: 1
+  adaptiveHeight: 0
