@@ -70,4 +70,28 @@ public class GameSessionManager : NetworkBehaviour
             }
         }
     }
+    public void AddItemToPlayer(ulong clientId, string ItemID)
+    {
+        if (!IsServer) return;
+
+        for (int i = 0; i < activePlayers.Count; i++)
+        {
+            if (activePlayers[i].networkClientId == clientId)
+            {
+                Debug.Log("Found player to prize coins");
+                PlayerSessionData data = activePlayers[i];
+
+                if (data.TryAddItem(ItemID))
+                {
+                    activePlayers.RemoveAt(i);
+                    activePlayers.Insert(i, data);
+                }
+                else
+                {
+                    Debug.LogError("Inventory full!");
+                }
+                break;
+            }
+        }
+    }
 }

@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Player Config", menuName = "Scriptable Objects/Player Config")]
+[CreateAssetMenu(fileName = "Player Config", menuName = "Scriptable Objects/Create New Player Config")]
 public class PlayerConfig : ScriptableObject
 {
     [Header("Locomotion")]

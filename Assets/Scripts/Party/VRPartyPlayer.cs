@@ -78,14 +78,37 @@ public class VRPartyPlayer : NetworkBehaviour
         }
         else
         {
-            AddCoinsServerRPC(coins);
+            AddCoinsServerRpc(coins);
         }
     }
-    [ServerRpc]
-    void AddCoinsServerRPC(int coins)
+    public void addItem(ItemConfig item)
     {
-        GameSessionManager.Instance.AddCoinsToPlayer(OwnerClientId, coins);
+        if (IsServer)
+        {
+            GameSessionManager.Instance.AddItemToPlayer(OwnerClientId, item.itemID);
+        }
+        else
+        {
+            AddItemServerRpc(item.itemID);
+        }
     }
+
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    void AddCoinsServerRpc(int coins, RpcParams rpcParams = default)
+    {
+        ulong actualSenderId = rpcParams.Receive.SenderClientId;
+
+        GameSessionManager.Instance.AddCoinsToPlayer(actualSenderId, coins);
+    }
+
+    [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
+    void AddItemServerRpc(string itemID, RpcParams rpcParams = default)
+    {
+        ulong actualSenderId = rpcParams.Receive.SenderClientId;
+
+        GameSessionManager.Instance.AddItemToPlayer(actualSenderId, itemID);
+    }
+
 
     public void addSpacesToMove(int spaces)
     {
