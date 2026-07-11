@@ -976,6 +976,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Thumb resting",
+                    "type": "Button",
+                    "id": "f718a833-852c-4d5f-b4df-06dd6a477d40",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -1284,6 +1293,17 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "",
                     "action": "Translate Manipulation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "3a4f0e2f-0159-47a3-a1de-a7cb2e7abd40",
+                    "path": "<XRController>{LeftHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Thumb resting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -2089,6 +2109,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Thumb Resting",
+                    "type": "Button",
+                    "id": "d6d7017c-d491-497e-8008-a4ad0973e642",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -2397,6 +2426,17 @@
                     "processors": "ScaleVector2(x=0),StickDeadzone",
                     "groups": "",
                     "action": "Translate Manipulation",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "7a1c7e72-f6bb-4fcd-9c62-eb325656cdb1",
+                    "path": "<XRController>{RightHand}/thumbstickTouched",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Thumb Resting",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
