@@ -41,21 +41,59 @@ public class UIItemSlotSpawn : MonoBehaviour
     {
         isSlotEmpty = true;
 
+        Vector3 startWorldScale = Vector3.one;
         if (displayItemObject != null)
         {
+            startWorldScale = displayItemObject.transform.lossyScale;
             displayItemObject.SetActive(false);
         }
 
         GameObject realItem = Instantiate(realItemPrefab, hand.transform.position, hand.transform.rotation);
-        IXRSelectInteractable grabInteractable = realItem.GetComponent<IXRSelectInteractable>();
 
+        Vector3 targetLocalScale = realItemPrefab.transform.localScale;
+
+        IXRSelectInteractable grabInteractable = realItem.GetComponent<IXRSelectInteractable>();
         if (grabInteractable != null)
         {
             hand.interactionManager.SelectEnter(hand, grabInteractable);
         }
+
+        StartCoroutine(ScaleOverTime(realItem.transform, startWorldScale, targetLocalScale, scaleUpDuration));
     }
 
+    IEnumerator ScaleOverTime(Transform itemTransform, Vector3 startWorldScale, Vector3 targetLocalScale, float duration)
+    {
+        yield return new WaitForFixedUpdate();
 
+        if (itemTransform == null) yield break;
+
+        Vector3 startLocalScale = itemTransform.parent != null
+            ? itemTransform.parent.InverseTransformVector(startWorldScale)
+            : startWorldScale;
+
+        if (duration <= 0f)
+        {
+            itemTransform.localScale = targetLocalScale;
+            yield break;
+        }
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            if (itemTransform == null) yield break;
+
+            elapsed += Time.deltaTime;
+            float t = Mathf.Clamp01(elapsed / duration);
+
+            itemTransform.localScale = Vector3.Lerp(startLocalScale, targetLocalScale, t);
+            yield return null;
+        }
+
+        if (itemTransform != null)
+        {
+            itemTransform.localScale = targetLocalScale;
+        }
+    }
 
     public void resetItemSlot()
     {
@@ -65,7 +103,4 @@ public class UIItemSlotSpawn : MonoBehaviour
             displayItemObject.SetActive(true);
         }
     }
-
-
-
 }
