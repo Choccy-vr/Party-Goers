@@ -5,7 +5,7 @@ public class PartyManager : NetworkBehaviour
 {
     public static PartyManager Instance;
 
-    [SerializeField] GameObject dicePrefab;
+    [SerializeField] GameObject partyPadPrefab;
     [SerializeField] float diceSpawnDistance = 1;
 
     public NetworkVariable<int> currentStarSpaceID = new NetworkVariable<int>();
@@ -19,6 +19,7 @@ public class PartyManager : NetworkBehaviour
 
     GameObject currentDiceObject;
     PartySpace currentStarSpace;
+    GameObject partyPadObject;
 
     void Awake()
     {
@@ -94,29 +95,13 @@ public class PartyManager : NetworkBehaviour
             Debug.LogError("PartyManager: Cannot start turn because the 'player' passed in is NULL!");
             return;
         }
-
-        if (dicePrefab == null)
-        {
-            Debug.LogError("PartyManager: 'dicePrefab' is not assigned in the Inspector!");
-            return;
-        }
-        spawnDiceForTurn(player.transform);
         Debug.Log("Starting " + player.playerData.username + "'s turn");
         if (player == NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>() && NetworkIdenity.Instance.gameObject.GetComponent<PlayerHapticManager>() != null)
-
         {
             NetworkIdenity.Instance.gameObject.GetComponent<PlayerHapticManager>().sendHaptic(amplitude, frequency, duration);
+            partyPadObject = Instantiate(partyPadPrefab);
+            partyPadObject.GetComponent<PartyPadManager>().setCurrentPlayerTurnUI();
         }
-    }
-    void spawnDiceForTurn(Transform playerTransform)
-    {
-        Vector3 spawnPosition = playerTransform.position + (NetworkIdenity.Instance.gameObject.transform.forward * diceSpawnDistance) + Vector3.up;
-
-        currentDiceObject = Instantiate(dicePrefab, spawnPosition, dicePrefab.transform.rotation);
-
-        currentDiceObject.GetComponent<Rigidbody>().useGravity = false;
-
-
     }
     public void diceRolled(VRPartyPlayer player)
     {
@@ -125,6 +110,10 @@ public class PartyManager : NetworkBehaviour
     public void endPlayerTurn(VRPartyPlayer player)
     {
         Destroy(currentDiceObject);
+        if (player == NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>() && partyPadObject != null)
+        {
+            Destroy(partyPadObject);
+        }
     }
 
     public void startGame()

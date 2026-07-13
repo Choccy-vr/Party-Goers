@@ -35,6 +35,11 @@ public class GameSessionManager : NetworkBehaviour
         Debug.Log("New Player Registered! " + username);
     }
 
+    public PlayerSessionData? getCurrentPlayerData()
+    {
+        return getPlayerData(NetworkManager.Singleton.LocalClientId);
+    }
+
     public PlayerSessionData? getPlayerData(ulong clientId)
     {
         foreach (var player in activePlayers)

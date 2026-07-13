@@ -44,8 +44,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 00d38d77c52de8d4ca5a106b49ea5ec4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MapManager
-  partySpaces:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  maps:
+  - {fileID: 11400000, guid: 0c9e586b4733283448ea12ca55d1c79c, type: 2}
+  - {fileID: 11400000, guid: 627714ab0a5589a439cd7b825b9e2c93, type: 2}
+  currentMap: {fileID: 11400000, guid: 627714ab0a5589a439cd7b825b9e2c93, type: 2}
+  partySpaces: []

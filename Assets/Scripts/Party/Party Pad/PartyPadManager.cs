@@ -38,6 +38,7 @@ public class PartyPadManager : MonoBehaviour
     public void setCurrentPlayerTurnUI()
     {
         setActiveScreen(currentTurnScreen);
+        currentTurnScreen.GetComponent<CurrentTurnScreenHelper>().updateItemsForPlayer();
     }
     public void setTestUI()
     {

@@ -7,11 +7,28 @@ public class CurrentTurnScreenHelper : MonoBehaviour
     [SerializeField] UIItemSlotSpawn ItemSlot2;
     [SerializeField] UIItemSlotSpawn ItemSlot3;
 
-    //TODO: add Items in inventory automatically
-
-    public void testUpdateItem1(ItemConfig item)
+    public void updateItemsForPlayer()
     {
-        updateItem(ItemSlot1, item);
+        PlayerSessionData? playerData = GameSessionManager.Instance.getCurrentPlayerData();
+
+        if (playerData != null)
+        {
+            for (int i = 0; i < playerData.Value.currentInventoryCount; i++)
+            {
+                if (i == 0)
+                {
+                    updateItem(ItemSlot1, ItemManager.Instance.FindItemByID(playerData.Value.GetItemAt(i)));
+                }
+                else if (i == 1)
+                {
+                    updateItem(ItemSlot2, ItemManager.Instance.FindItemByID(playerData.Value.GetItemAt(i)));
+                }
+                else
+                {
+                    updateItem(ItemSlot3, ItemManager.Instance.FindItemByID(playerData.Value.GetItemAt(i)));
+                }
+            }
+        }
     }
 
     void updateItem(UIItemSlotSpawn itemSlot, ItemConfig item)

@@ -45,12 +45,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 1054849527
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 4245169096
+  InScenePlacedSourceGlobalObjectIdHash: 3106213121
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
-  SynchronizeTransform: 1
+  SynchronizeTransform: 0
+  <InScenePlaced>k__BackingField: 0
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
@@ -73,6 +74,7 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   minigames:
   - {fileID: 11400000, guid: 087064c61e4b6614492dfac74f1ed287, type: 2}
+  minigameSpawnPoints: []
   minigameRewards: 0a000000050000000300000000000000
   minigameStart:
     m_PersistentCalls:
