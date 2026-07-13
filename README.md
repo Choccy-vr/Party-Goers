@@ -1,5 +1,7 @@
 # Party Goers
 
+## Demo
+Check out the builds in the releases section if you have a VR Headset. If you don't have a supported VR headset, you can also watch the demo video (INSERT DEMO VIDEO LINK)
 ## Platforms
 - Meta Quest (2/3)
 - Windows OpenXR
