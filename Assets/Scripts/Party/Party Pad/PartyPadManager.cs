@@ -5,7 +5,7 @@ public class PartyPadManager : MonoBehaviour
     public static PartyPadManager Instance { get; private set; }
 
     [SerializeField] GameObject currentTurnScreen;
-    [SerializeField] GameObject testScreen;
+    [SerializeField] GameObject starScreen;
     [SerializeField] GameObject playerStanding;
 
     GameObject currentActiveScreen;
@@ -40,9 +40,9 @@ public class PartyPadManager : MonoBehaviour
         setActiveScreen(currentTurnScreen);
         currentTurnScreen.GetComponent<CurrentTurnScreenHelper>().updateItemsForPlayer();
     }
-    public void setTestUI()
+    public void setStarUI()
     {
-        setActiveScreen(testScreen);
+        setActiveScreen(starScreen);
     }
     public void setPlayerStandingOverlay(bool isActive)
     {

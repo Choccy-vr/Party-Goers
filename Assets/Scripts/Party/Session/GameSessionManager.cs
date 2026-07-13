@@ -83,7 +83,7 @@ public class GameSessionManager : NetworkBehaviour
         {
             if (activePlayers[i].networkClientId == clientId)
             {
-                Debug.Log("Found player to prize coins");
+                Debug.Log("Found player to add item");
                 PlayerSessionData data = activePlayers[i];
 
                 if (data.TryAddItem(ItemID))
@@ -95,6 +95,26 @@ public class GameSessionManager : NetworkBehaviour
                 {
                     Debug.LogError("Inventory full!");
                 }
+                break;
+            }
+        }
+    }
+    public void AddStarToPlayer(ulong clientId)
+    {
+        if (!IsServer) return;
+        for (int i = 0; i < activePlayers.Count; i++)
+        {
+            if (activePlayers[i].networkClientId == clientId)
+            {
+                Debug.Log("Found player to add star");
+                PlayerSessionData data = activePlayers[i];
+
+                data.coins += 1;
+                Debug.Log("Estimated star amount: " + data.stars);
+
+                activePlayers.RemoveAt(i);
+                activePlayers.Insert(i, data);
+                Debug.Log("Final star count = " + activePlayers[i].stars);
                 break;
             }
         }

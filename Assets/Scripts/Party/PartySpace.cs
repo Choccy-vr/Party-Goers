@@ -153,7 +153,7 @@ public class PartySpace : MonoBehaviour
     void landedOnStarExchange()
     {
         Debug.Log("Landed on Star");
-        PartyManager.Instance.ChangeStarSpace();
+        PartyManager.Instance.LandOnStarSpace();
     }
     void landedOnDuelSpace()
     {

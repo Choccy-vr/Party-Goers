@@ -54,7 +54,32 @@ public class PartyManager : NetworkBehaviour
         }
     }
 
-    public void ChangeStarSpace()
+    public void LandOnStarSpace()
+    {
+        SpawnPartyPad();
+        partyPadObject.GetComponent<PartyPadManager>().setStarUI();
+    }
+
+    public void purchaseStar(ulong clientId)
+    {
+        if (!IsServer)
+        {
+            Debug.Log("Not Server. Calling rpc");
+            PurchaseStarServerRpc(clientId);
+            return;
+        }
+        GameSessionManager.Instance.AddCoinsToPlayer(clientId, -3);
+        GameSessionManager.Instance.AddStarToPlayer(clientId);
+        ChangeStarSpace();
+    }
+
+    [ServerRpc]
+    void PurchaseStarServerRpc(ulong clientId)
+    {
+        purchaseStar(clientId);
+    }
+
+    void ChangeStarSpace()
     {
         if (!IsServer)
         {
@@ -75,6 +100,12 @@ public class PartyManager : NetworkBehaviour
     void ChangeStarSpaceServerRpc()
     {
         ChangeStarSpace();
+    }
+
+    public void StartDuel(VRPartyPlayer host, VRPartyPlayer recipient)
+    {
+        //TODO: Spawn Party Pad on Host with settings
+
     }
 
     void SetSpaceStar(int newID)
@@ -99,13 +130,27 @@ public class PartyManager : NetworkBehaviour
         if (player == NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>() && NetworkIdenity.Instance.gameObject.GetComponent<PlayerHapticManager>() != null)
         {
             NetworkIdenity.Instance.gameObject.GetComponent<PlayerHapticManager>().sendHaptic(amplitude, frequency, duration);
-            partyPadObject = Instantiate(partyPadPrefab);
+            SpawnPartyPad();
             partyPadObject.GetComponent<PartyPadManager>().setCurrentPlayerTurnUI();
         }
     }
+
+    public void SpawnPartyPad()
+    {
+        if (partyPadObject == null)
+        {
+            partyPadObject = Instantiate(partyPadPrefab);
+        }
+        else if (!partyPadObject.activeSelf)
+        {
+            partyPadObject.SetActive(true);
+        }
+    }
+
     public void diceRolled(VRPartyPlayer player)
     {
         getSpaceObj(player.currentSpaceId).unlockNextSpaces();
+        Destroy(partyPadObject);
     }
     public void endPlayerTurn(VRPartyPlayer player)
     {
