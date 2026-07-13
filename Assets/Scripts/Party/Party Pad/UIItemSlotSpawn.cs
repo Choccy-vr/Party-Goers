@@ -1,13 +1,17 @@
 using System.Collections;
+using TMPro;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
 using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class UIItemSlotSpawn : MonoBehaviour
 {
-    [SerializeField] GameObject realItemPrefab;
-    [SerializeField] GameObject displayItemObject;
+    public GameObject realItemPrefab;
+    public GameObject displayItemObject;
     [SerializeField] float scaleUpDuration = 0.1f;
+
+    public TextMeshProUGUI itemText;
+    public Transform modelParent;
 
     bool isSlotEmpty = false;
 

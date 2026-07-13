@@ -8,6 +8,7 @@ public class ItemConfig : ScriptableObject
     public string itemID;
     public string itemDescription;
     public int itemCost;
+    public GameObject itemModel;
     public GameObject itemPrefab;
     public UnityAction onItemUsed;
 
