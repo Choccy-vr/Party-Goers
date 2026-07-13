@@ -7,7 +7,7 @@ public class UIItemSlotSpawn : MonoBehaviour
 {
     [SerializeField] GameObject realItemPrefab;
     [SerializeField] GameObject displayItemObject;
-    [SerializeField] float scaleUpDuration = 0.2f;
+    [SerializeField] float scaleUpDuration = 0.1f;
 
     bool isSlotEmpty = false;
 
