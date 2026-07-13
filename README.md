@@ -1,5 +1,8 @@
 # Party Goers
 
+## Platforms
+- Meta Quest (2/3)
+- Windows OpenXR
 ## Description
 Party Goers is a fun-filled party VR game. Inspired by Mario Party, you can have fun competing on the party board and minigames with friends, family, or random people.
 
