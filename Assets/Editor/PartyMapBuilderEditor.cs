@@ -3,9 +3,15 @@ using UnityEngine;
 using UnityEditor;
 using System.Collections.Generic;
 
+[InitializeOnLoad]
 [CustomEditor(typeof(PartyMapBuilder))]
 public class PartyMapBuilderEditor : Editor
 {
+    static PartyMapBuilderEditor()
+    {
+        SceneView.duringSceneGui += OnSceneGUI;
+    }
+
     public override void OnInspectorGUI()
     {
         DrawDefaultInspector();
@@ -30,17 +36,7 @@ public class PartyMapBuilderEditor : Editor
         }
     }
 
-    private void OnEnable()
-    {
-        SceneView.duringSceneGui += OnSceneGUI;
-    }
-
-    private void OnDisable()
-    {
-        SceneView.duringSceneGui -= OnSceneGUI;
-    }
-
-    private void OnSceneGUI(SceneView sceneView)
+    private static void OnSceneGUI(SceneView sceneView)
     {
         Handles.BeginGUI();
 
@@ -60,7 +56,7 @@ public class PartyMapBuilderEditor : Editor
     [MenuItem("Tools/Party Game/Add Next Space #g")]
     public static void GlobalAddNewSpace()
     {
-        PartyMapBuilder builder = FindFirstObjectByType<PartyMapBuilder>();
+        PartyMapBuilder builder = FindAnyObjectByType<PartyMapBuilder>();
 
         if (builder == null)
         {

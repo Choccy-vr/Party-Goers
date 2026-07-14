@@ -101,11 +101,15 @@ public class PartyManager : NetworkBehaviour
     {
         ChangeStarSpace();
     }
+    public void landedOnDuelSpace()
+    {
+        SpawnPartyPad();
+        partyPadObject.GetComponent<PartyPadManager>().setDuelUI();
+    }
 
     public void StartDuel(VRPartyPlayer host, VRPartyPlayer recipient)
     {
-        //TODO: Spawn Party Pad on Host with settings
-
+        MinigameManager.Instance.startRandomDuelMinigame();
     }
 
     void SetSpaceStar(int newID)

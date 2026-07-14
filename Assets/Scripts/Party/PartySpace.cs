@@ -158,6 +158,7 @@ public class PartySpace : MonoBehaviour
     void landedOnDuelSpace()
     {
         Debug.Log("Landed on Duel");
+        PartyManager.Instance.landedOnDuelSpace();
     }
     void landedOnLuckySpace()
     {

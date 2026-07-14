@@ -68,6 +68,14 @@ public class MinigameManager : NetworkBehaviour
         teleportToMinigame(targetMinigame.minigameID);
         minigameStart?.Invoke(targetMinigame);
     }
+    public void startRandomDuelMinigame()
+    {
+        MinigameConfig targetMinigame = selectRandomMinigame(MinigameType.oneVSone);
+        currentMinigame = targetMinigame;
+        isMinigame = true;
+        teleportToMinigame(targetMinigame.minigameID);
+        minigameStart?.Invoke(targetMinigame);
+    }
     public void endMinigame()
     {
         isMinigame = false;
@@ -76,23 +84,19 @@ public class MinigameManager : NetworkBehaviour
 
     public void teleportToMinigame(string targetMinigame)
     {
-        MinigameConfig minigameConfig = FindMinigameFromID(targetMinigame);
-        if (!IsSpawned)
-        {
-            Debug.LogWarning("MinigameManager is not fully spawned on the network yet! Ignoring teleport request.");
-            return;
-        }
-        Debug.Log("Teleporting to map");
         if (!IsServer)
         {
             Debug.Log("Not server. starting rpc");
             teleportToMinigameServerRpc(targetMinigame);
             return;
         }
+
+        MinigameConfig minigameConfig = FindMinigameFromID(targetMinigame);
+        Debug.Log("Teleporting to map");
+
         currentTransition = TransitionType.minigame;
         NetworkSceneManager.Instance.LoadSceneNetwork(minigameConfig.sceneName);
-        //Apply player configs
-
+        minigameStart?.Invoke(minigameConfig);
     }
     [ServerRpc]
     void teleportToMinigameServerRpc(string targetMinigame)

@@ -25,4 +25,10 @@ public class PlayerManager : MonoBehaviour
     {
         return activePlayerObj.Find(p => p.playerData.networkClientId == networkClientID);
     }
+    public List<VRPartyPlayer> getAllOtherPlayers()
+    {
+        var otherPlayers = new List<VRPartyPlayer>(activePlayerObj);
+        otherPlayers.Remove(NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>());
+        return otherPlayers;
+    }
 }
