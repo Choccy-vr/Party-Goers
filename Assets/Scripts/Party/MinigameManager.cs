@@ -30,16 +30,24 @@ public class MinigameManager : NetworkBehaviour
             return;
         }
         Instance = this;
-        DontDestroyOnLoad(gameObject);
     }
-    void Start()
+    public override void OnDestroy()
     {
-        minigameSpawnPoints.Sort((a, b) => a.spawnPointID.CompareTo(b.spawnPointID));
+        base.OnDestroy();
+
+        if (Instance == this)
+        {
+            Instance = null;
+        }
     }
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetStatics()
     {
         Instance = null;
+    }
+    void Start()
+    {
+        minigameSpawnPoints.Sort((a, b) => a.spawnPointID.CompareTo(b.spawnPointID));
     }
 
     public override void OnNetworkDespawn()
