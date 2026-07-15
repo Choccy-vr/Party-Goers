@@ -11236,9 +11236,29 @@ PrefabInstance:
       value: Party Manager
       objectReference: {fileID: 0}
     - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: duration
+      value: 0.3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: frequency
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
       propertyPath: partyPadPrefab
       value: 
       objectReference: {fileID: 8037064353787202271, guid: 38a927199d3a9eb43bfddb1f8264a6ee, type: 3}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: partyPadSpawnAction.m_Reference
+      value: 
+      objectReference: {fileID: -5042469820250961098, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: partyPadSpawnAction.m_UseReference
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: partyPadSpawnAction.m_Action.m_Name
+      value: Party Pad Spawn
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
