@@ -7,7 +7,7 @@ public class PartyPadManager : MonoBehaviour
     [SerializeField] GameObject currentTurnScreen;
     [SerializeField] GameObject starScreen;
     [SerializeField] GameObject duelScreen;
-    [SerializeField] GameObject playerStanding;
+    [SerializeField] GameObject partyProgress;
 
     GameObject currentActiveScreen;
 
@@ -49,8 +49,9 @@ public class PartyPadManager : MonoBehaviour
     {
         setActiveScreen(duelScreen);
     }
-    public void setPlayerStandingOverlay(bool isActive)
+    public void setPartyProgressUI()
     {
-        playerStanding.SetActive(isActive);
+        setActiveScreen(partyProgress);
+
     }
 }

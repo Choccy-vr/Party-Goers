@@ -75,6 +75,7 @@ public class PartyManager : NetworkBehaviour
         if (partyPadObject == null)
         {
             SpawnPartyPad();
+            partyPadObject.GetComponent<PartyPadManager>().setPartyProgressUI();
         }
         else
         {
