@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PartyManager : NetworkBehaviour
 {
@@ -16,6 +17,9 @@ public class PartyManager : NetworkBehaviour
     [SerializeField] float amplitude = 0.5f;
     [SerializeField] float frequency = 140;
     [SerializeField] float duration = 0.25f;
+
+    [Header("PartyPad Spawn")]
+    [SerializeField] InputActionProperty partyPadSpawnAction;
 
     GameObject currentDiceObject;
     PartySpace currentStarSpace;
@@ -60,6 +64,23 @@ public class PartyManager : NetworkBehaviour
             SetSpaceStar(newValue);
             Debug.Log("Changed Star Space to " + newValue);
         }
+    }
+    void Start()
+    {
+        partyPadSpawnAction.action.performed += partyPadSpawnActionPerformed;
+    }
+
+    private void partyPadSpawnActionPerformed(InputAction.CallbackContext obj)
+    {
+        if (partyPadObject == null)
+        {
+            SpawnPartyPad();
+        }
+        else
+        {
+            Destroy(partyPadObject);
+        }
+
     }
 
     public void LandOnStarSpace()
