@@ -7,7 +7,6 @@ public class PartyManager : NetworkBehaviour
     public static PartyManager Instance;
 
     [SerializeField] GameObject partyPadPrefab;
-    [SerializeField] float diceSpawnDistance = 1;
 
     public NetworkVariable<int> currentStarSpaceID = new NetworkVariable<int>();
 

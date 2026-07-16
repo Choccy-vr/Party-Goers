@@ -196,7 +196,7 @@ namespace XRMultiplayer
         /// Foldout states for the editor.
         /// </summary>
         [HideInInspector, SerializeField]
-        bool[] m_FoldoutValues = {true, true, true};
+        bool[] m_FoldoutValues = { true, true, true };
 #endif
 
         /// <summary>
@@ -223,7 +223,7 @@ namespace XRMultiplayer
             m_BaseInteractable.selectFilters.Add(this);
             m_BaseInteractable.hoverFilters.Add(this);
 
-            m_InteractionManager = FindFirstObjectByType<XRInteractionManager>();
+            m_InteractionManager = FindAnyObjectByType<XRInteractionManager>();
 
 #pragma warning disable CS0618 // Type or member is obsolete
             m_AffordanceStateProvider = GetComponentInChildren<BaseAffordanceStateProvider>();

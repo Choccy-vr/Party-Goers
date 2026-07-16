@@ -47,9 +47,9 @@ public class PartyProgressScreenHelper : MonoBehaviour
             }
 
         }
-        if (round != TurnManager.Instance.currentRound)
+        if (round != TurnManager.Instance.currentRound.Value)
         {
-            round = TurnManager.Instance.currentRound;
+            round = TurnManager.Instance.currentRound.Value;
             roundText.text = $"{round}/{TurnManager.Instance.amountRounds}";
         }
     }

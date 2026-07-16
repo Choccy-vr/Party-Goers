@@ -15,13 +15,14 @@ public class TurnManager : NetworkBehaviour
     private NetworkList<ulong> turnOrderID = new NetworkList<ulong>();
 
     public NetworkVariable<int> amountRounds = new NetworkVariable<int>(10);
+    public NetworkVariable<int> currentRound = new NetworkVariable<int>(1);
+
 
     public UnityEvent<VRPartyPlayer> onTurnStart;
     public UnityEvent<VRPartyPlayer> onTurnEnd;
     public UnityEvent onRoundEnd;
 
     int currentPlayerIndex = 0;
-    public int currentRound = 1;
 
     void Awake()
     {
@@ -123,9 +124,9 @@ public class TurnManager : NetworkBehaviour
         }
     }
     [Rpc(SendTo.Server, InvokePermission = RpcInvokePermission.Everyone)]
-    void updateRoundAmountServerRpc(int amount)
+    void updateRoundServerRpc(int round)
     {
-        amountRounds.Value = amount;
+        amountRounds.Value = round;
     }
     public void addPlayerToTurnOrder(VRPartyPlayer player, int order)
     {
@@ -153,7 +154,7 @@ public class TurnManager : NetworkBehaviour
         if (currentPlayerIndex >= PlayerManager.Instance.activePlayerObj.Count)
         {
             currentPlayerIndex = 0;
-            updateRoundAmountServerRpc(amountRounds.Value - 1);
+            updateRoundServerRpc(currentRound.Value + 1);
             if (amountRounds.Value <= 0)
             {
                 //END GAME
