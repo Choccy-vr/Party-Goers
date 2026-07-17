@@ -5303,6 +5303,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba144615e5cd4ab46b5687519e862281, type: 3}
   m_Name: 
   m_EditorClassIdentifier: '::'
+  diceSlot: {fileID: 4501038971582132987}
   ItemSlot1: {fileID: 8611250038284689121}
   ItemSlot2: {fileID: 2368727073234104138}
   ItemSlot3: {fileID: 3497660473295511759}

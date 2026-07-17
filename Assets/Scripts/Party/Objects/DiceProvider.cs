@@ -4,11 +4,14 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
 using UnityEngine.XR.Interaction.Toolkit.Interactables;
+using UnityEngine.XR.Interaction.Toolkit.Interactors;
 
 public class DiceProvider : MonoBehaviour
 {
     [SerializeField] float speedThreshold = 0.05f;
     [SerializeField] float stableDuration = 0.2f;
+    [SerializeField] float minRollVelocity = 1.5f;
+    [SerializeField] float minAngularVelocity = 2.0f;
     [SerializeField] TextMeshProUGUI text;
     public int upNumber, downNumber, leftNumber, rightNumber, forwardNumber, backNumber;
 
@@ -16,7 +19,7 @@ public class DiceProvider : MonoBehaviour
 
     public bool placementDice;
 
-    XRGrabInteractable grabInteractable;
+    IXRSelectInteractable grabInteractable;
     Rigidbody rb;
     bool isCheckingDiceRoll = false;
 
@@ -72,13 +75,39 @@ public class DiceProvider : MonoBehaviour
 
     void StartDiceRoll(SelectExitEventArgs args)
     {
-        //TODO: Add a force to throw
         if (!rb.useGravity) { rb.useGravity = true; }
+
+        // Wait so it has time to compute
+        StartCoroutine(EvaluateThrowVelocity(args.manager, args.interactorObject));
+
         if (!isCheckingDiceRoll)
         {
             StartCoroutine(CheckDiceRoll());
         }
+
         Debug.Log(args.interactorObject.transform.name + " started a Dice Roll");
+    }
+
+    IEnumerator EvaluateThrowVelocity(XRInteractionManager manager, IXRSelectInteractor hand)
+    {
+        yield return new WaitForFixedUpdate();
+
+        if (rb.linearVelocity.magnitude < minRollVelocity || rb.angularVelocity.magnitude < minAngularVelocity)
+        {
+            Debug.Log($"Linear Velocity: {rb.linearVelocity.magnitude} Angular Velocity: {rb.angularVelocity.magnitude}");
+            onFailedDiceRoll(manager, hand);
+        }
+        else
+        {
+            Debug.Log($"Successful Throw! Vel: {rb.linearVelocity.magnitude} Spin: {rb.angularVelocity.magnitude}");
+        }
+    }
+
+    void onFailedDiceRoll(XRInteractionManager manager, IXRSelectInteractor hand)
+    {
+        Debug.Log("Dice Roll was not sufficent, Roll again but more forceful");
+        PartyPadManager.Instance.currentTurnScreen.GetComponent<CurrentTurnScreenHelper>().diceSlot.resetItemSlot();
+        Destroy(gameObject);
     }
 
     void SetPlayerSpaces(int diceResult)

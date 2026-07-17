@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class CurrentTurnScreenHelper : MonoBehaviour
 {
+    public UIItemSlotSpawn diceSlot;
     [SerializeField] UIItemSlotSpawn ItemSlot1;
     [SerializeField] UIItemSlotSpawn ItemSlot2;
     [SerializeField] UIItemSlotSpawn ItemSlot3;

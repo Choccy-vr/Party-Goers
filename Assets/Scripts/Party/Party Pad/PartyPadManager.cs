@@ -4,10 +4,10 @@ public class PartyPadManager : MonoBehaviour
 {
     public static PartyPadManager Instance { get; private set; }
 
-    [SerializeField] GameObject currentTurnScreen;
-    [SerializeField] GameObject starScreen;
-    [SerializeField] GameObject duelScreen;
-    [SerializeField] GameObject partyProgress;
+    public GameObject currentTurnScreen;
+    public GameObject starScreen;
+    public GameObject duelScreen;
+    public GameObject partyProgress;
 
     GameObject currentActiveScreen;
 
