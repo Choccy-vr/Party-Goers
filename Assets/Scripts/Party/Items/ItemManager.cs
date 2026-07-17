@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Unity.Netcode;
 using UnityEngine;
@@ -25,7 +24,7 @@ public class ItemManager : MonoBehaviour
         Instance = null;
     }
 
-    public ItemConfig FindItemByID(String ID)
+    public ItemConfig FindItemByID(string ID)
     {
         return items.Find(i => i.itemID == ID);
     }
@@ -33,6 +32,11 @@ public class ItemManager : MonoBehaviour
     public void UseItem(ItemConfig item)
     {
         item.ActivateOnItemUsedEvent();
+    }
+
+    public ItemConfig getRandomItem()
+    {
+        return items[Random.Range(0, items.Count)];
     }
 
     public void AddItemToInventory(ItemConfig item)

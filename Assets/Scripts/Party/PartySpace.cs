@@ -167,6 +167,7 @@ public class PartySpace : MonoBehaviour
     void landedOnItemSpace()
     {
         Debug.Log("Landed on Item");
+        PartyManager.Instance.landedOnItemSpace();
     }
 
     void OnTeleportLeave(VRPartyPlayer player, int spaceBeingLeftID)

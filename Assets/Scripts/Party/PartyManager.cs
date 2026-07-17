@@ -7,6 +7,7 @@ public class PartyManager : NetworkBehaviour
     public static PartyManager Instance;
 
     [SerializeField] GameObject partyPadPrefab;
+    [SerializeField] GameObject itemBoxPrefab;
 
     public NetworkVariable<int> currentStarSpaceID = new NetworkVariable<int>();
 
@@ -134,6 +135,31 @@ public class PartyManager : NetworkBehaviour
     {
         SpawnPartyPad();
         partyPadObject.GetComponent<PartyPadManager>().setDuelUI();
+    }
+    public void landedOnItemSpace()
+    {
+        if (itemBoxPrefab == null)
+        {
+            Debug.LogWarning("PartyManager: Cannot spawn item boxes because itemBoxPrefab is not assigned.");
+            return;
+        }
+
+        if (NetworkIdenity.Instance == null || NetworkIdenity.Instance.networkPlayerIdenity == null)
+        {
+            Debug.LogWarning("PartyManager: Cannot spawn item boxes because the local player is not available.");
+            return;
+        }
+
+        Transform playerTransform = NetworkIdenity.Instance.networkPlayerIdenity.transform;
+        Vector3 forwardOffset = playerTransform.forward * 1.5f;
+        Vector3 spawnHeightOffset = playerTransform.up * 0.15f;
+        float spacing = 0.75f;
+
+        for (int i = -1; i <= 1; i++)
+        {
+            Vector3 spawnPosition = playerTransform.position + forwardOffset + spawnHeightOffset + (playerTransform.right * (i * spacing));
+            Instantiate(itemBoxPrefab, spawnPosition, playerTransform.rotation);
+        }
     }
 
     public void StartDuel(VRPartyPlayer host, VRPartyPlayer recipient)
