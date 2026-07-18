@@ -162,6 +162,14 @@ public class PartyManager : NetworkBehaviour
         }
     }
 
+    public void landedOnShopSpace()
+    {
+        foreach (ShopProvider shop in MapManager.Instance.shops)
+        {
+            shop.spawnItems();
+        }
+    }
+
     public void StartDuel(VRPartyPlayer host, VRPartyPlayer recipient)
     {
         MinigameManager.Instance.startRandomDuelMinigame();

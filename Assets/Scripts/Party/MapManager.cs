@@ -11,6 +11,7 @@ public class MapManager : MonoBehaviour
     public List<MapConfig> maps = new List<MapConfig>();
     public MapConfig currentMap;
     public List<PartySpace> partySpaces = new List<PartySpace>();
+    public List<ShopProvider> shops = new List<ShopProvider>();
 
     void Awake()
     {

@@ -10,6 +10,7 @@ public class ItemConfig : ScriptableObject
     public int itemCost;
     public GameObject itemModel;
     public GameObject itemPrefab;
+    public GameObject shopItemPrefab;
     public UnityAction onItemUsed;
 
     public void ActivateOnItemUsedEvent()

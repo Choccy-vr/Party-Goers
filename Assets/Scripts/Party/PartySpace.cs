@@ -142,6 +142,10 @@ public class PartySpace : MonoBehaviour
             case PartySpaceType.item:
                 landedOnItemSpace();
                 break;
+            case PartySpaceType.shop:
+                landedOnShopSpace();
+                break;
+
 
         }
 
@@ -168,6 +172,11 @@ public class PartySpace : MonoBehaviour
     {
         Debug.Log("Landed on Item");
         PartyManager.Instance.landedOnItemSpace();
+    }
+    void landedOnShopSpace()
+    {
+        Debug.Log("Landed on Shop");
+        PartyManager.Instance.landedOnShopSpace();
     }
 
     void OnTeleportLeave(VRPartyPlayer player, int spaceBeingLeftID)
@@ -227,5 +236,6 @@ public enum PartySpaceType
     star,
     duel,
     lucky,
-    item
+    item,
+    shop
 }
