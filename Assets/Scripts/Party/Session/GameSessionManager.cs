@@ -7,6 +7,8 @@ public class GameSessionManager : NetworkBehaviour
 
     public static GameSessionManager Instance { get; private set; }
 
+    [SerializeField] ParticleSystem coinParticleSystem;
+
     public MapConfig activeMap;
 
     public NetworkList<PlayerSessionData> activePlayers = new NetworkList<PlayerSessionData>();
@@ -81,6 +83,11 @@ public class GameSessionManager : NetworkBehaviour
                 Debug.Log("Final coin count = " + activePlayers[i].coins);
                 break;
             }
+        }
+
+        if (amount > 0)
+        {
+            coinParticleSystem.Play();
         }
     }
     public void AddItemToPlayer(ulong clientId, string ItemID)

@@ -9837,6 +9837,11 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1.9999999, y: 2.0000002, z: 2.0000005}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!198 &2054016705 stripped
+ParticleSystem:
+  m_CorrespondingSourceObject: {fileID: 6772570182584826262, guid: 9e974a6263a19af459615d4ee6d46284, type: 3}
+  m_PrefabInstance: {fileID: 677945765}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &2059362607
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10540,6 +10545,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8618275942993174199, guid: 2467780f29f7a434c8ec64dea93efada, type: 3}
+      propertyPath: coinParticleSystem
+      value: 
+      objectReference: {fileID: 2054016705}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
