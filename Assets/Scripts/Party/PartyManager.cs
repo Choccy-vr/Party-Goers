@@ -150,15 +150,24 @@ public class PartyManager : NetworkBehaviour
             return;
         }
 
-        Transform playerTransform = NetworkIdenity.Instance.networkPlayerIdenity.transform;
-        Vector3 forwardOffset = playerTransform.forward * 1.5f;
-        Vector3 spawnHeightOffset = playerTransform.up * 0.15f;
-        float spacing = 0.75f;
+        if (Camera.main == null)
+        {
+            Debug.LogWarning("PartyManager: Cannot spawn item boxes because no main camera is available.");
+            return;
+        }
+
+        Transform mainCam = Camera.main.transform;
+        Vector3 forwardOffset = mainCam.forward * 0.75f;
+        Vector3 chestLevelOffset = Vector3.down * 0.25f;
+
+        float spacing = 0.35f;
+        Vector3 centerSpawnPosition = mainCam.position + forwardOffset + chestLevelOffset;
+        Quaternion spawnRotation = Quaternion.LookRotation(mainCam.forward);
 
         for (int i = -1; i <= 1; i++)
         {
-            Vector3 spawnPosition = playerTransform.position + forwardOffset + spawnHeightOffset + (playerTransform.right * (i * spacing));
-            Instantiate(itemBoxPrefab, spawnPosition, playerTransform.rotation);
+            Vector3 spawnPosition = centerSpawnPosition + (mainCam.right * (i * spacing));
+            Instantiate(itemBoxPrefab, spawnPosition, spawnRotation);
         }
     }
 

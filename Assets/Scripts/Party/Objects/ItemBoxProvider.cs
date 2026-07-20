@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.XR.Interaction.Toolkit;
@@ -44,6 +45,11 @@ public class ItemBoxProvider : MonoBehaviour
         TurnManager.Instance.endPlayerTurn();
         TurnManager.Instance.nextPlayerTurn();
         onItemBoxGrab?.Invoke(this);
+        ItemBoxProvider[] itemBoxes = FindObjectsByType<ItemBoxProvider>();
+        foreach (ItemBoxProvider itemBox in itemBoxes)
+        {
+            Destroy(itemBox.gameObject);
+        }
     }
     void OnGrabLeaveItemBox(SelectExitEventArgs args)
     {
