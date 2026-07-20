@@ -69,6 +69,7 @@ public class DiceProvider : MonoBehaviour
         }
         //else{}
         text.text = diceResult.ToString();
+        PartyManager.Instance.DestoryPartyPad();
         onDiceFinish?.Invoke(NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>());
     }
 

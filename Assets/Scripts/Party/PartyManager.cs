@@ -23,7 +23,7 @@ public class PartyManager : NetworkBehaviour
 
     GameObject currentDiceObject;
     PartySpace currentStarSpace;
-    GameObject partyPadObject;
+    [SerializeField] GameObject partyPadObject;
 
     void Awake()
     {
@@ -79,7 +79,7 @@ public class PartyManager : NetworkBehaviour
         }
         else
         {
-            Destroy(partyPadObject);
+            DestoryPartyPad();
         }
 
     }
@@ -214,18 +214,21 @@ public class PartyManager : NetworkBehaviour
         }
     }
 
+    public void DestoryPartyPad()
+    {
+        Debug.Log($"Is Scene Object: {partyPadObject.scene.IsValid()} | Name: {partyPadObject.name}");
+        Debug.Log("Destroying Party Pad");
+        Destroy(partyPadObject);
+        partyPadObject = null;
+    }
+
     public void diceRolled(VRPartyPlayer player)
     {
         getSpaceObj(player.currentSpaceId).unlockNextSpaces();
-        Destroy(partyPadObject);
     }
     public void endPlayerTurn(VRPartyPlayer player)
     {
         Destroy(currentDiceObject);
-        if (player == NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>() && partyPadObject != null)
-        {
-            Destroy(partyPadObject);
-        }
     }
 
     public void startGame()

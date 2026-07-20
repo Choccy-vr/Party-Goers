@@ -398,6 +398,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::DiceProvider
   speedThreshold: 0.05
   stableDuration: 0.2
+  minRollVelocity: 1.5
+  minAngularVelocity: 2
   text: {fileID: 1672446800027542954}
   upNumber: 3
   downNumber: 4

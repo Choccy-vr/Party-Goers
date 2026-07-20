@@ -10996,6 +10996,10 @@ PrefabInstance:
       value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
+      propertyPath: itemBoxPrefab
+      value: 
+      objectReference: {fileID: 4475817454807172023, guid: b5b65dc4e9d7d184299024cfd0d4f009, type: 3}
+    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
       propertyPath: partyPadPrefab
       value: 
       objectReference: {fileID: 8037064353787202271, guid: 38a927199d3a9eb43bfddb1f8264a6ee, type: 3}
