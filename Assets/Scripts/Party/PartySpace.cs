@@ -119,6 +119,7 @@ public class PartySpace : MonoBehaviour
         {
             case PartySpaceType.normal:
                 playerOnSpace.addCoins(coinAmount);
+                endTurnAndGoToNext();
                 break;
             case PartySpaceType.bad:
                 if (playerOnSpace.playerData.coins >= 3)
@@ -129,9 +130,11 @@ public class PartySpace : MonoBehaviour
                 {
                     playerOnSpace.addCoins(-playerOnSpace.playerData.coins);
                 }
+                endTurnAndGoToNext();
                 break;
             case PartySpaceType.star:
                 landedOnStarExchange();
+                endTurnAndGoToNext();
                 break;
             case PartySpaceType.duel:
                 landedOnDuelSpace();
@@ -149,10 +152,14 @@ public class PartySpace : MonoBehaviour
 
         }
 
+
+
+
+    }
+    void endTurnAndGoToNext()
+    {
         TurnManager.Instance.endPlayerTurn();
         TurnManager.Instance.nextPlayerTurn();
-
-
     }
     void landedOnStarExchange()
     {
@@ -163,6 +170,7 @@ public class PartySpace : MonoBehaviour
     {
         Debug.Log("Landed on Duel");
         PartyManager.Instance.landedOnDuelSpace();
+        endTurnAndGoToNext();
     }
     void landedOnLuckySpace()
     {
@@ -177,6 +185,7 @@ public class PartySpace : MonoBehaviour
     {
         Debug.Log("Landed on Shop");
         PartyManager.Instance.landedOnShopSpace();
+        endTurnAndGoToNext();
     }
 
     void OnTeleportLeave(VRPartyPlayer player, int spaceBeingLeftID)

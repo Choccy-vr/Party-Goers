@@ -41,6 +41,8 @@ public class ItemBoxProvider : MonoBehaviour
         Instantiate(item.itemModel, gameObject.transform);
         ItemManager.Instance.AddItemToInventory(item);
         Debug.Log("Item Box revealed: " + item.itemName);
+        TurnManager.Instance.endPlayerTurn();
+        TurnManager.Instance.nextPlayerTurn();
         onItemBoxGrab?.Invoke(this);
     }
     void OnGrabLeaveItemBox(SelectExitEventArgs args)
