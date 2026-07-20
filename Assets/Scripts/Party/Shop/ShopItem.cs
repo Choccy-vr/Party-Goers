@@ -18,12 +18,15 @@ public class ShopItem : MonoBehaviour
 
     void purchaseItem(SelectEnterEventArgs args)
     {
+        Debug.Log("Trying to purchase Item");
         VRPartyPlayer player = NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>();
 
         if (player.playerData.coins >= itemOnSale.itemCost)
         {
+            Debug.Log("Player has enough coins. Purchasing");
             GameSessionManager.Instance.AddCoinsToPlayer(player.playerData.networkClientId, -itemOnSale.itemCost);
             GameSessionManager.Instance.AddItemToPlayer(player.playerData.networkClientId, itemOnSale.itemID);
+            Destroy(this);
         }
     }
 }

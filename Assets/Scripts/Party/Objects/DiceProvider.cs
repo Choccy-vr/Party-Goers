@@ -70,6 +70,7 @@ public class DiceProvider : MonoBehaviour
         //else{}
         text.text = diceResult.ToString();
         PartyManager.Instance.DestoryPartyPad();
+        PartyManager.Instance.diceRolled(NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>());
         onDiceFinish?.Invoke(NetworkIdenity.Instance.networkPlayerIdenity.GetComponent<VRPartyPlayer>());
     }
 
@@ -79,7 +80,7 @@ public class DiceProvider : MonoBehaviour
         if (!rb.useGravity) { rb.useGravity = true; }
 
         // Wait so it has time to compute
-        StartCoroutine(EvaluateThrowVelocity(args.manager, args.interactorObject));
+        //StartCoroutine(EvaluateThrowVelocity(args.manager, args.interactorObject));
 
         if (!isCheckingDiceRoll)
         {

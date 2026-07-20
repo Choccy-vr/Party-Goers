@@ -8,7 +8,7 @@ public class ShopProvider : MonoBehaviour
 
     [SerializeField] Transform[] spawnPositions;
 
-    List<GameObject> spawnedItems;
+    List<GameObject> spawnedItems = new List<GameObject>();
     void Start()
     {
         MapManager.Instance.shops.Add(this);
@@ -23,7 +23,8 @@ public class ShopProvider : MonoBehaviour
         }
         for (int i = 0; i < spawnPositions.Length; i++)
         {
-            GameObject item = Instantiate(items[i].itemPrefab, spawnPositions[i].position, spawnPositions[i].rotation);
+            Debug.Log("Item" + items[i].name);
+            GameObject item = Instantiate(items[i].shopItemPrefab, spawnPositions[i].position, spawnPositions[i].rotation);
             spawnedItems.Add(item);
             item.GetComponent<ShopItem>().itemOnSale = items[i];
         }

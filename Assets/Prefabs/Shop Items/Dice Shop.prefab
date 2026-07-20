@@ -423,7 +423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 24aed97ae1501a44085ed7e1f90fc922, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::ShopItem
-  itemOnSale: {fileID: 0}
+  itemOnSale: {fileID: 11400000, guid: 39488a1b26a7c834ea41e3a82eb9a4ad, type: 2}
   grabInteractable: {fileID: 2732639854820864610}
 --- !u!1 &6340334529364259606
 GameObject:
