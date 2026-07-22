@@ -1,0 +1,53 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e4edbf144c8d1144caac2457a5fbf7cf, type: 3}
+  m_Name: Realistic Athletic
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerConfig
+  movementEnabled: 1
+  turnEnabled: 1
+  jumpEnabled: 1
+  gravityEnabled: 1
+  climbingEnabled: 1
+  dashingEnabled: 0
+  continuousMoveEnabled: 1
+  teleportationEnabled: 0
+  continuousTurnEnabled: 0
+  snapTurnEnabled: 1
+  moveSpeed: 4
+  inAirControlModifier: 0.5
+  useGravity: 1
+  useHapticsContinuousMovement: 1
+  sprintEnabled: 1
+  sprintMoveSpeed: 8
+  physicalSprint: 1
+  sprintAccelerationEnabled: 0
+  sprintAcceleration: 0.1
+  sprintDeceleration: 0.2
+  delayTimeTeleportation: 0.5
+  turnSpeed: 80
+  turnAmount: 45
+  delayTimeSnapTurn: 0
+  jumpHeight: 2
+  upwardGravity: -19
+  downwardGravity: -27
+  coyoteTimeDuration: 0.15
+  terminalVelocity: 90
+  gravityMultiplier: 1
+  dashForce: 15
+  dashCooldown: 2
+  airFriction: 3
+  groundFriction: 5
+  baseFrictionMultiplier: 5
+  manualFriction: 0
+  fricitonValue: 0
+  useHapticsDash: 1
+  adaptiveHeight: 1

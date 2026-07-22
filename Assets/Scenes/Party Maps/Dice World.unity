@@ -10757,6 +10757,14 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 4245169096
       objectReference: {fileID: 0}
+    - target: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
+      propertyPath: minigames.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
+      propertyPath: 'minigames.Array.data[0]'
+      value: 
+      objectReference: {fileID: 11400000, guid: d39a2aef2b040f64fa0a5be986b70f9f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11063,7 +11071,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
       propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.size
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
       propertyPath: onTurnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
@@ -11077,6 +11085,18 @@ PrefabInstance:
       propertyPath: onTurnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1316750059}
+    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
+      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: startRandom4PlayerMinigame
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
+      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: MinigameManager, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
+      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 8131348454321207968, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
