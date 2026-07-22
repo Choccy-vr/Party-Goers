@@ -48,7 +48,10 @@ public class ItemBoxProvider : MonoBehaviour
         ItemBoxProvider[] itemBoxes = FindObjectsByType<ItemBoxProvider>();
         foreach (ItemBoxProvider itemBox in itemBoxes)
         {
-            Destroy(itemBox.gameObject);
+            if (itemBox != this)
+            {
+                Destroy(itemBox.gameObject);
+            }
         }
     }
     void OnGrabLeaveItemBox(SelectExitEventArgs args)
