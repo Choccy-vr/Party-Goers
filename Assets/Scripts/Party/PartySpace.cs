@@ -179,7 +179,7 @@ public class PartySpace : MonoBehaviour
     void landedOnItemSpace()
     {
         Debug.Log("Landed on Item");
-        PartyManager.Instance.landedOnItemSpace();
+        PartyManager.Instance.landedOnItemSpace(transform);
     }
     void landedOnShopSpace()
     {

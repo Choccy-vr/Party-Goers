@@ -136,37 +136,29 @@ public class PartyManager : NetworkBehaviour
         SpawnPartyPad();
         partyPadObject.GetComponent<PartyPadManager>().setDuelUI();
     }
-    public void landedOnItemSpace()
+    public void landedOnItemSpace(Transform spaceTransform)
     {
-        if (itemBoxPrefab == null)
-        {
-            Debug.LogWarning("PartyManager: Cannot spawn item boxes because itemBoxPrefab is not assigned.");
-            return;
-        }
+        if (itemBoxPrefab == null) return;
 
-        if (NetworkIdenity.Instance == null || NetworkIdenity.Instance.networkPlayerIdenity == null)
-        {
-            Debug.LogWarning("PartyManager: Cannot spawn item boxes because the local player is not available.");
-            return;
-        }
+        // Grab camera height (fallback to space height if camera is somehow missing)
+        float targetHeight = (Camera.main != null) ? Camera.main.transform.position.y - 0.25f : spaceTransform.position.y + 1.2f;
 
-        if (Camera.main == null)
-        {
-            Debug.LogWarning("PartyManager: Cannot spawn item boxes because no main camera is available.");
-            return;
-        }
+        // 1. Get flat forward from the space
+        Vector3 spaceForward = Vector3.ProjectOnPlane(spaceTransform.forward, Vector3.up).normalized;
+        Vector3 spaceRight = Vector3.ProjectOnPlane(spaceTransform.right, Vector3.up).normalized;
 
-        Transform mainCam = Camera.main.transform;
-        Vector3 forwardOffset = mainCam.forward * 0.75f;
-        Vector3 chestLevelOffset = Vector3.down * 0.25f;
+        // 2. Center position (Space's X/Z + Camera's Y)
+        Vector3 centerSpawnPosition = spaceTransform.position + (spaceForward * 0.75f);
+        centerSpawnPosition.y = targetHeight; // Apply the chest-level height
+
+        // 3. Flip 180 degrees so the front faces the player looking at it
+        Quaternion spawnRotation = Quaternion.LookRotation(-spaceForward);
 
         float spacing = 0.35f;
-        Vector3 centerSpawnPosition = mainCam.position + forwardOffset + chestLevelOffset;
-        Quaternion spawnRotation = Quaternion.LookRotation(mainCam.forward);
 
         for (int i = -1; i <= 1; i++)
         {
-            Vector3 spawnPosition = centerSpawnPosition + (mainCam.right * (i * spacing));
+            Vector3 spawnPosition = centerSpawnPosition + (spaceRight * (i * spacing));
             Instantiate(itemBoxPrefab, spawnPosition, spawnRotation);
         }
     }
