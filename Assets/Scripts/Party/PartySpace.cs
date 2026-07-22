@@ -192,6 +192,10 @@ public class PartySpace : MonoBehaviour
     {
         PartySpace spaceBeingLeft = GetPartySpace(spaceBeingLeftID);
         spaceBeingLeft.teleportationAnchor.interactionLayers = disabledInteractionLayer;
+        if (spaceBeingLeft.type == PartySpaceType.shop)
+        {
+            leavingShop(spaceBeingLeft.GetComponent<ShopProvider>());
+        }
         if (spaceBeingLeft.nextSpace.Count > 1)
         {
             foreach (PartySpace partySpace in spaceBeingLeft.nextSpace)
@@ -200,6 +204,11 @@ public class PartySpace : MonoBehaviour
             }
         }
         onSpaceLeave?.Invoke();
+    }
+
+    void leavingShop(ShopProvider shop)
+    {
+        shop.despawnItems();
     }
 
 
