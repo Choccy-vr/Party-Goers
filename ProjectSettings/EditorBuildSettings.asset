@@ -20,6 +20,9 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Party Maps/Dice World.unity
     guid: 4ed30080944a5264889a3c247ed3c3c5
+  - enabled: 1
+    path: Assets/Scenes/Minigames/Dodgeball.unity
+    guid: f840408a4231ee24e8c5e9c985e85423
   m_configObjects:
     com.unity.dt.app-ui: {fileID: 11400000, guid: 1b1c20d82303e4b5781c3ef50ac1449f, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}

@@ -739,10 +739,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Network Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 6965656547382077205, guid: f404cc9f86e476c46a1a02b89e3628f1, type: 3}
-      propertyPath: m_IsActive
-      value: 1
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -10757,14 +10753,6 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 4245169096
       objectReference: {fileID: 0}
-    - target: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
-      propertyPath: minigames.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7950914158489012875, guid: 4e6e9c5ce1aa31242aa2ea43b783d2e0, type: 3}
-      propertyPath: 'minigames.Array.data[0]'
-      value: 
-      objectReference: {fileID: 11400000, guid: d39a2aef2b040f64fa0a5be986b70f9f, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -11016,41 +11004,9 @@ PrefabInstance:
       propertyPath: GlobalObjectIdHash
       value: 3980262391
       objectReference: {fileID: 0}
-    - target: {fileID: 4503862088268287612, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
-      propertyPath: InScenePlacedSourceGlobalObjectIdHash
-      value: 2127080515
-      objectReference: {fileID: 0}
     - target: {fileID: 4668752638380595240, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
       propertyPath: m_Name
       value: Party Manager
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
-      propertyPath: duration
-      value: 0.3
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
-      propertyPath: frequency
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
-      propertyPath: itemBoxPrefab
-      value: 
-      objectReference: {fileID: 4475817454807172023, guid: b5b65dc4e9d7d184299024cfd0d4f009, type: 3}
-    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
-      propertyPath: partyPadPrefab
-      value: 
-      objectReference: {fileID: 8037064353787202271, guid: 38a927199d3a9eb43bfddb1f8264a6ee, type: 3}
-    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
-      propertyPath: partyPadSpawnAction.m_Reference
-      value: 
-      objectReference: {fileID: -5042469820250961098, guid: c348712bda248c246b8c49b3db54643f, type: 3}
-    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
-      propertyPath: partyPadSpawnAction.m_UseReference
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 7000634327773326656, guid: 74ec9979ae9e9cd4cbf8982e398c632f, type: 3}
-      propertyPath: partyPadSpawnAction.m_Action.m_Name
-      value: Party Pad Spawn
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -11070,10 +11026,6 @@ PrefabInstance:
       value: 3112773337
       objectReference: {fileID: 0}
     - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
-      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
       propertyPath: onTurnEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1316750059}
@@ -11085,18 +11037,6 @@ PrefabInstance:
       propertyPath: onTurnStart.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 1316750059}
-    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
-      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: startRandom4PlayerMinigame
-      objectReference: {fileID: 0}
-    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
-      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
-      value: MinigameManager, Assembly-CSharp
-      objectReference: {fileID: 0}
-    - target: {fileID: 2754589266345943392, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
-      propertyPath: onRoundEnd.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
     - target: {fileID: 8131348454321207968, guid: 82405ecfd22c49843b0d162feecf6329, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

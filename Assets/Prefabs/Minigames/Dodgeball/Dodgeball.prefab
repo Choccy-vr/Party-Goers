@@ -33,7 +33,7 @@ Transform:
   m_GameObject: {fileID: 4777280314467741837}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.36667, y: 0.185, z: 0.074}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0.25, y: 0.25, z: 0.25}
   m_ConstrainProportionsScale: 1
   m_Children: []
@@ -350,5 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: '::'
   dodgeballSpawnPoint: {fileID: 0}
+  courtColiders: []
+  ballCollider: {fileID: 0}
   grabInteractable: {fileID: 5206141672001556004}
   respawnDuration: 15

@@ -52,7 +52,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 0
   <InScenePlaced>k__BackingField: 0
-  ActiveSceneSynchronization: 0
+  ActiveSceneSynchronization: 1
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
@@ -72,6 +72,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameSessionManager
   ShowTopMostFoldoutHeaderGroup: 1
+  coinParticleSystem: {fileID: 0}
   activeMap: {fileID: 0}
   activePlayers:
     UpdateTraits:

@@ -962,7 +962,7 @@ Light:
   serializedVersion: 13
   m_Type: 1
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 0.88
+  m_Intensity: 1.5
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -2951,6 +2951,97 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2137583270}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1001 &1550171282544525044
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2815982088871923330, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3584941492493138576, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: m_Name
+      value: Dodgeball Manager
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 3584941492493138576, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1550171282544525046}
+  m_SourcePrefab: {fileID: 100100000, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+--- !u!1 &1550171282544525045 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3584941492493138576, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+  m_PrefabInstance: {fileID: 1550171282544525044}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1550171282544525046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1550171282544525045}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 555035111
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  <InScenePlaced>k__BackingField: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1001 &8450445068990842918
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -3044,3 +3135,4 @@ SceneRoots:
   - {fileID: 703837564}
   - {fileID: 141823049}
   - {fileID: 1358928499}
+  - {fileID: 1550171282544525044}

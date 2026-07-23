@@ -45,14 +45,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 3666370290
-  InScenePlacedSourceGlobalObjectIdHash: 0
+  GlobalObjectIdHash: 3980262391
+  InScenePlacedSourceGlobalObjectIdHash: 2127080515
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 0
   <InScenePlaced>k__BackingField: 0
-  ActiveSceneSynchronization: 0
+  ActiveSceneSynchronization: 1
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
@@ -72,14 +72,26 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PartyManager
   ShowTopMostFoldoutHeaderGroup: 1
-  dicePrefab: {fileID: 8041590500063239164, guid: 548a54319a9066646887bacb8e92377c, type: 3}
-  partyPadPrefab: {fileID: 0}
-  diceSpawnDistance: 0.4
+  partyPadPrefab: {fileID: 8037064353787202271, guid: 38a927199d3a9eb43bfddb1f8264a6ee, type: 3}
+  itemBoxPrefab: {fileID: 4475817454807172023, guid: b5b65dc4e9d7d184299024cfd0d4f009, type: 3}
   currentStarSpaceID:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
     m_InternalValue: 0
   amplitude: 1
-  frequency: 140
-  duration: 0.5
+  frequency: 20
+  duration: 0.3
+  partyPadSpawnAction:
+    m_UseReference: 1
+    m_Action:
+      m_Name: Party Pad Spawn
+      m_Type: 0
+      m_ExpectedControlType: 
+      m_Id: 30b2f96c-6627-43f8-a59b-f4476c8393d8
+      m_Processors: 
+      m_Interactions: 
+      m_SingletonActionBindings: []
+      m_Flags: 0
+    m_Reference: {fileID: -5042469820250961098, guid: c348712bda248c246b8c49b3db54643f, type: 3}
+  partyPadObject: {fileID: 0}

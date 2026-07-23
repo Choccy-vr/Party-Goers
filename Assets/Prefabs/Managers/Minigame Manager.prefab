@@ -52,7 +52,7 @@ MonoBehaviour:
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 0
   <InScenePlaced>k__BackingField: 0
-  ActiveSceneSynchronization: 0
+  ActiveSceneSynchronization: 1
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
   DontDestroyWithOwner: 0
@@ -73,7 +73,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   ShowTopMostFoldoutHeaderGroup: 1
   minigames:
-  - {fileID: 11400000, guid: 087064c61e4b6614492dfac74f1ed287, type: 2}
+  - {fileID: 11400000, guid: d39a2aef2b040f64fa0a5be986b70f9f, type: 2}
   minigameSpawnPoints: []
   minigameRewards: 0a000000050000000300000000000000
   minigameStart:

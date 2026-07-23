@@ -84,8 +84,12 @@ public class MinigameManager : NetworkBehaviour
         teleportToMinigame(targetMinigame.minigameID);
         minigameStart?.Invoke(targetMinigame);
     }
-    public void endMinigame()
+    public void endMinigame(Dictionary<ulong, int> placings)
     {
+        foreach (KeyValuePair<ulong, int> placement in placings)
+        {
+            GameSessionManager.Instance.AddCoinsToPlayer(placement.Key, minigameRewards[placement.Value]);
+        }
         isMinigame = false;
         teleportToMap(MapManager.Instance.currentMap.mapID);
     }
