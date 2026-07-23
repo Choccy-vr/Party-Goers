@@ -5,9 +5,14 @@ using UnityEngine;
 
 public class DodgeballManager : NetworkBehaviour
 {
+
+    public static DodgeballManager Instance;
+
     [Header("Dodgeball Settings")]
     [SerializeField] float matchDuration = 60f;
     [SerializeField] Transform[] playerSpawnPoints;
+    [SerializeField] Transform[] spectatorSpawnPoints;
+    [SerializeField] PlayerConfig playerConfig;
 
     // Track active players remaining on the court
     private NetworkList<ulong> activePlayerIds;
@@ -20,6 +25,13 @@ public class DodgeballManager : NetworkBehaviour
     private void Awake()
     {
         activePlayerIds = new NetworkList<ulong>();
+        if (Instance != null && Instance != this)
+        {
+            Destroy(gameObject);
+            return;
+        }
+        Instance = this;
+
     }
 
     public override void OnNetworkSpawn()
@@ -39,6 +51,7 @@ public class DodgeballManager : NetworkBehaviour
     {
         TeleportPlayersToSpawns();
 
+
         timeRemaining.Value = matchDuration;
         isGameActive = true;
 
@@ -55,18 +68,27 @@ public class DodgeballManager : NetworkBehaviour
     [ServerRpc(RequireOwnership = false)]
     public void EliminatePlayerServerRpc(ulong hitClientId)
     {
-        if (!isGameActive || !activePlayerIds.Contains(hitClientId)) return;
+        if (!activePlayerIds.Contains(hitClientId)) return;
 
         activePlayerIds.Remove(hitClientId);
         eliminationOrder.Add(hitClientId);
 
-        NotifyPlayerEliminatedClientRpc(hitClientId);
-
-        // Instant end if only 1 player remains
-        if (activePlayerIds.Count <= 1)
+        // Get the hit player's NetworkObject
+        if (NetworkManager.Singleton.ConnectedClients.TryGetValue(hitClientId, out var client))
         {
-            isGameActive = false;
+            VRPartyPlayer player = client.PlayerObject.GetComponent<VRPartyPlayer>();
+
+            // Pick an spectator spawn point off-court
+            Vector3 spectatorPos = spectatorSpawnPoints[eliminationOrder.Count - 1].position;
+            Quaternion spectatorRot = spectatorSpawnPoints[eliminationOrder.Count - 1].rotation;
+
+            player.TeleportPlayerClientRpc(spectatorPos, spectatorRot);
         }
+    }
+
+    void SetPlayerConfig()
+    {
+        PlayerConfigManager.Instance.setNewPlayerConfig(playerConfig);
     }
 
     private void EndDodgeballMatch()
@@ -77,11 +99,8 @@ public class DodgeballManager : NetworkBehaviour
             eliminationOrder.Add(remainingId);
         }
 
-        // Convert the elimination list into final placings / scores
-        // (1st place gets highest points/coins)
         Dictionary<ulong, int> finalPlacings = CalculatePlacings(eliminationOrder);
 
-        // HAND-OFF: Pass results back to the central Orchestrator!
         MinigameManager.Instance.endMinigame(finalPlacings);
     }
 
@@ -100,9 +119,35 @@ public class DodgeballManager : NetworkBehaviour
     }
 
     // Helper Spawners
-    private void TeleportPlayersToSpawns() { /* Position VR rigs at spawnPoints */ }
+    private void TeleportPlayersToSpawns()
+    {
+        if (!IsServer) return;
 
-    [ClientRpc]
-    private void NotifyPlayerEliminatedClientRpc(ulong targetClientId) { /* Play haptics / disable ball grabs for eliminated player */ }
+        var connectedClients = NetworkManager.Singleton.ConnectedClientsList;
+
+        for (int i = 0; i < connectedClients.Count; i++)
+        {
+            ulong clientId = connectedClients[i].ClientId;
+
+            if (i < playerSpawnPoints.Length)
+            {
+                Transform spawn = playerSpawnPoints[i];
+
+                if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var client))
+                {
+                    var playerScript = client.PlayerObject.GetComponent<VRPartyPlayer>();
+
+                    if (playerScript != null)
+                    {
+                        playerScript.TeleportPlayerClientRpc(spawn.position, spawn.rotation);
+                    }
+                }
+            }
+            else
+            {
+                Debug.LogWarning($"Not enough spawn points in array for client ID {clientId}!");
+            }
+        }
+    }
 }
 

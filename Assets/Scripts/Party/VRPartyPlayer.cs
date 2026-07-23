@@ -1,5 +1,6 @@
 using Unity.Netcode;
 using Unity.VisualScripting;
+using Unity.XR.CoreUtils;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 public class VRPartyPlayer : NetworkBehaviour
@@ -113,5 +114,21 @@ public class VRPartyPlayer : NetworkBehaviour
     public void addSpacesToMove(int spaces)
     {
         spacesToMove += spaces;
+    }
+
+    // Call this ClientRpc from the Server when someone is eliminated or spawned
+    [ClientRpc]
+    public void TeleportPlayerClientRpc(Vector3 newPosition, Quaternion newRotation)
+    {
+        // CRITICAL: Only move if this script belongs to the LOCAL headset owner!
+        if (IsOwner)
+        {
+            XROrigin origin = FindAnyObjectByType<XROrigin>();
+            if (origin != null)
+            {
+                origin.MoveCameraToWorldLocation(newPosition);
+                origin.transform.rotation = newRotation;
+            }
+        }
     }
 }

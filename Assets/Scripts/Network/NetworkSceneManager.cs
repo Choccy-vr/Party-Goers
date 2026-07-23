@@ -1,3 +1,4 @@
+using System;
 using Unity.Netcode;
 using UnityEngine;
 
@@ -5,6 +6,8 @@ public class NetworkSceneManager : NetworkBehaviour
 {
 
     public static NetworkSceneManager Instance;
+
+    [SerializeField] PersistantNetworkObject[] objectsToSave;
 
     void Awake()
     {
@@ -30,13 +33,39 @@ public class NetworkSceneManager : NetworkBehaviour
         Instance = null;
     }
 
-    public void LoadSceneNetwork(string sceneName)
+    public void LoadSceneNetwork(string sceneName, Action onLoaded = null)
     {
         if (!IsServer) { Debug.LogWarning("Can't load scene because not server!"); return; }
+
+        NetworkManager.Singleton.SceneManager.OnSceneEvent += HandleSceneEvent;
+
+        foreach (var manager in objectsToSave)
+        {
+            if (manager != null)
+            {
+                manager.PrepareForSceneChange();
+            }
+        }
         SceneEventProgressStatus status = NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
         if (status != SceneEventProgressStatus.Started)
         {
+            NetworkManager.Singleton.SceneManager.OnSceneEvent -= HandleSceneEvent;
             Debug.LogError("Failed to init load scene: " + status);
+        }
+    }
+
+    void HandleSceneEvent(SceneEvent sceneEvent)
+    {
+        if (sceneEvent.SceneEventType != SceneEventType.LoadEventCompleted)
+        {
+            return;
+        }
+
+        NetworkManager.Singleton.SceneManager.OnSceneEvent -= HandleSceneEvent;
+
+        foreach (PersistantNetworkObject persistantNetworkObject in objectsToSave)
+        {
+            persistantNetworkObject.GetComponent<NetworkObject>().Spawn();
         }
     }
 }

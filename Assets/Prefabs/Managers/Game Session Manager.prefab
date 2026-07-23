@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 5210339923897708586}
   - component: {fileID: 2035471340234764109}
   - component: {fileID: 8618275942993174199}
+  - component: {fileID: 4617950220367925253}
   m_Layer: 0
   m_Name: Game Session Manager
   m_TagString: Untagged
@@ -78,3 +79,16 @@ MonoBehaviour:
     UpdateTraits:
       MinSecondsBetweenUpdates: 0
       MaxSecondsBetweenUpdates: 0
+--- !u!114 &4617950220367925253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2406033673222875894}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52730b2aef53194479b71315eb56cb08, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
+  ShowTopMostFoldoutHeaderGroup: 1

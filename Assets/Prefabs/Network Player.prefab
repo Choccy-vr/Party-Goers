@@ -44,6 +44,7 @@ GameObject:
   - component: {fileID: 398826076391974435}
   - component: {fileID: 7052346279882500265}
   - component: {fileID: 5555398026216306457}
+  - component: {fileID: 1348830349191417511}
   m_Layer: 0
   m_Name: Network Player
   m_TagString: Untagged
@@ -81,12 +82,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
-  GlobalObjectIdHash: 2808795232
+  GlobalObjectIdHash: 1146620660
   InScenePlacedSourceGlobalObjectIdHash: 2414911420
   DeferredDespawnTick: 0
   Ownership: 1
   AlwaysReplicateAsRoot: 0
   SynchronizeTransform: 1
+  <InScenePlaced>k__BackingField: 0
   ActiveSceneSynchronization: 0
   SceneMigrationSynchronization: 0
   SpawnWithObservers: 1
@@ -116,6 +118,7 @@ MonoBehaviour:
   - {fileID: 7404911359768302972}
   - {fileID: 7632761616704006242}
   - {fileID: 1321552354350391002}
+  colider: {fileID: 1348830349191417511}
 --- !u!114 &7052346279882500265
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -177,6 +180,29 @@ MonoBehaviour:
   ShowTopMostFoldoutHeaderGroup: 1
   currentSpaceId: 0
   spacesToMove: 0
+--- !u!136 &1348830349191417511
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 320252362426329865}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.17
+  m_Height: 1
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &630413245767946172
 GameObject:
   m_ObjectHideFlags: 0
@@ -329,6 +355,10 @@ MonoBehaviour:
       ParameterType: 1
     - name: Trigger
       NameHash: -707381567
+      Synchronize: 1
+      ParameterType: 1
+    - name: Thumb
+      NameHash: -722010401
       Synchronize: 1
       ParameterType: 1
   AnimatorParametersExpanded: 0
@@ -1080,6 +1110,10 @@ MonoBehaviour:
       ParameterType: 1
     - name: Trigger
       NameHash: -707381567
+      Synchronize: 1
+      ParameterType: 1
+    - name: Thumb
+      NameHash: -722010401
       Synchronize: 1
       ParameterType: 1
   AnimatorParametersExpanded: 0

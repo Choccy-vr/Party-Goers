@@ -10,12 +10,14 @@ public class NetworkPlayer : NetworkBehaviour
 
     public Renderer[] meshToDisable;
 
+    public CapsuleCollider colider;
+
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
         if (IsOwner)
         {
-            foreach(var item in meshToDisable)
+            foreach (var item in meshToDisable)
             {
                 item.enabled = false;
             }
@@ -25,18 +27,21 @@ public class NetworkPlayer : NetworkBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(IsOwner){
-        root.position = VRRigReferences.Singleton.root.position;
-        root.rotation = VRRigReferences.Singleton.root.rotation;
+        if (IsOwner)
+        {
+            root.position = VRRigReferences.Singleton.root.position;
+            root.rotation = VRRigReferences.Singleton.root.rotation;
 
-        head.position = VRRigReferences.Singleton.head.position;
-        head.rotation = VRRigReferences.Singleton.head.rotation;
+            head.position = VRRigReferences.Singleton.head.position;
+            head.rotation = VRRigReferences.Singleton.head.rotation;
 
-        leftHand.position = VRRigReferences.Singleton.leftHand.position;
-        leftHand.rotation = VRRigReferences.Singleton.leftHand.rotation;
+            leftHand.position = VRRigReferences.Singleton.leftHand.position;
+            leftHand.rotation = VRRigReferences.Singleton.leftHand.rotation;
 
-        rightHand.position = VRRigReferences.Singleton.rightHand.position;
-        rightHand.rotation = VRRigReferences.Singleton.rightHand.rotation;
+            rightHand.position = VRRigReferences.Singleton.rightHand.position;
+            rightHand.rotation = VRRigReferences.Singleton.rightHand.rotation;
+
+            colider.height = VRRigReferences.Singleton.head.position.y;
         }
     }
 }

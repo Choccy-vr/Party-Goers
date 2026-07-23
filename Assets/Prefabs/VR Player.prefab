@@ -6642,6 +6642,7 @@ GameObject:
   - component: {fileID: 7290164214624511395}
   - component: {fileID: 1615998546922979516}
   - component: {fileID: 3409963087197423698}
+  - component: {fileID: 7772171966009918261}
   m_Layer: 2
   m_Name: VR Player
   m_TagString: Untagged
@@ -6793,6 +6794,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: '::'
   leftControllerHaptics: {fileID: 844676655845330465}
   rightControllerHaptics: {fileID: 2978708520801438632}
+--- !u!114 &7772171966009918261
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3186957085446773813}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f07dea8aed4192e4fb480697ef1d46a3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: '::'
 --- !u!1 &3270434776535545733
 GameObject:
   m_ObjectHideFlags: 0

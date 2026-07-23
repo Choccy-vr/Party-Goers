@@ -46,7 +46,7 @@ public class PlayerConfigManager : MonoBehaviour
         dashProvider = GetComponentInChildren<LocomotionDashProvider>();
     }
 
-    void applyPlayerConfig()
+    public void applyPlayerConfig()
     {
         //Locomotion
         if (playerConfig.movementEnabled)
