@@ -1103,6 +1103,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6907799789374633689, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 79aa4be0754b91a4da696c0e32f4ec4b, type: 2}
     - target: {fileID: 8273675173777390539, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: ballCollider
       value: 
@@ -1346,6 +1350,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6907799789374633689, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 79aa4be0754b91a4da696c0e32f4ec4b, type: 2}
     - target: {fileID: 8273675173777390539, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: ballCollider
       value: 
@@ -2783,6 +2791,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6907799789374633689, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 13400000, guid: 79aa4be0754b91a4da696c0e32f4ec4b, type: 2}
     - target: {fileID: 8273675173777390539, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: dodgeballSpawnPoint
       value: 
