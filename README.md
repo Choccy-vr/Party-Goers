@@ -17,5 +17,7 @@ The classic party board. Immerse yourself in a world of parties and dice.
 
 ## Minigames
 ### Dodgeball
+The classic gym game. Hit your friends with balls and be the last one standing in this FFA version of dodgeball!
+<img width="2220" height="1156" alt="image" src="https://github.com/user-attachments/assets/e809047a-97d7-4c5c-9a3e-c8601c1cf30c" />
 
 ### More coming soon
