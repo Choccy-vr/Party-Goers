@@ -7,6 +7,7 @@ public class MinigameConfig : ScriptableObject
     public string sceneName;
     public PlayerConfig playerConfig;
     public MinigameType minigameType;
+    public GameObject managerPrefab;
 }
 public enum MinigameType
 {

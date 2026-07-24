@@ -13,7 +13,8 @@ public class DodgeballManager : NetworkBehaviour
     [SerializeField] Transform[] playerSpawnPoints;
     [SerializeField] Transform[] spectatorSpawnPoints;
     [SerializeField] PlayerConfig playerConfig;
-
+    [SerializeField] GameObject dodgeballPrefab;
+    [SerializeField] Transform[] dodgeballSpawnPoints;
     // Track active players remaining on the court
     private NetworkList<ulong> activePlayerIds;
     // Track order of elimination to determine 1st, 2nd, 3rd, 4th place
@@ -34,6 +35,13 @@ public class DodgeballManager : NetworkBehaviour
 
     }
 
+    void Start()
+    {
+        playerSpawnPoints = DodgeballRefs.Instance.playerSpawnPoints;
+        spectatorSpawnPoints = DodgeballRefs.Instance.spectatorSpawnPoints;
+        dodgeballSpawnPoints = DodgeballRefs.Instance.dodgeballSpawnPoints;
+    }
+
     public override void OnNetworkSpawn()
     {
         if (IsServer)
@@ -52,6 +60,7 @@ public class DodgeballManager : NetworkBehaviour
         Debug.Log("Starting Dodgeball game");
         TeleportPlayersToSpawns();
         SetPlayerConfig();
+        SpawnDodgeballs();
 
 
         timeRemaining.Value = matchDuration;
@@ -114,6 +123,14 @@ public class DodgeballManager : NetworkBehaviour
         Dictionary<ulong, int> finalPlacings = CalculatePlacings(eliminationOrder);
 
         MinigameManager.Instance.endMinigame(finalPlacings);
+    }
+
+    void SpawnDodgeballs()
+    {
+        foreach (Transform spawnPoint in dodgeballSpawnPoints)
+        {
+            Instantiate(dodgeballPrefab, spawnPoint.position, spawnPoint.rotation);
+        }
     }
 
     private Dictionary<ulong, int> CalculatePlacings(List<ulong> order)

@@ -6754,6 +6754,7 @@ MonoBehaviour:
   head: {fileID: 8709036737266385186}
   leftHand: {fileID: 1480737426499230819}
   rightHand: {fileID: 4124157178868021892}
+  characterController: {fileID: 7299380426884975553}
 --- !u!114 &7290164214624511395
 MonoBehaviour:
   m_ObjectHideFlags: 0

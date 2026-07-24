@@ -19,6 +19,7 @@ public class MinigameManager : NetworkBehaviour
     public UnityEvent<MinigameConfig> minigameStart;
     public UnityEvent<MinigameConfig> minigameEnd;
     MinigameConfig currentMinigame;
+    NetworkObject spawnedMinigameNetworkObject;
 
     bool isMinigame = false;
 
@@ -169,6 +170,39 @@ public class MinigameManager : NetworkBehaviour
         StartCoroutine(WaitAndTeleportRoutine());
     }
 
+    void SpawnConfiguredMinigameManager()
+    {
+        if (!IsServer)
+        {
+            return;
+        }
+
+        if (currentMinigame == null || currentMinigame.managerPrefab == null)
+        {
+            Debug.LogWarning("No minigame manager prefab is configured for the current minigame.");
+            return;
+        }
+
+        if (spawnedMinigameNetworkObject != null)
+        {
+            return;
+        }
+
+        GameObject managerObject = Instantiate(currentMinigame.managerPrefab);
+        NetworkObject networkObject = managerObject.GetComponent<NetworkObject>();
+
+        if (networkObject == null)
+        {
+            Debug.LogError($"Configured minigame manager prefab '{currentMinigame.managerPrefab.name}' does not have a NetworkObject component.");
+            Destroy(managerObject);
+            return;
+        }
+
+        networkObject.Spawn();
+        spawnedMinigameNetworkObject = networkObject;
+        Debug.Log($"Spawned minigame manager '{currentMinigame.managerPrefab.name}' on the network.");
+    }
+
     System.Collections.IEnumerator WaitAndTeleportRoutine()
     {
         GameObject playerXROrigin = null;
@@ -258,6 +292,7 @@ public class MinigameManager : NetworkBehaviour
         {
             if (currentTransition == TransitionType.minigame)
             {
+                SpawnConfiguredMinigameManager();
                 teleportPlayerToMinigameSpawnClientRpc();
                 currentTransition = TransitionType.none;
             }
@@ -266,8 +301,6 @@ public class MinigameManager : NetworkBehaviour
                 teleportPlayerToPartySpaceClientRpc();
                 currentTransition = TransitionType.none;
             }
-
-
         }
     }
 

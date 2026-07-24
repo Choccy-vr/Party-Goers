@@ -16,3 +16,4 @@ MonoBehaviour:
   sceneName: Dodgeball
   playerConfig: {fileID: 11400000, guid: efd41a427adbdfe49af33bad7f2d7e7c, type: 2}
   minigameType: 0
+  managerPrefab: {fileID: 3584941492493138576, guid: e1e54528e074ed84fb577d7740732809, type: 3}

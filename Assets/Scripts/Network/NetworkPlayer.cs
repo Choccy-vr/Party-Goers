@@ -3,6 +3,8 @@ using Unity.Netcode;
 public class NetworkPlayer : NetworkBehaviour
 {
 
+
+
     public Transform root;
     public Transform head;
     public Transform leftHand;
@@ -10,7 +12,7 @@ public class NetworkPlayer : NetworkBehaviour
 
     public Renderer[] meshToDisable;
 
-    public CapsuleCollider colider;
+    [SerializeField] private CapsuleCollider targetCollider;
 
     public override void OnNetworkSpawn()
     {
@@ -40,8 +42,14 @@ public class NetworkPlayer : NetworkBehaviour
 
             rightHand.position = VRRigReferences.Singleton.rightHand.position;
             rightHand.rotation = VRRigReferences.Singleton.rightHand.rotation;
-
-            colider.height = VRRigReferences.Singleton.head.position.y;
         }
+    }
+    void LateUpdate()
+    {
+        if (VRRigReferences.Singleton.characterController == null || targetCollider == null) return;
+
+        targetCollider.height = VRRigReferences.Singleton.characterController.height;
+        targetCollider.radius = VRRigReferences.Singleton.characterController.radius;
+        targetCollider.center = VRRigReferences.Singleton.characterController.center;
     }
 }
