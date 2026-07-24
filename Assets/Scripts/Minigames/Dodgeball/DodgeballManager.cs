@@ -59,6 +59,7 @@ public class DodgeballManager : NetworkBehaviour
 
         while (timeRemaining.Value > 0f && activePlayerIds.Count > 1 && isGameActive)
         {
+            Debug.Log("Game in progress");
             timeRemaining.Value -= Time.deltaTime;
             yield return null;
         }
@@ -84,7 +85,15 @@ public class DodgeballManager : NetworkBehaviour
             Vector3 spectatorPos = spectatorSpawnPoints[eliminationOrder.Count - 1].position;
             Quaternion spectatorRot = spectatorSpawnPoints[eliminationOrder.Count - 1].rotation;
 
-            player.TeleportPlayerClientRpc(spectatorPos, spectatorRot);
+            var rpcParams = new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams
+                {
+                    TargetClientIds = new ulong[] { player.OwnerClientId }
+                }
+            };
+
+            player.TeleportPlayerClientRpc(spectatorPos, spectatorRot, rpcParams);
         }
     }
 
@@ -142,7 +151,15 @@ public class DodgeballManager : NetworkBehaviour
 
                     if (playerScript != null)
                     {
-                        playerScript.TeleportPlayerClientRpc(spawn.position, spawn.rotation);
+                        var rpcParams = new ClientRpcParams
+                        {
+                            Send = new ClientRpcSendParams
+                            {
+                                TargetClientIds = new ulong[] { playerScript.OwnerClientId }
+                            }
+                        };
+
+                        playerScript.TeleportPlayerClientRpc(spawn.position, spawn.rotation, rpcParams);
                     }
                 }
             }

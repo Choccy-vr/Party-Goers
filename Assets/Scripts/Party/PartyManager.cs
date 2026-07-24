@@ -21,9 +21,12 @@ public class PartyManager : NetworkBehaviour
     [Header("PartyPad Spawn")]
     [SerializeField] InputActionProperty partyPadSpawnAction;
 
+    [Header("Player Spawn")]
+    [SerializeField] Transform[] playerSpawnPoints;
+
     GameObject currentDiceObject;
     PartySpace currentStarSpace;
-    [SerializeField] GameObject partyPadObject;
+    GameObject partyPadObject;
 
     void Awake()
     {
@@ -234,10 +237,69 @@ public class PartyManager : NetworkBehaviour
 
     public void startGame()
     {
+        if (!IsServer)
+        {
+            StartGameServerRpc();
+            return;
+        }
+
+        StartGameInternal();
+    }
+
+    [ServerRpc(RequireOwnership = false)]
+    void StartGameServerRpc()
+    {
+        StartGameInternal();
+    }
+
+    void StartGameInternal()
+    {
         Debug.Log("STARTING NEW GAME");
         TurnManager.Instance.nextPlayerTurn();
         ChangeStarSpace();
+        TeleportPlayersToSpawnPoints();
         PlayerConfigManager.Instance.setNewPlayerConfig(MapManager.Instance.currentMap.playerConfig);
+    }
+
+    void TeleportPlayersToSpawnPoints()
+    {
+        if (!IsServer) return;
+
+        var connectedClients = NetworkManager.Singleton.ConnectedClientsList;
+
+        for (int i = 0; i < connectedClients.Count; i++)
+        {
+            ulong clientId = connectedClients[i].ClientId;
+
+            if (i >= playerSpawnPoints.Length)
+            {
+                Debug.LogWarning($"Not enough spawn points for client {clientId}.");
+                continue;
+            }
+
+            VRPartyPlayer player = connectedClients[i].PlayerObject != null
+                ? connectedClients[i].PlayerObject.GetComponent<VRPartyPlayer>()
+                : null;
+
+            if (player == null)
+            {
+                Debug.LogWarning($"No VRPartyPlayer found for client {clientId}.");
+                continue;
+            }
+
+            int spawnIndex = (int)(clientId % (ulong)playerSpawnPoints.Length);
+            Transform spawn = playerSpawnPoints[spawnIndex];
+
+            var rpcParams = new ClientRpcParams
+            {
+                Send = new ClientRpcSendParams
+                {
+                    TargetClientIds = new ulong[] { clientId }
+                }
+            };
+
+            player.TeleportPlayerClientRpc(spawn.position, spawn.rotation, rpcParams);
+        }
     }
 
     PartySpace getSpaceObj(int spaceID)

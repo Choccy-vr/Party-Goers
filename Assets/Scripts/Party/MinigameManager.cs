@@ -110,12 +110,13 @@ public class MinigameManager : NetworkBehaviour
         NetworkSceneManager.Instance.LoadSceneNetwork(minigameConfig.sceneName);
         minigameStart?.Invoke(minigameConfig);
     }
-    [ServerRpc]
+    [ServerRpc(RequireOwnership = false)]
     void teleportToMinigameServerRpc(string targetMinigame)
     {
         teleportToMinigame(targetMinigame);
     }
-    [ServerRpc]
+
+    [ServerRpc(RequireOwnership = false)]
     void teleportToMapServerRpc(string targetMap)
     {
         teleportToMap(targetMap);

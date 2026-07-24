@@ -118,17 +118,24 @@ public class VRPartyPlayer : NetworkBehaviour
 
     // Call this ClientRpc from the Server when someone is eliminated or spawned
     [ClientRpc]
-    public void TeleportPlayerClientRpc(Vector3 newPosition, Quaternion newRotation)
+    public void TeleportPlayerClientRpc(Vector3 newPosition, Quaternion newRotation, ClientRpcParams clientRpcParams = default)
     {
-        // CRITICAL: Only move if this script belongs to the LOCAL headset owner!
-        if (IsOwner)
+        if (!IsOwner)
         {
-            XROrigin origin = FindAnyObjectByType<XROrigin>();
-            if (origin != null)
-            {
-                origin.MoveCameraToWorldLocation(newPosition);
-                origin.transform.rotation = newRotation;
-            }
+            return;
+        }
+
+        Debug.Log("Teleporting Player");
+
+        XROrigin origin = FindAnyObjectByType<XROrigin>();
+        if (origin != null)
+        {
+            origin.MoveCameraToWorldLocation(newPosition);
+            origin.transform.rotation = newRotation;
+        }
+        else
+        {
+            Debug.LogError("XR Origin is null");
         }
     }
 }
