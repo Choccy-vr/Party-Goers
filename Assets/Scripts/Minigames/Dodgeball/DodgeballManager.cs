@@ -49,7 +49,9 @@ public class DodgeballManager : NetworkBehaviour
 
     private IEnumerator DodgeballLifecycleRoutine()
     {
+        Debug.Log("Starting Dodgeball game");
         TeleportPlayersToSpawns();
+        SetPlayerConfig();
 
 
         timeRemaining.Value = matchDuration;
@@ -88,7 +90,8 @@ public class DodgeballManager : NetworkBehaviour
 
     void SetPlayerConfig()
     {
-        PlayerConfigManager.Instance.setNewPlayerConfig(playerConfig);
+        PlayerConfigManager.Instance.playerConfig = playerConfig;
+        PlayerConfigManager.Instance.applyPlayerConfig();
     }
 
     private void EndDodgeballMatch()

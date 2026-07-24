@@ -133,7 +133,7 @@ GameObject:
   - component: {fileID: 42585929}
   m_Layer: 6
   m_Name: Court Floor
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -335,7 +335,7 @@ GameObject:
   - component: {fileID: 150302414}
   m_Layer: 6
   m_Name: Wall (3)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -700,7 +700,7 @@ GameObject:
   - component: {fileID: 821188496}
   m_Layer: 6
   m_Name: Wall (4)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -967,7 +967,7 @@ GameObject:
   - component: {fileID: 859124668}
   m_Layer: 6
   m_Name: Court
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1057,7 +1057,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1301843911}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4777280314467741837, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: m_Name
@@ -1134,18 +1134,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4777280314467741837, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 969321447}
   m_SourcePrefab: {fileID: 100100000, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
---- !u!4 &969321444 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5569717576969968279, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
-  m_PrefabInstance: {fileID: 969321443}
-  m_PrefabAsset: {fileID: 0}
 --- !u!135 &969321445 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 6907799789374633689, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
   m_PrefabInstance: {fileID: 969321443}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &969321446 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4777280314467741837, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
+  m_PrefabInstance: {fileID: 969321443}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &969321447
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 969321446}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 1513299543
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  <InScenePlaced>k__BackingField: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &979558600
 GameObject:
   m_ObjectHideFlags: 0
@@ -1157,7 +1186,7 @@ GameObject:
   - component: {fileID: 979558601}
   m_Layer: 6
   m_Name: Bleachers
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1251,6 +1280,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92392f904d13da34082a0ada13b2e849, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1267,7 +1300,7 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1301843911}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4777280314467741837, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: m_Name
@@ -1320,7 +1353,7 @@ PrefabInstance:
     - target: {fileID: 8273675173777390539, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: dodgeballSpawnPoint
       value: 
-      objectReference: {fileID: 375335513}
+      objectReference: {fileID: 441058114}
     - target: {fileID: 8273675173777390539, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: courtColiders.Array.size
       value: 4
@@ -1344,18 +1377,47 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 4777280314467741837, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
+      insertIndex: 6
+      addedObject: {fileID: 1103322114}
   m_SourcePrefab: {fileID: 100100000, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
---- !u!4 &1103322111 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5569717576969968279, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
-  m_PrefabInstance: {fileID: 1103322110}
-  m_PrefabAsset: {fileID: 0}
 --- !u!135 &1103322112 stripped
 SphereCollider:
   m_CorrespondingSourceObject: {fileID: 6907799789374633689, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
   m_PrefabInstance: {fileID: 1103322110}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1103322113 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4777280314467741837, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
+  m_PrefabInstance: {fileID: 1103322110}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1103322114
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1103322113}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d5a57f767e5e46a458fc5d3c628d0cbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Unity.Netcode.Runtime::Unity.Netcode.NetworkObject
+  GlobalObjectIdHash: 3961514068
+  InScenePlacedSourceGlobalObjectIdHash: 0
+  DeferredDespawnTick: 0
+  Ownership: 1
+  AlwaysReplicateAsRoot: 0
+  SynchronizeTransform: 1
+  <InScenePlaced>k__BackingField: 0
+  ActiveSceneSynchronization: 0
+  SceneMigrationSynchronization: 0
+  SpawnWithObservers: 1
+  DontDestroyWithOwner: 0
+  AutoObjectParentSync: 1
+  SyncOwnerTransformWhenParented: 1
+  AllowOwnerToParent: 0
 --- !u!1 &1123733073
 GameObject:
   m_ObjectHideFlags: 0
@@ -1370,7 +1432,7 @@ GameObject:
   - component: {fileID: 1123733075}
   m_Layer: 6
   m_Name: Plane
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1483,7 +1545,7 @@ GameObject:
   - component: {fileID: 1175472836}
   m_Layer: 6
   m_Name: Wall (2)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1642,11 +1704,8 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 375335513}
-  - {fileID: 1414132717}
   - {fileID: 441058114}
-  - {fileID: 1103322111}
   - {fileID: 1416932695}
-  - {fileID: 969321444}
   m_Father: {fileID: 703837564}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1383403157
@@ -1716,6 +1775,10 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 068f1dc402935a8448da7fa8ecb199be, type: 3}
       propertyPath: m_Name
       value: Double door (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 068f1dc402935a8448da7fa8ecb199be, type: 3}
+      propertyPath: m_TagString
+      value: Ground
       objectReference: {fileID: 0}
     - target: {fileID: 5455183813464486241, guid: 068f1dc402935a8448da7fa8ecb199be, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
@@ -1788,16 +1851,6 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 0.033658028}
   m_Center: {x: 0, y: 0, z: -0.09826136}
---- !u!135 &1414132714 stripped
-SphereCollider:
-  m_CorrespondingSourceObject: {fileID: 6907799789374633689, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
-  m_PrefabInstance: {fileID: 8450445068990842918}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &1414132717 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5569717576969968279, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
-  m_PrefabInstance: {fileID: 8450445068990842918}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1416932694
 GameObject:
   m_ObjectHideFlags: 0
@@ -1843,7 +1896,7 @@ GameObject:
   - component: {fileID: 1560582372}
   m_Layer: 6
   m_Name: Wall
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2138,6 +2191,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Double door
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 068f1dc402935a8448da7fa8ecb199be, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     - target: {fileID: 5455183813464486241, guid: 068f1dc402935a8448da7fa8ecb199be, type: 3}
       propertyPath: 'm_Materials.Array.data[0]'
       value: 
@@ -2281,6 +2338,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 92392f904d13da34082a0ada13b2e849, type: 3}
+      propertyPath: m_TagString
+      value: Ground
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2355,7 +2416,7 @@ GameObject:
   - component: {fileID: 2124680833}
   m_Layer: 6
   m_Name: Walls
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2394,7 +2455,7 @@ GameObject:
   - component: {fileID: 2137583272}
   m_Layer: 6
   m_Name: Wall (1)
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2580,6 +2641,10 @@ PrefabInstance:
       value: Dodgeball Manager
       objectReference: {fileID: 0}
     - target: {fileID: 8523961103608077589, guid: e1e54528e074ed84fb577d7740732809, type: 3}
+      propertyPath: playerConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: efd41a427adbdfe49af33bad7f2d7e7c, type: 2}
+    - target: {fileID: 8523961103608077589, guid: e1e54528e074ed84fb577d7740732809, type: 3}
       propertyPath: playerSpawnPoints.Array.size
       value: 4
       objectReference: {fileID: 0}
@@ -2664,8 +2729,16 @@ PrefabInstance:
   serializedVersion: 2
   m_Modification:
     serializedVersion: 3
-    m_TransformParent: {fileID: 1301843911}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2816639621379892810, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
+      propertyPath: GlobalObjectIdHash
+      value: 597321759
+      objectReference: {fileID: 0}
+    - target: {fileID: 2816639621379892810, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
+      propertyPath: InScenePlacedSourceGlobalObjectIdHash
+      value: 3354864510
+      objectReference: {fileID: 0}
     - target: {fileID: 4777280314467741837, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: m_Name
       value: Dodgeball
@@ -2711,17 +2784,9 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8273675173777390539, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
-      propertyPath: ballCollider
-      value: 
-      objectReference: {fileID: 1414132714}
-    - target: {fileID: 8273675173777390539, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: dodgeballSpawnPoint
       value: 
       objectReference: {fileID: 375335513}
-    - target: {fileID: 8273675173777390539, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
-      propertyPath: courtColiders.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8273675173777390539, guid: f2c1e0851914e7a4a86eb073cf7d3cf3, type: 3}
       propertyPath: 'courtColiders.Array.data[0]'
       value: 
@@ -2747,6 +2812,9 @@ PrefabInstance:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 8450445068990842918}
+  - {fileID: 1103322110}
+  - {fileID: 969321443}
   - {fileID: 703837564}
   - {fileID: 141823049}
   - {fileID: 1550171282544525044}
