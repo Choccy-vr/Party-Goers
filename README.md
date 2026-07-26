@@ -1,4 +1,5 @@
 # Party Goers
+<img width="2093" height="1244" alt="image" src="https://github.com/user-attachments/assets/376c523d-83b0-40a8-8c59-0572c9146cbd" />
 
 
 ## Platforms
@@ -7,7 +8,7 @@
 ## Description
 Party Goers is a fun-filled party VR game. Inspired by Mario Party, you can have fun competing on the party board and minigames with friends, family, or random people.
 ## Demo
-Check out the builds in the releases section if you have a VR Headset. If you don't have a supported VR headset, you can also watch the demo video (INSERT DEMO VIDEO LINK)
+Check out the builds in the releases section if you have a VR Headset. If you don't have a supported VR headset, you can also watch the demo video [(YouTube Video Link)](https://youtu.be/ACYtBXSH4ag)
 ## Maps
 ### Dice World
 The classic party board. Immerse yourself in a world of parties and dice.
