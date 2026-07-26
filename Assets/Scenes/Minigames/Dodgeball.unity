@@ -477,6 +477,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 273376548}
+  - component: {fileID: 273376549}
   m_Layer: 0
   m_Name: Player Spawn Point 1
   m_TagString: Untagged
@@ -499,6 +500,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1662853934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &273376549
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 273376547}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451e59555aba70344917ae5fe1d56645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameSpawnPoint
+  spawnTransform: {fileID: 0}
+  spawnPointID: 0
 --- !u!1 &375335512
 GameObject:
   m_ObjectHideFlags: 0
@@ -539,6 +554,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 440740110}
+  - component: {fileID: 440740111}
   m_Layer: 0
   m_Name: Player Spawn Point 2
   m_TagString: Untagged
@@ -561,6 +577,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1662853934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &440740111
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 440740109}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451e59555aba70344917ae5fe1d56645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameSpawnPoint
+  spawnTransform: {fileID: 0}
+  spawnPointID: 1
 --- !u!1 &441058113
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,6 +706,11 @@ MonoBehaviour:
   - {fileID: 375335513}
   - {fileID: 441058114}
   - {fileID: 1416932695}
+  courtColliders:
+  - {fileID: 2115009289}
+  - {fileID: 1700623005}
+  - {fileID: 1410699814}
+  - {fileID: 810087694}
 --- !u!4 &712119913
 Transform:
   m_ObjectHideFlags: 0
@@ -865,6 +900,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 834171301}
+  - component: {fileID: 834171302}
   m_Layer: 0
   m_Name: Player Spawn Point 3
   m_TagString: Untagged
@@ -887,6 +923,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1662853934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &834171302
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 834171300}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451e59555aba70344917ae5fe1d56645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameSpawnPoint
+  spawnTransform: {fileID: 0}
+  spawnPointID: 2
 --- !u!1 &836759182
 GameObject:
   m_ObjectHideFlags: 0
@@ -1056,6 +1106,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 942576057}
+  - component: {fileID: 942576058}
   m_Layer: 0
   m_Name: Player Spawn Point 4
   m_TagString: Untagged
@@ -1078,6 +1129,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1662853934}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &942576058
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 942576056}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 451e59555aba70344917ae5fe1d56645, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::MinigameSpawnPoint
+  spawnTransform: {fileID: 0}
+  spawnPointID: 3
 --- !u!1 &947341433
 GameObject:
   m_ObjectHideFlags: 0

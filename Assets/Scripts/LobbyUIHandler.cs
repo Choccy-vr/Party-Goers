@@ -1,11 +1,13 @@
 using Unity.Netcode;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LobbyUIHandler : MonoBehaviour
 {
     [SerializeField] GameObject createButton;
     [SerializeField] GameObject joinButton;
     [SerializeField] GameObject startButton;
+    Button startButtonButton;
 
     enum LobbyButtonState
     {
@@ -24,6 +26,32 @@ public class LobbyUIHandler : MonoBehaviour
     void Update()
     {
         RefreshButtonVisibility();
+    }
+
+    private void Awake()
+    {
+        startButtonButton = startButton.GetComponent<Button>();
+        startButtonButton.onClick.AddListener(OnButtonClicked);
+    }
+
+    private void OnDestroy()
+    {
+        if (startButtonButton != null)
+        {
+            startButtonButton.onClick.RemoveListener(OnButtonClicked);
+        }
+    }
+
+    private void OnButtonClicked()
+    {
+        if (PartyManager.Instance != null)
+        {
+            PartyManager.Instance.startGame();
+        }
+        else
+        {
+            Debug.LogError("PartyManager not found in scene!");
+        }
     }
 
     void RefreshButtonVisibility()

@@ -7,6 +7,7 @@ public class DodgeballRefs : MonoBehaviour
     public Transform[] playerSpawnPoints;
     public Transform[] spectatorSpawnPoints;
     public Transform[] dodgeballSpawnPoints;
+    public Collider[] courtColliders;
 
     void Awake()
     {

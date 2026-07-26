@@ -32,6 +32,7 @@ public class TurnManager : NetworkBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     public override void OnDestroy()
     {
@@ -136,10 +137,11 @@ public class TurnManager : NetworkBehaviour
 
     public void nextPlayerTurn()
     {
-        //Debug.Log("currentPlayerIndex = " + currentPlayerIndex);
-        //Debug.Log("activePlayerObj = " + PlayerManager.Instance.activePlayerObj.Count);
+        Debug.Log("currentPlayerIndex = " + currentPlayerIndex);
+        Debug.Log("activePlayerObj = " + PlayerManager.Instance.activePlayerObj.Count);
         currentTurnPlayerObj = PlayerManager.Instance.activePlayerObj[currentPlayerIndex];
         updateNetworkCurrent(currentTurnPlayerObj);
+        PartyManager.Instance.startPlayerTurn(currentTurnPlayerObj);
         onTurnStart?.Invoke(currentTurnPlayerObj);
     }
     public void endPlayerTurn()
@@ -159,9 +161,10 @@ public class TurnManager : NetworkBehaviour
             {
                 //END GAME
             }
+            MinigameManager.Instance.startRandom4PlayerMinigame();
             onRoundEnd?.Invoke();
         }
-
+        PartyManager.Instance.endPlayerTurn(currentTurnPlayerObj);
         onTurnEnd?.Invoke(currentTurnPlayerObj);
     }
 }

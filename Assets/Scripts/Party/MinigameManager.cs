@@ -31,6 +31,7 @@ public class MinigameManager : NetworkBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     public override void OnDestroy()
     {
@@ -72,18 +73,16 @@ public class MinigameManager : NetworkBehaviour
     public void startRandom4PlayerMinigame()
     {
         MinigameConfig targetMinigame = selectRandomMinigame(MinigameType.fourPlayer);
-        currentMinigame = targetMinigame;
-        isMinigame = true;
-        teleportToMinigame(targetMinigame.minigameID);
-        minigameStart?.Invoke(targetMinigame);
+
+        // Pass the full config (or the ID) into teleport
+        teleportToMinigame(targetMinigame);
     }
     public void startRandomDuelMinigame()
     {
         MinigameConfig targetMinigame = selectRandomMinigame(MinigameType.oneVSone);
-        currentMinigame = targetMinigame;
-        isMinigame = true;
-        teleportToMinigame(targetMinigame.minigameID);
-        minigameStart?.Invoke(targetMinigame);
+
+        // Pass the full config (or the ID) into teleport
+        teleportToMinigame(targetMinigame);
     }
     public void endMinigame(Dictionary<ulong, int> placings)
     {
@@ -95,26 +94,37 @@ public class MinigameManager : NetworkBehaviour
         teleportToMap(MapManager.Instance.currentMap.mapID);
     }
 
-    public void teleportToMinigame(string targetMinigame)
+    public void teleportToMinigame(MinigameConfig minigameConfig)
     {
         if (!IsServer)
         {
-            Debug.Log("Not server. starting rpc");
-            teleportToMinigameServerRpc(targetMinigame);
+            Debug.Log("Not server. Starting RPC...");
+            teleportToMinigameServerRpc(minigameConfig.minigameID);
             return;
         }
 
-        MinigameConfig minigameConfig = FindMinigameFromID(targetMinigame);
-        Debug.Log("Teleporting to map");
-
         currentTransition = TransitionType.minigame;
-        NetworkSceneManager.Instance.LoadSceneNetwork(minigameConfig.sceneName);
-        minigameStart?.Invoke(minigameConfig);
+
+        NetworkSceneManager.Instance.LoadSceneNetwork(minigameConfig.sceneName, () =>
+        {
+            Debug.Log($"All clients loaded minigame scene: {minigameConfig.sceneName}");
+
+            currentMinigame = minigameConfig;
+            isMinigame = true;
+
+            SpawnConfiguredMinigameManager();
+
+            // MOVED HERE: Tell clients to teleport now that the scene and manager exist
+            teleportPlayerToMinigameSpawnClientRpc();
+
+            minigameStart?.Invoke(minigameConfig);
+        });
     }
+
     [ServerRpc(RequireOwnership = false)]
     void teleportToMinigameServerRpc(string targetMinigame)
     {
-        teleportToMinigame(targetMinigame);
+        teleportToMinigame(FindMinigameFromID(targetMinigame));
     }
 
     [ServerRpc(RequireOwnership = false)]
@@ -129,7 +139,6 @@ public class MinigameManager : NetworkBehaviour
         {
             Debug.LogWarning($"This specific instance ({gameObject.name}) is not spawned. Redirecting to the active network instance...");
 
-            // Find the actual network-spawned version in the scene
             MinigameManager[] allManagers = FindObjectsByType<MinigameManager>();
             MinigameManager activeNetworkInstance = null;
 
@@ -144,7 +153,6 @@ public class MinigameManager : NetworkBehaviour
 
             if (activeNetworkInstance != null)
             {
-                // Route the call through the actual spawned network manager
                 Instance = activeNetworkInstance;
                 activeNetworkInstance.teleportToMap(targetMap);
                 return;
@@ -153,6 +161,7 @@ public class MinigameManager : NetworkBehaviour
             Debug.LogError("Could not find any network-spawned MinigameManager in the scene!");
             return;
         }
+
         Debug.Log("Teleporting to map");
         if (!IsServer)
         {
@@ -160,9 +169,24 @@ public class MinigameManager : NetworkBehaviour
             teleportToMapServerRpc(targetMap);
             return;
         }
+
         currentTransition = TransitionType.partyMap;
-        NetworkSceneManager.Instance.LoadSceneNetwork(MapManager.Instance.findPartyMapWithID(targetMap).sceneName);
-        //Apply player config
+
+        // Get the scene name from your MapManager
+        MapConfig partyMap = MapManager.Instance.findPartyMapWithID(targetMap);
+        string mapSceneName = partyMap.sceneName;
+
+        // Use the callback to wait for the scene to load BEFORE applying configs
+        NetworkSceneManager.Instance.LoadSceneNetwork(mapSceneName, () =>
+        {
+            Debug.Log("All clients have loaded the Party Map!");
+
+            // MOVED HERE: Teleport the players to the board
+            teleportPlayerToPartySpaceClientRpc();
+
+            PlayerConfigManager.Instance.playerConfig = partyMap.playerConfig;
+            PlayerConfigManager.Instance.applyPlayerConfig();
+        });
     }
     [ClientRpc]
     void teleportPlayerToMinigameSpawnClientRpc()
@@ -172,35 +196,25 @@ public class MinigameManager : NetworkBehaviour
 
     void SpawnConfiguredMinigameManager()
     {
-        if (!IsServer)
+        if (!IsServer) return;
+
+        if (currentMinigame == null)
         {
+            Debug.LogWarning("No minigame is set. currentMinigame is null!");
             return;
         }
 
-        if (currentMinigame == null || currentMinigame.managerPrefab == null)
+        if (currentMinigame.managerPrefab == null)
         {
-            Debug.LogWarning("No minigame manager prefab is configured for the current minigame.");
+            Debug.LogWarning("No minigame manager prefab configured on target minigame!");
             return;
         }
 
-        if (spawnedMinigameNetworkObject != null)
-        {
-            return;
-        }
+        // Instantiate and spawn the minigame's specific network manager
+        GameObject managerInstance = Instantiate(currentMinigame.managerPrefab);
+        managerInstance.GetComponent<NetworkObject>().Spawn();
 
-        GameObject managerObject = Instantiate(currentMinigame.managerPrefab);
-        NetworkObject networkObject = managerObject.GetComponent<NetworkObject>();
-
-        if (networkObject == null)
-        {
-            Debug.LogError($"Configured minigame manager prefab '{currentMinigame.managerPrefab.name}' does not have a NetworkObject component.");
-            Destroy(managerObject);
-            return;
-        }
-
-        networkObject.Spawn();
-        spawnedMinigameNetworkObject = networkObject;
-        Debug.Log($"Spawned minigame manager '{currentMinigame.managerPrefab.name}' on the network.");
+        Debug.Log($"Successfully spawned minigame manager for: {currentMinigame.sceneName}");
     }
 
     System.Collections.IEnumerator WaitAndTeleportRoutine()

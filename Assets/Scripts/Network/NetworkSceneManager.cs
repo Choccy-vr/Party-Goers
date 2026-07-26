@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class NetworkSceneManager : NetworkBehaviour
 {
-
     public static NetworkSceneManager Instance;
 
-    [SerializeField] PersistantNetworkObject[] objectsToSave;
+    // Store whatever action we want to run AFTER the scene loads
+    private Action pendingLoadCallback;
 
     void Awake()
     {
@@ -18,54 +18,46 @@ public class NetworkSceneManager : NetworkBehaviour
         }
         Instance = this;
     }
+
     public override void OnDestroy()
     {
         base.OnDestroy();
-
-        if (Instance == this)
-        {
-            Instance = null;
-        }
+        if (Instance == this) Instance = null;
     }
+
     [RuntimeInitializeOnLoadMethod(RuntimeInitializeLoadType.SubsystemRegistration)]
     static void ResetStatics()
     {
         Instance = null;
     }
 
+    // Takes ANY scene name, and an optional action to run when finished
     public void LoadSceneNetwork(string sceneName, Action onLoaded = null)
     {
-        if (!IsServer) { Debug.LogWarning("Can't load scene because not server!"); return; }
+        if (!IsServer) return;
 
+        // Store the callback for later
+        pendingLoadCallback = onLoaded;
+
+        // Listen for when everyone finishes loading
         NetworkManager.Singleton.SceneManager.OnSceneEvent += HandleSceneEvent;
 
-        foreach (var manager in objectsToSave)
-        {
-            if (manager != null)
-            {
-                manager.PrepareForSceneChange();
-            }
-        }
-        SceneEventProgressStatus status = NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
-        if (status != SceneEventProgressStatus.Started)
-        {
-            NetworkManager.Singleton.SceneManager.OnSceneEvent -= HandleSceneEvent;
-            Debug.LogError("Failed to init load scene: " + status);
-        }
+        // Start the load
+        NetworkManager.Singleton.SceneManager.LoadScene(sceneName, UnityEngine.SceneManagement.LoadSceneMode.Single);
     }
 
     void HandleSceneEvent(SceneEvent sceneEvent)
     {
-        if (sceneEvent.SceneEventType != SceneEventType.LoadEventCompleted)
+        // Fires only when Host and ALL Clients are fully loaded
+        if (sceneEvent.SceneEventType == SceneEventType.LoadComplete)
         {
-            return;
-        }
+            NetworkManager.Singleton.SceneManager.OnSceneEvent -= HandleSceneEvent;
 
-        NetworkManager.Singleton.SceneManager.OnSceneEvent -= HandleSceneEvent;
+            Debug.Log($"All clients loaded the scene. Running callback.");
 
-        foreach (PersistantNetworkObject persistantNetworkObject in objectsToSave)
-        {
-            persistantNetworkObject.GetComponent<NetworkObject>().Spawn();
+            // Run the stored action (if one was provided)
+            pendingLoadCallback?.Invoke();
+            pendingLoadCallback = null; // Clear it so it doesn't run twice
         }
     }
 }

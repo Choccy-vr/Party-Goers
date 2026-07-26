@@ -7,7 +7,7 @@ using UnityEngine.XR.Interaction.Toolkit.Interactables;
 public class DodgeballProvider : NetworkBehaviour
 {
     [SerializeField] Transform dodgeballSpawnPoint;
-    [SerializeField] List<Collider> courtColiders;
+    [SerializeField] Collider[] courtColiders;
     [SerializeField] Collider ballCollider;
     [SerializeField] XRGrabInteractable grabInteractable;
     [SerializeField] float respawnDuration = 15f;
@@ -50,6 +50,8 @@ public class DodgeballProvider : NetworkBehaviour
 
     void Start()
     {
+        courtColiders = DodgeballRefs.Instance.courtColliders;
+
         if (grabInteractable == null)
         {
             grabInteractable = GetComponent<XRGrabInteractable>();

@@ -21,6 +21,7 @@ public class GameSessionManager : NetworkBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     public override void OnDestroy()
     {
@@ -85,10 +86,10 @@ public class GameSessionManager : NetworkBehaviour
             }
         }
 
-        if (amount > 0)
+        /*if (amount > 0)
         {
             coinParticleSystem.Play();
-        }
+        }*/
     }
     public void AddItemToPlayer(ulong clientId, string ItemID)
     {

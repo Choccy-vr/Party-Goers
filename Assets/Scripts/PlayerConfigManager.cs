@@ -61,7 +61,7 @@ public class PlayerConfigManager : MonoBehaviour
         }
         if (playerConfig.turnEnabled)
         {
-            continuousTurnProvider.gameObject.SetActive(playerConfig.continuousTurnEnabled);
+            //continuousTurnProvider.gameObject.SetActive(playerConfig.continuousTurnEnabled);
             snapTurnProvider.gameObject.SetActive(playerConfig.snapTurnEnabled);
         }
         else

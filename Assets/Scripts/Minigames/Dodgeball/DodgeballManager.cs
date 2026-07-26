@@ -57,10 +57,16 @@ public class DodgeballManager : NetworkBehaviour
 
     private IEnumerator DodgeballLifecycleRoutine()
     {
+        Debug.Log("Waiting for players to teleport...");
+
+        // Give the clients 1.5 seconds to finish their teleport RPCs and initialize
+        yield return new WaitForSeconds(1.5f);
+
         Debug.Log("Starting Dodgeball game");
-        TeleportPlayersToSpawns();
-        SetPlayerConfig();
+
+        // NOW it is safe to apply configs and spawn balls!
         SpawnDodgeballs();
+        SetPlayerConfig();
 
 
         timeRemaining.Value = matchDuration;
@@ -68,7 +74,7 @@ public class DodgeballManager : NetworkBehaviour
 
         while (timeRemaining.Value > 0f && activePlayerIds.Count > 1 && isGameActive)
         {
-            Debug.Log("Game in progress");
+            Debug.Log("Game still running!");
             timeRemaining.Value -= Time.deltaTime;
             yield return null;
         }
@@ -127,9 +133,12 @@ public class DodgeballManager : NetworkBehaviour
 
     void SpawnDodgeballs()
     {
+        Debug.Log("Spawning Dodgeballs");
         foreach (Transform spawnPoint in dodgeballSpawnPoints)
         {
-            Instantiate(dodgeballPrefab, spawnPoint.position, spawnPoint.rotation);
+            GameObject dodgeball = Instantiate(dodgeballPrefab, spawnPoint.position, spawnPoint.rotation);
+            dodgeball.GetComponent<NetworkObject>().Spawn();
+
         }
     }
 
@@ -145,46 +154,6 @@ public class DodgeballManager : NetworkBehaviour
         }
 
         return results;
-    }
-
-    // Helper Spawners
-    private void TeleportPlayersToSpawns()
-    {
-        if (!IsServer) return;
-
-        var connectedClients = NetworkManager.Singleton.ConnectedClientsList;
-
-        for (int i = 0; i < connectedClients.Count; i++)
-        {
-            ulong clientId = connectedClients[i].ClientId;
-
-            if (i < playerSpawnPoints.Length)
-            {
-                Transform spawn = playerSpawnPoints[i];
-
-                if (NetworkManager.Singleton.ConnectedClients.TryGetValue(clientId, out var client))
-                {
-                    var playerScript = client.PlayerObject.GetComponent<VRPartyPlayer>();
-
-                    if (playerScript != null)
-                    {
-                        var rpcParams = new ClientRpcParams
-                        {
-                            Send = new ClientRpcSendParams
-                            {
-                                TargetClientIds = new ulong[] { playerScript.OwnerClientId }
-                            }
-                        };
-
-                        playerScript.TeleportPlayerClientRpc(spawn.position, spawn.rotation, rpcParams);
-                    }
-                }
-            }
-            else
-            {
-                Debug.LogWarning($"Not enough spawn points in array for client ID {clientId}!");
-            }
-        }
     }
 }
 

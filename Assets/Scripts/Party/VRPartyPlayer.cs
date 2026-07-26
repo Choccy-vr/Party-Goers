@@ -34,18 +34,47 @@ public class VRPartyPlayer : NetworkBehaviour
     public override void OnNetworkSpawn()
     {
         base.OnNetworkSpawn();
+
         if (IsOwner)
         {
-            NetworkIdenity.Instance.networkPlayerIdenity = gameObject;
+            // Wait for NetworkIdenity singleton if needed
+            StartCoroutine(AssignIdentityWhenReady());
         }
+
         RefreshLocalData();
+
         if (GameSessionManager.Instance != null)
         {
             GameSessionManager.Instance.activePlayers.OnListChanged += OnNetworkPlayersChanged;
         }
-        PlayerManager.Instance.activePlayerObj.Add(this);
-        TurnManager.Instance.turnOrderObj.Add(this);
 
+        // Wait safely for managers to be ready before registering this player
+        StartCoroutine(RegisterToManagersWhenReady());
+    }
+
+    private System.Collections.IEnumerator AssignIdentityWhenReady()
+    {
+        yield return new UnityEngine.WaitUntil(() => NetworkIdenity.Instance != null);
+        NetworkIdenity.Instance.networkPlayerIdenity = gameObject;
+    }
+
+    private System.Collections.IEnumerator RegisterToManagersWhenReady()
+    {
+        // Wait until both singletons exist AND their NetworkObjects are spawned
+        yield return new UnityEngine.WaitUntil(() =>
+            TurnManager.Instance != null && TurnManager.Instance.IsSpawned
+        );
+
+        // Now it's 100% safe to register!
+        if (!PlayerManager.Instance.activePlayerObj.Contains(this))
+        {
+            PlayerManager.Instance.activePlayerObj.Add(this);
+        }
+
+        if (!TurnManager.Instance.turnOrderObj.Contains(this))
+        {
+            TurnManager.Instance.turnOrderObj.Add(this);
+        }
     }
     public override void OnNetworkDespawn()
     {

@@ -22,7 +22,7 @@ public class PartyManager : NetworkBehaviour
     [SerializeField] InputActionProperty partyPadSpawnAction;
 
     [Header("Player Spawn")]
-    [SerializeField] Transform[] playerSpawnPoints;
+    public Transform[] playerSpawnPoints;
 
     GameObject currentDiceObject;
     PartySpace currentStarSpace;
@@ -36,6 +36,7 @@ public class PartyManager : NetworkBehaviour
             return;
         }
         Instance = this;
+        DontDestroyOnLoad(gameObject);
     }
     public override void OnDestroy()
     {

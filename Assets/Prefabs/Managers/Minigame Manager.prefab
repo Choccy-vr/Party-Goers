@@ -11,7 +11,6 @@ GameObject:
   - component: {fileID: 4290369684729995028}
   - component: {fileID: 7012938717377183922}
   - component: {fileID: 7950914158489012875}
-  - component: {fileID: 4751516063244525032}
   m_Layer: 0
   m_Name: Minigame Manager
   m_TagString: Untagged
@@ -83,16 +82,3 @@ MonoBehaviour:
   minigameEnd:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &4751516063244525032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3938351957808724336}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52730b2aef53194479b71315eb56cb08, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: '::'
-  ShowTopMostFoldoutHeaderGroup: 1
